@@ -482,6 +482,22 @@ the cheapest thing to fix, and every minute saved there is a minute more for the
 What we did not do: change the owner's opt-in for production, and promote the change without the owner's yes. Both
 patches are undoable.
 
+### Worked example: a distilled variant wins only with the frame anchored (November 2026)
+
+The same storyboard board that took 645 s on the stock model took **146 s (4.4x) on a distilled speed variant** — same
+board, same seed, same frames — and the by-eye and typed-model reads agreed it held the framing. The owner approved it
+for the production path the same day. Two lessons, both cheap to state and expensive to skip:
+
+- **Anchor the exact frame you measured.** The variant's *reference mode* (identity from reference images, no
+  first-frame anchor) kept the faces but let the framing drift out from about frame 24 — a different mode of the same
+  model, a different result. A speed claim is only true for the mode and anchor that was timed; pair every speed win
+  with the composition the beat needs, or you paid latency for a shot that needs a redraw.
+- **Promote on the paired read, not the clock.** The 4.4x was convincing only because the control arm (stock, same
+  seed) and the framing read existed beside it. Same rule as the render-speed A/B above: fastest that passes the eye
+  beats fastest.
+
+From the 2026-11-01 speed-variant approval and its reference-mode drop note.
+
 ## Results so far (updated by hand from `loop_stats.py`)
 
 | Window | Merges | Per hour | Land conflicts | Area collisions | Stalls | Silent deaths | Cards moved (to done) |

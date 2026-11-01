@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.64.0 (2026-11-01): a distilled variant wins only with the frame anchored
+- **Method doc:** one more worked example in "Spend where it counts, in practice": a distilled speed variant drew the
+  same board 645 s → 146 s (4.4x, same seed) and held framing by eye and typed-model read, so it was approved for the
+  production path the same day — but its reference mode (identity from references, no first-frame anchor) kept faces
+  and dropped the framing from about frame 24. Lessons: a speed claim is only true for the mode and anchor that was
+  timed; promote on the paired control read, not the clock. From the 2026-11-01 speed-variant approval.
+
 ## 1.63.0 (2026-11-01): split work vs wait per stage before tuning anything
 - **Method doc:** one more lesson in "Spend where it counts, in practice": a timed end-to-end run carried a 23-minute
   stage that was pure waiting on its own scene's intermediate render, stuck behind ~20 others in an exclusive-render
