@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.58.0 (2026-11-01). See CHANGELOG.md in the repo root.
+VERSION 1.59.0 (2026-11-01). See CHANGELOG.md in the repo root.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -97,8 +97,8 @@ only to serve it.
   the hard parts. Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks
   others. Spend little elsewhere:
   - the cheapest capable model for reading and routine building;
-  - a fast decision model for typed questions (which lane, needs code, is this frame right), so the LLM only sees
-    the cases it is unsure about;
+  - a fast decision model, hosted or local, for typed questions (which lane, needs code, is this frame right), so
+    the LLM only sees the cases it is unsure about;
   - research reading on a local model once a bake-off on your real tasks shows it reads well enough;
   - short briefs that carry the context;
   - one agent per task, with no duplicate work.

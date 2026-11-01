@@ -383,6 +383,52 @@ expensive thinking, not a judge with a veto: scores travel with the work as note
   faster, because the control ran right after a model swap and paid the reload. Time each stage (load, encode,
   sample, decode) and judge each change on the stage it touches.
 
+**A local decision model, built by a sister team (same box, same night).** The hosted decision model has a local
+counterpart. Open-weights "System One" models (the Apache-2.0 Wald family: a 26B-A4B MoE fine-tune of Gemma 4, and a
+4B fine-tune of Qwen 3.5) run on the same Mac under llama.cpp's server with every layer on the GPU. They answer the
+same wire format (`POST /v1/systemone`, with choice, yes/no and score questions).
+
+How it turns one forward pass into calibrated probabilities, with nothing generated:
+1. A small reader in front of the server renders the model's own chat template with the vendor's tokenizer, so the
+   prompt can't drift with the server's template.
+2. The options become letters A, B, C, and the prompt ends "answer with the letter of one option", with thinking off.
+3. The server gets the token ids with `n_predict 1`, `n_probs 200` and `post_sampling_probs false`, which returns the
+   raw softmax at the answer position.
+4. Each option scores log(P("A") + P(" A")), the bare and the space-prefixed token. An option missing from the top 200
+   gets the lowest listed score minus 2. Then a softmax runs over the listed options only.
+5. Longer option lists are cut down in a knockout stage.
+6. The 4B applies the vendor's frozen per-type temperatures; the 26B uses T = 1.
+
+What it measured:
+- **Accuracy on the open JevBench public-231 set:**
+  - the 4B matched its published score exactly (203);
+  - the 26B came 13 short of its self-reported BF16-on-vLLM score, all on hard items. After ruling out dataset drift,
+    prompt drift, template and BOS bugs and the server build, the remaining suspects are runtime numerics and
+    quantization.
+- **Determinism:** answers were identical across reruns, 231 out of 231.
+- **Speed:** about 150–250 ms median per decision, bound by prefill (about 0.5 ms per prompt token).
+- **A real task, CI triage** (148 questions from real failures: known failure or new? environment or code?):
+  - the 26B got 59/61 and 25/26, the 4B 56/61 and 25/26;
+  - every wrong answer had confidence at or below 0.81;
+  - at a 0.85 threshold all three runs were error-free and still decided 86–91% of the cases.
+
+What they'd tell you before you build one:
+- **Speculative decoding can't help:** there's no generation phase. Work on prefill and keep prompts short (under about
+  8k tokens; trim logs to the failing lines in code first).
+- **Most leaderboard decision models aren't portable.** Many need custom heads, bidirectional attention or a patched
+  serving stack. Filter for a standard causal decoder with an option-letter readout.
+- **Port the vendor's reader; don't rewrite it.** Swap only its HTTP calls, then prove tokenization equality and
+  determinism before trusting a score.
+- **Reproduce published scores on your own runtime;** a vendor's own files can disagree with its model card.
+- **Set thresholds from your own labels** (plan on 100–200 per decision type). Act at about 0.85, ask for about 0.90
+  on hard-to-undo actions, and escalate the rest. Watch for label skew: when every recent case is "known", add older
+  ones to get real "new" cases.
+- **Track your own processes:** a server that hung on shutdown stayed orphaned and pushed memory over the box's cap.
+  The start scripts now force-kill after 15 s.
+
+So the choice between a hosted and a local decision model is about volume, privacy and the box's spare memory, not
+the format: the same request works on either.
+
 **Shared machines are other people's live work.** The Mac belongs to another team's fleet:
 - **Before using it:** we asked that fleet's orchestrator for a lane and a memory budget (its own port, at most 80 GB,
   then 128 GB once the owner paused one of its workers).

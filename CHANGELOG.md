@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.59.0 (2026-11-01): a local decision model
+- **Method doc:** how a sister team runs open-weights decision models locally: one forward pass, option-letter logits
+  and a softmax over the listed options, under llama.cpp with the same wire format as the hosted API. Covers
+  benchmark parity, determinism, prefill-bound latency and a real CI-triage trial with its confidence thresholds, plus
+  what to know before building one.
+- **Skill:** the decision-model steering says hosted or local.
+
 ## 1.58.0 (2026-11-01): decide fast, read locally, ration the cloud
 - **Strong steering, "Mash, but spend where it counts":**
   - a fast decision model answers typed questions before an LLM is asked;
