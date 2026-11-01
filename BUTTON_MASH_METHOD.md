@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.61.0 (2026-11-01), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.62.0 (2026-11-01), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -382,6 +382,10 @@ expensive thinking, not a judge with a veto: scores travel with the work as note
 - **Speed numbers lie when the control pays a cold start.** In a render speed test, every "speed-up" arm looked 37%
   faster, because the control ran right after a model swap and paid the reload. Time each stage (load, encode,
   sample, decode) and judge each change on the stage it touches.
+- **Finals settings are decided on paired frames read by eye, never single frames.** Single-frame numbers swing too
+  much to rank on. An int8 VAE matched fp16 on every paired frame and saved 10–14 s of decode per take — a free
+  speed-up. A 4-step speed LoRA that drifted the framing was dropped although it was the fastest arm: speed only
+  counts when the audience can't tell.
 
 **A local decision model, built by a sister team (same box, same night).** The hosted decision model has a local
 counterpart. Open-weights "System One" models (the Apache-2.0 Wald family: a 26B-A4B MoE fine-tune of Gemma 4, and a

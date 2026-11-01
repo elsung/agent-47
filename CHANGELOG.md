@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.62.0 (2026-11-01): speed settings are decided on paired by-eye frames
+- **Method doc:** one more lesson in "Spend where it counts, in practice": finals speed settings are read on paired
+  frames by eye (single-frame numbers swing); an int8 VAE matched fp16 and saved 10–14 s of decode per take, while a
+  4-step speed LoRA that drifted framing was dropped as a final. From the 2026-11-01 finals A/B (desk item
+  speed-default-s3s4-2296e).
+
 ## 1.61.0 (2026-11-01): faster lanes, more takes on the feel per hour
 - **Method doc:** one more worked example in "Spend where it counts, in practice": a render previz that waited on one card
   (boards on one box, a test run's shot held behind a busy card), and a run that queued nothing with no note. Two small
