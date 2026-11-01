@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.63.0 (2026-11-01): split work vs wait per stage before tuning anything
+- **Method doc:** one more lesson in "Spend where it counts, in practice": a timed end-to-end run carried a 23-minute
+  stage that was pure waiting on its own scene's intermediate render, stuck behind ~20 others in an exclusive-render
+  queue; the per-stage work-vs-wait table showed it in one read, and the fix is ordering (current scene's jobs first
+  under their own lane), not a faster GPU or a new route. From the 2026-11-01 timed-run work-vs-wait note.
+
 ## 1.62.0 (2026-11-01): speed settings are decided on paired by-eye frames
 - **Method doc:** one more lesson in "Spend where it counts, in practice": finals speed settings are read on paired
   frames by eye (single-frame numbers swing); an int8 VAE matched fp16 and saved 10–14 s of decode per take, while a
