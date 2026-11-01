@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.6.0 (2026-10-20), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.61.0 (2026-11-01), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -446,6 +446,33 @@ not across boxes):
 - **How we use it:** one model only.
 - **Records:** a README on the box saying whose it is and how to stop it, and one file listing every local model our
   agents run, with its memory and its stop command.
+
+### Worked example: faster lanes, more takes on the feel per hour (November 2026)
+
+A render previz for one scene took about an hour from a fresh run to its first finished draft, and most of that hour was
+waiting, not rendering. The timing record said where:
+
+- **One card carried everything.** Board renders (about 26 per scene, four hours of render time in total) ran one at a
+  time on the card the run was pinned to, while the other boxes the run listed sat idle.
+- **A test run's shot waited on a busy card.** The shot itself took about a minute to render and about 25 minutes to
+  start, held behind someone else's draw on the same card. Production runs keep their shots on their card by an opt-in
+  set by the owner; test runs had no such route.
+- **A new run that was never started queued nothing, and said nothing.** The planner returned no work for a run that was
+  not started, with no note. The fix is a visible note, not a behaviour change.
+
+What changed, in two small patches, both landed on the day:
+
+1. A test run's shot may start on an idle listed box when the main card is held (the job says so on its progress line).
+   Production runs keep the owner's opt-in.
+2. Layout-only board jobs may spread to idle boxes like other GPU work, one job per machine.
+
+Then the same scene was timed again on a fresh run. The first clock (before the fix) was 27 minutes from shot release to the
+finished draft. The lesson is the method's own: measure the slow step in the real system (the run's own timing record,
+not a guess), find where the wait is decided, change that one place, and time it again. A lane that waits on one card is
+the cheapest thing to fix, and every minute saved there is a minute more for the takes that carry the feeling.
+
+What we did not do: change the owner's opt-in for production, and promote the change without the owner's yes. Both
+patches are undoable.
 
 ## Results so far (updated by hand from `loop_stats.py`)
 

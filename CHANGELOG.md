@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.61.0 (2026-11-01): faster lanes, more takes on the feel per hour
+- **Method doc:** one more worked example in "Spend where it counts, in practice": a render previz that waited on one card
+  (boards on one box, a test run's shot held behind a busy card), and a run that queued nothing with no note. Two small
+  patches fixed the routing and the note, and the scene was timed again.
+- **Strong steering:** measure the slow step in the real system before changing anything, and keep the owner's opt-ins.
+
 ## 1.60.0 (2026-11-01): draft tiers need a control arm before they win
 - **Method doc:** one more worked example in "Spend where it counts, in practice": a render-speed A/B where the
   fastest lane (4 steps) lost to the mid lane (5 steps + VAE 2x) because it failed the by-eye read, and the mid
