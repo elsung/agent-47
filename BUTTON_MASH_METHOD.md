@@ -429,6 +429,17 @@ What they'd tell you before you build one:
 So the choice between a hosted and a local decision model is about volume, privacy and the box's spare memory, not
 the format: the same request works on either.
 
+**A cheap draft tier can win, but only with its control arm (render-speed A/B, November 2026).** Four speed arms
+were timed per shot type (S3 6.58 s, S4 9.42 s, S10 8.0 s of video; whole-take wall on one box, so compare per arm,
+not across boxes):
+- **Mid lane won: 5 steps + VAE 2x** cut wall 32–40% against the 8-step control (S3 251→170 s, S4 372→248 s,
+  S10 329→223 s) and held framing by eye on paired frame reads for all three shots.
+- **The fastest lane lost: 4 steps** was another 8–9% quicker (S3 157 s, S4 226 s, S10 204 s) but drifted framing
+  on two of three shots. A tier that fails the eye-read costs a full re-run, so "fastest that passes" beats "fastest".
+- **Promotion waited on the missing control:** the int8 VAE had only ever been compared with itself, so the fp16-VAE
+  control was queued before wiring the candidate in as the default. The candidate landed unwired; the promote
+  switch stayed with the owner's call.
+
 **Shared machines are other people's live work.** The Mac belongs to another team's fleet:
 - **Before using it:** we asked that fleet's orchestrator for a lane and a memory budget (its own port, at most 80 GB,
   then 128 GB once the owner paused one of its workers).

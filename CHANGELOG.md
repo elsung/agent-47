@@ -8,6 +8,11 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.60.0 (2026-11-01): draft tiers need a control arm before they win
+- **Method doc:** one more worked example in "Spend where it counts, in practice": a render-speed A/B where the
+  fastest lane (4 steps) lost to the mid lane (5 steps + VAE 2x) because it failed the by-eye read, and the mid
+  lane could not be promoted until a control arm (fp16 VAE) closed the loop on the int8 VAE.
+
 ## 1.59.0 (2026-11-01): a local decision model
 - **Method doc:** how a sister team runs open-weights decision models locally: one forward pass, option-letter logits
   and a softmax over the listed options, under llama.cpp with the same wire format as the hosted API. Covers
