@@ -7,6 +7,17 @@ One entry per revision. Semantic versions:
 
 Each entry names the real incident or owner note that taught it.
 
+
+## 1.58.0 (2026-11-01): decide fast, read locally, ration the cloud
+- **Strong steering, "Mash, but spend where it counts":**
+  - a fast decision model answers typed questions before an LLM is asked;
+  - research reading moves to a local model once a bake-off on real tasks shows it reads well enough.
+- **Two worked examples:**
+  - the token budget that ran out, and how the lanes were moved (decision model, local reader by bake-off, the
+    hosted model rationed, shared machines treated as live work);
+  - the speed test whose control paid a cold reload (time each stage).
+- **Method doc:** new section "Spend where it counts, in practice", with the lane table, the reading bake-off table
+  and its lessons.
 ## 1.9.1 (2026-10-21)
 
 **Patch: wording in the research digest.** Trimmed `research/FORWARD_AND_CLEAN.md` to the 1500-word budget without

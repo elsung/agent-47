@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.57.0 (2026-10-26). See CHANGELOG.md in the repo root.
+VERSION 1.58.0 (2026-11-01). See CHANGELOG.md in the repo root.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -97,6 +97,9 @@ only to serve it.
   the hard parts. Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks
   others. Spend little elsewhere:
   - the cheapest capable model for reading and routine building;
+  - a fast decision model for typed questions (which lane, needs code, is this frame right), so the LLM only sees
+    the cases it is unsure about;
+  - research reading on a local model once a bake-off on your real tasks shows it reads well enough;
   - short briefs that carry the context;
   - one agent per task, with no duplicate work.
 
@@ -279,6 +282,20 @@ Update it as fixes land. Tick the checklist and check the table before the next 
 more moving.** The owner restated the point: the work exists to make an audience feel something and care. Good move:
 write that into the one north star file every stage reads first, make each stage say how its output serves it, judge
 results by it before the spec, and treat the narrow rules as hypotheses to keep or retire, not as the goal.
+
+**A week of agent work burned about 5.7 billion tokens on a hosted reading model, and the quota ran out mid-run.**
+Good move: move each kind of work to the cheapest thing that does it well, and measure on the real job:
+- a decision model in front of the LLM for typed questions (571 research ideas sorted in 2.3 s for under 4 cents);
+- a bake-off of local models on two real reads, against the hosted model's reads. The pick was the one that caught
+  every idea, not the fastest;
+- the hosted model kept, rationed, for what local can't do.
+
+When the local box is another team's live machine, ask its orchestrator for a lane and a memory budget first, run one
+model, and write down whose it is and how to stop it.
+
+**A speed test showed every arm 37% faster than the control.** The control ran right after a model swap and paid the
+reload. Good move: time each stage (load, encode, sample, decode), add a warm control, and judge each change on the
+stage it touches before calling a speed-up.
 
 More worked examples: references/EXAMPLES.md.
 

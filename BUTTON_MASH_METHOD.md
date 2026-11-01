@@ -333,6 +333,63 @@ The risk is regressions landing on main. The bet is that fixing them forward, at
 everything. If main breaks more often than we can fix it, that bet is wrong, and the first thing to add back is the
 cheapest runnable check on the real artifact, not the suite.
 
+## Spend where it counts, in practice: decide fast, read locally, ration the cloud (November 2026)
+
+"Mash, but spend where it counts" (owner #525) became a concrete stack after one night of research and bake-offs. The
+problem: one week of agent work burned about 5.7 billion tokens on a hosted reading model, about 820 million a day, and
+the quota ran out mid-run. The expensive orchestrator model was also being spent on routine choices. Changing the
+models' prompts doesn't fix that. Moving each kind of work to the cheapest thing that does it well does.
+
+**The lanes, cheapest capable first:**
+
+| Work | Who does it | Why |
+|---|---|---|
+| Typed decisions: which lane takes this task, does it need code, is this frame right (people count, prop in hand, haze, face visible), which take ranks first | **A hosted decision model** (TypeSafe Jev 1.14): a typed question in, calibrated probabilities out, no text generated | 571 research ideas sorted into 32 features in **2.3 s for under 4 cents**; six questions about a storyboard frame answered in **0.29 s**, matching a human review. Images work. |
+| Research reading: digests, summaries, code reads | **A local open-weights MoE on a 192 GB Mac** (Ornith 1.5 35B A3B, 8-bit, MIT, served by oMLX) | Free and unlimited; read a 97k-token repo in about 5 min and caught every porting idea a much larger hosted model caught |
+| Short triage | A small local model on a dual-GPU box | Fast, free |
+| Agent jobs that need tools | A hosted coding model, rationed, with a second hosted model as fallback | When the first is rate-limited, the fallback takes over by a flag, not by hand |
+| Building code | The fast, cheap build model | Owner rule |
+| Judgment, owner calls, steering | The expensive model, the orchestrator only | Where its quality moves the goal |
+
+**The pattern that saves the most:** before an agent spends LLM tokens on a decision, a decision model answers the typed
+question. The LLM sees only the cases the decision model is unsure about. It's a sorting step in front of the
+expensive thinking, not a judge with a veto: scores travel with the work as notes, never as gates.
+
+**How we picked the reading model (a bake-off on real tasks, not benchmarks):**
+- **Same two jobs for every model:** real code reads of 38k and 97k tokens, against the larger model's reads of the
+  same repos.
+- **Measured:** prefill and decode speed separately, and for each model, which porting ideas it caught and which it
+  missed.
+
+| Model (all on the same Mac) | 38k read | 97k read | Against the reference read |
+|---|---|---|---|
+| Dense 27B with speculative decoding | 254 s | 753 s | Main ideas only; short digests |
+| MoE 35B A3B, 4-bit | 51 s | 200 s | Missed three ideas |
+| MoE 35B A3B, 8-bit | 87 s | 185 s | Missed two ideas |
+| Another MoE 26B A4B | 65 s | 185 s | Weakest reads |
+| **The winner: MoE 35B A3B, 8-bit, a newer fine-tune** | 115 s | 303 s | **Caught everything** |
+
+**Lessons from that night:**
+- **MoE models win long reads on a Mac.** Only about 3B parameters are active per token, so prefill, which dominates on
+  long inputs, runs 3–6x faster than a dense 27B.
+- **8-bit beat 4-bit on care, at the same speed on long reads.** Quantise for memory, not by habit.
+- **Four requests at once was no faster than one after another** on a single Mac. Measure concurrency before assuming
+  it.
+- **A reasoning prompt** (chain-of-draft) made a dense model much better at maths in an earlier test, but added time
+  and no quality to reading. Test a technique on the job, not on its benchmark.
+- **The fastest model wasn't the pick.** The winner was 1.6x slower than the runner-up, but it was the only one that
+  read at the reference model's level, which removed the need for the hosted reader on deep reads.
+- **Speed numbers lie when the control pays a cold start.** In a render speed test, every "speed-up" arm looked 37%
+  faster, because the control ran right after a model swap and paid the reload. Time each stage (load, encode,
+  sample, decode) and judge each change on the stage it touches.
+
+**Shared machines are other people's live work.** The Mac belongs to another team's fleet:
+- **Before using it:** we asked that fleet's orchestrator for a lane and a memory budget (its own port, at most 80 GB,
+  then 128 GB once the owner paused one of its workers).
+- **How we use it:** one model only.
+- **Records:** a README on the box saying whose it is and how to stop it, and one file listing every local model our
+  agents run, with its memory and its stop command.
+
 ## Results so far (updated by hand from `loop_stats.py`)
 
 | Window | Merges | Per hour | Land conflicts | Area collisions | Stalls | Silent deaths | Cards moved (to done) |
