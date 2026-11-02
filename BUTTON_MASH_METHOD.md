@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.15 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.16 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -253,7 +253,7 @@ not kept as a third copy.
   one that failed the camera check had not. Why: a replay tests the take against its plan, and only a read board gives
   a plan to test against.
 - **When blocked on other leads, post one blocked line, then wait on a real signal.** The line names the one owner, the
-  one question and the time. Repeated pings to the same lead add noise, not progress. Why: a blocked lane that says so once keeps the
+  one question, the time, and what you do the moment it lands. Repeated pings to the same lead add noise, not progress. Why: a blocked lane that says so once keeps the
   others moving.
 - **Scope a search to one folder, and wrap it in a timeout.** A broad find or grep over the repo root or `/` times out
   and can leave a stray background job. Use e.g. `timeout 20 find <one folder> -maxdepth 4 ...`. To spot stray jobs,
@@ -313,6 +313,10 @@ not kept as a third copy.
   byte for byte. Why: a same-looking result from a dropped input reads as a finding when it is a no-op.
 - **Report cold and warm timings separately.** The first take after a model load carries the model load. Why: a
   cold number read as warm makes a speed claim look worse or better than it is.
+- **Check the ruling of record before you build.** A plate or a take built on the wrong spec (a focal length, a camera) costs
+  more than the wait for the ruling. Why: a build on a 44 mm frame when the ruling said 65 mm had to be redone.
+- **When the next step is a diagnostic, run it before the fix.** Why: a diagnostic can change the target the fix was
+  aimed at.
 - **A message addressed to another lead is that lead's work.** Route it to the addressee in the inbox and do not launch
   on it. Why: a launch on someone else's request runs against a plan its owner has not seen.
 - **Open the board before you name a framing.** A verdict from notes can name the wrong shot type. Why: a shot called a

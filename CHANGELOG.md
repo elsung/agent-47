@@ -14,6 +14,13 @@ Patch, wording only. Three method lines from a lead rotation: check the camera s
 check the start board is post-fix before a framing test; read a box's idle state right before queuing.
 
 
+## 1.71.16 (2026-11-02)
+
+Patch and one addition. From a lead rotation: check the ruling of record before building (a wrong focal length cost a
+redo); run a diagnostic before the fix it would change; a blocked line also says what you do when the answer lands. The
+default-when-blocked line was already in the method (1.71.x, STUCK rule).
+
+
 ## 1.71.15 (2026-11-02)
 
 Patch, wording only. One method line from a lead rotation: a message addressed to another lead is routed to that lead,
