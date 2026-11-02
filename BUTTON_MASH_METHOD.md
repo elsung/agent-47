@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.13 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.14 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -252,8 +252,8 @@ not kept as a third copy.
 - **Pick a replay target whose board has been read.** The shot that stood was the one whose board had been read; the
   one that failed the camera check had not. Why: a replay tests the take against its plan, and only a read board gives
   a plan to test against.
-- **When blocked on other leads, post one blocked line, then wait on a real signal.** The line names the owner and the
-  time. Repeated pings to the same lead add noise, not progress. Why: a blocked lane that says so once keeps the
+- **When blocked on other leads, post one blocked line, then wait on a real signal.** The line names the one owner, the
+  one question and the time. Repeated pings to the same lead add noise, not progress. Why: a blocked lane that says so once keeps the
   others moving.
 - **Scope a search to one folder, and wrap it in a timeout.** A broad find or grep over the repo root or `/` times out
   and can leave a stray background job. Use e.g. `timeout 20 find <one folder> -maxdepth 4 ...`. To spot stray jobs,
