@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.10 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.11 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -286,6 +286,11 @@ not kept as a third copy.
   a pairing that does not fit fails the same way on any server, and the graph is the cheap thing to check.
 - **A one-file patch is not an update when the file imports core modules the old checkout lacks.** Check the imports
   before you copy. Why: the copy ran, then failed at the first import on the old checkout.
+- **One seed is not a win.** Check a placement or framing change on a second and third seed before you call it one. Why:
+  an arm that looked like a placement win at the second seed came out centred at the third.
+- **When wording changes do not hold a count, change the structure.** After two wording variants fail the same
+  constraint, add a structural change (a key, a depth pass) before a third wording. Why: the variants moved nothing the
+  model reads for that count.
 - **Write a check-in only after a real result.** A blocked line names the owner and the time. Why: a line with no
   result is noise for the one who reads the inbox.
 - **Stop at two replacement passes and ask before a third.** Why: a second pass fixed 4 of 22, which is the point

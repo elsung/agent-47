@@ -14,6 +14,13 @@ Patch, wording only. Three method lines from a lead rotation: check the camera s
 check the start board is post-fix before a framing test; read a box's idle state right before queuing.
 
 
+## 1.71.11 (2026-11-02)
+
+Patch, wording only. Two method lines from a lead rotation: one seed is not a win (check a placement change on two more
+seeds); when two wording variants fail the same count, change the structure before a third wording. The post-fix start
+board and idle-read lines were already in 1.71.9.
+
+
 ## 1.71.10 (2026-11-02)
 
 Patch, wording only. Seven method lines from a lead rotation: a faster claim needs the same measure and residency on both
