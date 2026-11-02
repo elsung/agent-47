@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.5 (2026-11-02)
+
+Patch, wording only. A broad search over the repo root or `/` times out and leaves a stray job: scope it to one folder
+with a timeout, and check for stray jobs with the process listing. Owner note from two lead rotations (Pixel, Smithy).
+
+
 ## 1.71.4 (2026-11-02)
 
 Patch, wording only. Three lines from one lead's rotation: read the board before calling a take clean; pick a replay

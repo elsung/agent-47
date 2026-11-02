@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.4 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.5 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -255,6 +255,10 @@ not kept as a third copy.
 - **When blocked on other leads, post one blocked line, then wait on a real signal.** The line names the owner and the
   time. Repeated pings to the same lead add noise, not progress. Why: a blocked lane that says so once keeps the
   others moving.
+- **Scope a search to one folder, and wrap it in a timeout.** A broad find or grep over the repo root or `/` times out
+  and can leave a stray background job. Use e.g. `timeout 20 find <one folder> -maxdepth 4 ...`. To spot stray jobs,
+  run `tools/procs.py <pattern>` (long arguments are elided). Why: one lead's broad search and another's both left a
+  stray job; a bounded search returns, and the job list shows what is still running.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 
