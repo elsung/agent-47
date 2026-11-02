@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.73.0 (2026-11-02)
+
+Minor, three new guidelines from a lead rotation. A figure with no source record is a hypothesis: find the record that
+produced it (two figures came from the wrong source). A builder's result that contradicts a spec claim is reported, and
+the spec is fixed in place. A bound is checked before a pick: run the replay with the disputed input at full and at zero;
+a pick that holds both ways is settled.
+
 ## 1.72.1 (2026-11-02)
 
 Patch, wording only. Lesson 263 is now "phases are a focus order, not locks": build the big picture, then optimise, then
