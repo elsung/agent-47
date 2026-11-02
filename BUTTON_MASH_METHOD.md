@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.14 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.15 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -313,6 +313,8 @@ not kept as a third copy.
   byte for byte. Why: a same-looking result from a dropped input reads as a finding when it is a no-op.
 - **Report cold and warm timings separately.** The first take after a model load carries the model load. Why: a
   cold number read as warm makes a speed claim look worse or better than it is.
+- **A message addressed to another lead is that lead's work.** Route it to the addressee in the inbox and do not launch
+  on it. Why: a launch on someone else's request runs against a plan its owner has not seen.
 - **Open the board before you name a framing.** A verdict from notes can name the wrong shot type. Why: a shot called a
   doorway had a close-up drawing and two-shot notes.
 - **Check the live queue before you launch on an owner box.** A status line can be stale. Why: a launch on a stale

@@ -14,6 +14,12 @@ Patch, wording only. Three method lines from a lead rotation: check the camera s
 check the start board is post-fix before a framing test; read a box's idle state right before queuing.
 
 
+## 1.71.15 (2026-11-02)
+
+Patch, wording only. One method line from a lead rotation: a message addressed to another lead is routed to that lead,
+not launched on. The open-the-board and placeholder lines were already in the method (1.71.9 and earlier).
+
+
 ## 1.71.14 (2026-11-02)
 
 Patch, wording only. One lead rotation's learnings were already in the method (check-ins after real results, two
