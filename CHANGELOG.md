@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.73.4 (2026-11-02)
+A status line is a bet, not a verdict: every option carries its why and the shot it applies to. From a lead's rotation (owner #2639).
+
 ## 1.73.3 (2026-11-02)
 
 Patch, three routing and wait lines from a keeper rotation (owner #2532): a fallback model is routed, never picked by hand; a stop
