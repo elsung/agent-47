@@ -14,6 +14,13 @@ Patch, wording only. Three method lines from a lead rotation: check the camera s
 check the start board is post-fix before a framing test; read a box's idle state right before queuing.
 
 
+## 1.71.13 (2026-11-02)
+
+Patch, wording only. Three method lines from a lead rotation: compute a disk cap as free space minus the floor; moving a
+run's root helps only the next run; a measurement that contradicts a status note goes to its owner with the numbers. The
+"faster" claim line was already in 1.71.10.
+
+
 ## 1.71.12 (2026-11-02)
 
 Patch, wording only. One method line from a lead rotation: one fix per build, so a result says what moved. The input-

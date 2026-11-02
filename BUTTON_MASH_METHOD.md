@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.12 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.13 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -268,6 +268,12 @@ not kept as a third copy.
   output cannot add what the input never had.
 - **A slow job may be a queue wait, not a stall.** Check the queue entry (`gpu_run`) before you call it stuck. Why: a
   job waiting its turn on the GPU lock looks the same as a hung one from outside.
+- **Compute a disk cap as free space minus the floor, before you plan a run.** Why: a plan sized without it would have
+  taken the disk below its floor.
+- **Moving a run's root helps only the next run.** A run already on that disk gains nothing from the move. Why: the clock
+  gain belongs to the root the next run writes to.
+- **When a measurement contradicts a status note, post the numbers and name the owner to correct it.** Do not edit
+  their note. Why: the note's owner knows what else it covers; a silent edit leaves two sources with no owner.
 - **A builder's claim is a claim.** Check the outputs on disk. Why: a builder said it saved a memory note; it had not.
 - **Run the desk check before you say what exists.** Why: "no page" was written without looking at the families review.
 - **When a fix fails, report STUCK with the cause and the default taken, then move on.** Why: a stuck fix that is
