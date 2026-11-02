@@ -8,6 +8,11 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.73.3 (2026-11-02)
+
+Patch, three routing and wait lines from a keeper rotation (owner #2532): a fallback model is routed, never picked by hand; a stop
+hook asking for work is not work; a background timer waits without polling.
+
 ## 1.73.2 (2026-11-02)
 
 Patch, three UI lines from a keeper rotation (owner #2532). The design pass is named before any UI fix list (owners
