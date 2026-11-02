@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.68.3 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) stays at 1.68.2 (owner #2508: SKILL.md is not grown). History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.69.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is 1.69.0: one line changed in its strong steering. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -155,6 +155,45 @@ which the lead writes its own hand-off note (what it is mid-way on, the exact ne
 to re-arm it, the cards it touched), a lean relaunch that loads that note first, owner asks listed back to the lead as
 state, and a check that flags a running session older than its launch inputs (STALE-LAUNCH). The lead knows its own
 thread best; the note is how that knowledge survives the seam.
+
+## Build a tool once, then refine it: a picker chooses, code runs (November 2026, owner)
+
+> "Rather than having all the LLMs continue building and rebuilding the same tools, or building it differently, just
+> wasting tokens and time, we should let it build once, and then almost doing a DRY method: building the tool knowing
+> what it's used for, and if there's a tool that exists already that solves the same problem we use that, and we
+> continue to refine these tools in code ... And this should run way faster with [a hosted picker] basically going through and picking
+> what it needs to make clear decisions on the tools it needs to use, and then we can use classic code to get these
+> things done, as opposed to having LLMs waste a bunch of time and tokens."
+
+**The evidence.** A miner read one day's agent transcripts (48 of them) and found 22,707 hand-run shell calls. The
+most repeated shapes were one-off scripts written again each time: a Python heredoc run 1,387 times (about 236K output
+tokens), a `python3 -c` one-liner 324 times, an isolated `python3 -I -c` 422 times, and 405 calls that chained the same
+tail-and-grep on a message file. Each was a model working out a command it had already worked out before. The cost is
+the model's time and tokens, and each rewrite can drift from the last.
+
+**The loop.**
+1. **Mine.** The miner ranks repeated command shapes by calls times output tokens, and writes a candidates note.
+2. **Build once.** A shape that recurs becomes a tool. Look for an existing tool that solves it first, and extend that
+   one; a third copy gets consolidated (lesson 259).
+3. **Name it with examples.** Each tool has a one-line purpose, a "use when", and a few example questions, so a picker
+   can route to it.
+4. **Pick, then run.** A hosted picker chooses the tool for a question from those rows, with a confidence. Code runs the
+   tool. A long output goes to a cheap reader for a digest; the answer is capped and shows the command that made it.
+5. **Misses feed the miner.** Every ask and every miss is logged: who asked, what, the tool picked, the confidence, and
+   why it missed (no tool fits, low confidence, arguments missing). A miss is a candidate tool, not a failure.
+6. **Daily retro.** The orchestrator reads the candidates and decides what to build, extend or drop.
+7. **Weekly prune.** A tool unused for fourteen days gets a review line; a broken tool is fixed or moved aside with a
+   note; a duplicate is merged. Nothing is deleted outright.
+
+**Language: Python by default, port only the hot path.** Measured: a Python tool starts in about 0.01 s; a card query
+takes 0.06 s; a lead's status pulse takes 0.21 s, almost all of it waiting on a terminal multiplexer and HTTP. The cost
+being cut is a model writing a throwaway script, roughly 10 to 30 seconds and 1 to 3K tokens each time. A compiled
+language would save hundredths of a second per call, while a model writes Python more reliably and the pipelines are
+already Python, so tools need no build step. Rust or Go earns its place only where a measurement shows a tool is
+CPU-bound: scanning gigabytes of logs, per-frame image or video analysis, a tight polling loop. Measure first.
+
+**Rules that hold.** No gates: a pick that fails is a miss and a note, not a stop. The picker suggests and never refuses.
+The model runs the tool rather than re-deriving its command. Output is capped at the point it is read.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 

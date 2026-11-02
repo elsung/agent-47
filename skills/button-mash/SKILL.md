@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.68.2 (2026-11-02). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
+VERSION 1.69.0 (2026-11-02). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -51,7 +51,7 @@ Every project has one north star: the goal behind every goal, in the owner's own
 - **Fix causes, and apply the fix to live work at once.** Trace a stall in the running system. A fix the live work isn't running yet hasn't fixed anything.
 - **Assess by looking at the real output against the intent**, not by evals or tests. Fix forward.
 - **Mash, but spend where it counts.** Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks others. Spend little elsewhere: the cheapest capable model for routine work, a fast decision model for typed questions, one agent per task. Don't re-derive what's known, and stop a loop that moves nothing. Cost practice: STEERING.md ("Context and intent first"), PRACTICES.md section 9.
-- **Forward and clean.** One commit, one kind: behaviour and structure never share a commit. Find the existing player, poller or helper and extend it before adding one; a third copy gets consolidated. Land small steps, never a rewrite.
+- **Forward and clean.** One commit, one kind: behaviour and structure never share a commit. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it. Land small steps, never a rewrite.
 - **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
 - **Report outcomes, not effort.** Say what now works, where, and what's next. Routine success isn't news; an owner's inbox line should change what someone does.
 

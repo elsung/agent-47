@@ -8,6 +8,16 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.69.0 (2026-11-02)
+
+**Minor: build a tool once, then refine it; a picker chooses, code runs (owner, 2 November).** A new section in
+BUTTON_MASH_METHOD.md, "Build a tool once, then refine it". The owner asked that agents stop rebuilding the same tools
+each time, and that a picker choose among existing tools with code doing the work. The section carries the owner's words,
+the miner's evidence (22,707 hand-run shell calls in one day, the most repeated shapes), the seven-step loop (mine, build
+once, name with examples, pick then run, misses feed the miner, daily retro, weekly prune), and the language call (Python
+by default; port only a hot path a measurement shows is CPU-bound). The skill changes by one line: its "Forward and
+clean" bullet now says to build a tool once and refine it, and that a picker chooses while code runs it. SKILL.md is 1.69.0.
+
 ## 1.68.3 (2026-11-02)
 
 **Patch: two lessons on the context budget and continuity (owner #2502, #2506, #2508).** Added to BUTTON_MASH_METHOD.md
