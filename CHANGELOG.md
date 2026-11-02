@@ -8,6 +8,14 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.0 (2026-11-02)
+
+**Minor: a toolsmith thread keeps the set of standing tools small (owner, 2 November).** The build-once section gains the
+role: one thread owns the toolbox (the picker's table and examples, the standard, the shared helpers, the miner, the
+daily retro and the weekly prune), thinks on a strong model and leaves the code to cheap builders. Every other thread
+follows one rule: use a standing tool, else extend it with a flag or mode, else build one once to the standard. The
+owner's words are quoted in the section. SKILL.md is unchanged at 1.69.0.
+
 ## 1.70.0 (2026-11-02)
 
 **Minor: the standard for a tool (owner #2520: fast to write and iterate, lean, effective, less buggy).** The

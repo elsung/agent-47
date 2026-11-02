@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.70.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) stays at 1.69.0. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) stays at 1.69.0. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -214,6 +214,20 @@ the loop's tools folder, and each tool follows it.
 - **Run it on live data.** Read the output before committing: an experiment, not a test suite.
 
 The lookup picker follows the same standard.
+
+**A toolsmith thread keeps the set small.** The owner's words (2 November): "maintain the minimal amount of tools
+necessary to give us the maximum amount of execution, and minimize the need for any of our threads to write custom code
+... a custom-tuned, self-improving, continuously iterating toolbox our system can just use rather than rewriting tools
+from scratch every time." One thread owns the toolbox: the picker's table and example questions, the standard, the shared
+helpers, the miner, the daily retro and the weekly prune. It thinks and reviews on a strong model; cheap builders write
+the code. Every other thread follows one rule, in order:
+1. a standing tool already does it: the picker routes to it, and it runs;
+2. a tool nearly does it: extend it with a flag or a mode, and do not fork it;
+3. nothing fits: build one, once, to the standard, with example questions so the picker can route to it.
+
+The toolsmith writes a short daily retro: calls mined, tool uses, picker misses, what was built, extended, merged or
+retired, and the estimated tokens and minutes saved. A tool unused for fourteen days is reviewed, and a duplicate is merged,
+never kept as a third copy.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 
