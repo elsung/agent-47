@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.5 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.6 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -259,6 +259,16 @@ not kept as a third copy.
   and can leave a stray background job. Use e.g. `timeout 20 find <one folder> -maxdepth 4 ...`. To spot stray jobs,
   run `tools/procs.py <pattern>` (long arguments are elided). Why: one lead's broad search and another's both left a
   stray job; a bounded search returns, and the job list shows what is still running.
+- **Read the output that counts, not a placeholder.** A small file written at queue time can stand in for the real
+  output. Name the real output before you read a result. Why: two false reads came from a 10 KB placeholder.
+- **Verify an input reached the graph before you read a difference.** A take with an empty input matched the default
+  byte for byte. Why: a same-looking result from a dropped input reads as a finding when it is a no-op.
+- **Report cold and warm timings separately.** The first take after a model load carries the model load. Why: a
+  cold number read as warm makes a speed claim look worse or better than it is.
+- **Open the board before you name a framing.** A verdict from notes can name the wrong shot type. Why: a shot called a
+  doorway had a close-up drawing and two-shot notes.
+- **Check the live queue before you launch on an owner box.** A status line can be stale. Why: a launch on a stale
+  status duplicates or blocks work.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 

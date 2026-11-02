@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.6 (2026-11-02)
+
+Patch, wording only. Five method lines from a lead rotation: name the real output before reading a result; verify an
+input reached the graph before reading a difference; report cold and warm timings apart; open the board before naming a
+framing; check the live queue before launching on an owner box.
+
+
 ## 1.71.5 (2026-11-02)
 
 Patch, wording only. A broad search over the repo root or `/` times out and leaves a stray job: scope it to one folder
