@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.20 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.21 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -316,6 +316,12 @@ not kept as a third copy.
   cold number read as warm makes a speed claim look worse or better than it is.
 - **Check the ruling of record before you build.** A plate or a take built on the wrong spec (a focal length, a camera) costs
   more than the wait for the ruling. Why: a build on a 44 mm frame when the ruling said 65 mm had to be redone.
+- **Check the disk layout before you plan a move.** A "move to the data disk" plan fails on a box with one root filesystem and no
+  data disk. Why: the plan could not run where it was aimed, so the box with room is the target.
+- **Record the path of every scratch artifact you measure, when you measure it.** Why: a measured output with no path written
+  down blocked the trace that needed it.
+- **When a move passes the owner's rule, apply it and log it.** Why: a passed rule that waits for a second look costs the
+  day it was meant to save.
 - **When a result waits behind someone's timed window, state the wait and its owner; do not start a second GPU job.**
   Why: a second job inside a timed window spoils the timing the owner needs, and the wait is what the owner must see.
 - **When a GO names an exact record, check the record the run read before you judge its output.** A GO the build did

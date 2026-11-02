@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.21 (2026-11-02)
+
+Patch, wording only. Three method lines from a lead rotation: check the disk layout before planning a move; record
+the path of every scratch artifact you measure; when a move passes the owner's rule, apply it and log it. The faster-claim,
+controlnet-graph and disk-cap lines were already in.
+
 ## 1.71.20 (2026-11-02)
 
 Patch, wording only. One method line from a lead rotation: a result queued behind someone's timed window
