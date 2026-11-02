@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.18 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.19 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -316,6 +316,9 @@ not kept as a third copy.
   cold number read as warm makes a speed claim look worse or better than it is.
 - **Check the ruling of record before you build.** A plate or a take built on the wrong spec (a focal length, a camera) costs
   more than the wait for the ruling. Why: a build on a 44 mm frame when the ruling said 65 mm had to be redone.
+- **When a GO names an exact record, check the record the run read before you judge its output.** A GO the build did
+  not follow is a wrong build, not a finding. Why: a result judged as a model verdict was really a run on the wrong
+  record, so the verdict said nothing about the model.
 - **When the next step is a diagnostic, run it before the fix.** Why: a diagnostic can change the target the fix was
   aimed at.
 - **A message addressed to another lead is that lead's work.** Route it to the addressee in the inbox and do not launch

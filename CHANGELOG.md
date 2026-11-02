@@ -8,6 +8,11 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.19 (2026-11-02)
+
+Patch, wording only. One method line from a lead rotation: when a GO names an exact record, check the
+record the run read before judging its output. The ruling-of-record line is already in 1.71.16.
+
 ## 1.71.18 (2026-11-02)
 
 Patch, wording only. Two method lines from a lead rotation: judge a tie at full
