@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.73.2 (2026-11-02)
+
+Patch, three UI lines from a keeper rotation (owner #2532). The design pass is named before any UI fix list (owners
+#2628, #2629). A UI reading one data source shows stale judged cells: check the verdict source per cell before posting.
+The matrix's POSTs send the director-view request header, or the page's header guard returns 403.
+
 ## 1.73.1 (2026-11-02)
 
 Patch, wording from a keeper rotation (owner #2532). A ranking never moves a row to candidate, proposed or not-now; only

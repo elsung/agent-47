@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.73.1 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.73.2 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -1893,7 +1893,9 @@ check's 34 views on real projects.
 - A ranking never moves a row to candidate, proposed or not-now; only the owner's call does, with its owner number. Priority is Orca's or the owner's, never the ranking's. A row that is not now for a shot says which shot, and stays a fallback.
 - Card text can cause a drift as well as the model (S10 head on shoulder): check the card's words before blaming the model.
 - A person already in the board gets no separate face card on OTS shots; test per shot type in Phase C.
-- A design pass (frontend-design) comes before any fix list on UI work; load the skill first, not after.
+- A design pass (frontend-design) comes before any fix list on UI work; load the skill first, not after. Owner #2628 and #2629 expect it.
+- A UI that reads only one data source shows stale state for judged cells. Check the verdict source for every cell before posting.
+- A page's header guard refuses every change without its request header. A new POST from the matrix must send `X-Requested-With: director-view`, or it fails with 403.
 - A UI that reads only from the registry shows "Awaiting a reviewer" for judged cells; check the verdict source for every cell before posting.
 
 - A figure with no source record is a hypothesis. Find the record that produced it before you use it; two figures in one review came from the wrong source.
