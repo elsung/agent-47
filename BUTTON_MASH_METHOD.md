@@ -503,6 +503,24 @@ for the production path the same day. Two lessons, both cheap to state and expen
 
 From the 2026-11-01 speed-variant approval and its reference-mode drop note.
 
+### Worked example: a worker missing its asset fails the job, not the batch (November 2026)
+
+The board fan-out from the first worked example above met its test the same day: a fresh three-episode run spread its
+~31 board jobs across idle boxes, and 24 of them failed because the box they landed on did not have the one control
+model the boards need. A retry failed the same way on two more boxes. Nothing was wrong with the work; the scheduler
+had handed jobs to workers that could never run them.
+
+The fix is one rule at claim time, not a per-run checklist:
+
+1. When a job's own card names an asset the worker does not list, the job goes back to the queue untouched and that
+   worker is skipped on the next claim. "I can't run this" (re-queue, skip the box) is a routing fact.
+2. A refusal on the job's own card still fails the job. "This work is bad" (fail, show the card) is a verdict.
+
+A worker's report never decides either one; its recorded facts do. Spreading work multiplies the ways a box can be
+quietly unqualified, so the skip rule belongs in the scheduler, not in anyone's memory of the run.
+
+From the 2026-11-01 board-spread failures and the same-day fix.
+
 ## Results so far (updated by hand from `loop_stats.py`)
 
 | Window | Merges | Per hour | Land conflicts | Area collisions | Stalls | Silent deaths | Cards moved (to done) |

@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.66.0 (2026-11-01): a worker missing its asset fails the job, not the batch
+- **Method doc:** one more worked example in "Spend where it counts, in practice": the board fan-out spread ~31 board
+  jobs across idle boxes and 24 failed twice because their boxes lacked the one control model the boards need. The fix
+  is a claim-time rule — a job whose card names an asset the worker does not list goes back to the queue and that
+  worker is skipped on the next claim, while a refusal on the job's own card still fails the job. From the
+  2026-11-01 board-spread failures and the same-day fix.
+
 ## 1.65.0 (2026-11-01): land the ordering fix, then re-measure on a controlled run
 - **Method doc:** one more lesson in "Spend where it counts, in practice": the ordering fix from the work-vs-wait
   split (timed scene's board first under its own lane) was landed and re-measured the same day — a controlled
