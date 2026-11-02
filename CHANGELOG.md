@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.74.0 (2026-11-02)
+Check the existing research library before a new read; write a gap note and read only a real gap (owner #2659). A chained short sleep is refused like a foreground one; wait on a background timer. Via keeper's learnings from a lead's rotation.
+
 ## 1.73.4 (2026-11-02)
 A status line is a bet, not a verdict: every option carries its why and the shot it applies to. From a lead's rotation (owner #2639).
 

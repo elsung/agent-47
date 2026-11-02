@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.73.4 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.74.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -1908,3 +1908,5 @@ check's 34 views on real projects.
 - Send a START line to the lead before a new box; a duplicate of a peer's cell is flagged before it runs.
 - A takeover is a FAIL with its kind (portrait takeover), never "unrecorded".
 - A status line is a bet, not a verdict. Every option carries its why and the shot it applies to (owner #2639).
+- Before a new research read, check the existing library first. Write a gap note, and read only a real gap (owner #2659). Two of three topics in one round were already covered.
+- A chained short sleep is refused too, the same as a foreground sleep. Wait with a background timer, never a poll loop.
