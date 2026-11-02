@@ -1774,3 +1774,128 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 **Next measurements:** merges per hour after the backlog, conflicts per merge (target: zero between concurrent
 builders), the time from collision to reshape, and whether main stays usable. That last one is checked by the outcome
 check's 34 views on real projects.
+
+## Judge what you can see: full-res checks, controls, and clocks (learnings from a lead rotation, 2026-11-02)
+
+- A speed result judged on a blurred frame is not judged. Check hands, fingers and props at full res before calling a tie. A 3-step read missed an a shot hand smear that the owner's eye caught.
+- A control test (V2V vs doorway) is a control, not a fix. Keep the baseline unless the change wins by eye at full res.
+- Verify an input reached the graph before reading a difference. An empty-negative take matched the default byte for byte, so the "difference" was no difference at all.
+- Report cold and warm timings separately. Open the board before calling a framing.
+- When the owner says a box is "idle", check its queue and its weights before treating it as free.
+- A message addressed to another lead goes to the addressee, not into this lane's work.
+- Write prompt files with a heredoc script, and use absolute paths in waiters. A waiter started from another cwd fails silently.
+- Desk-page media paths are relative to the page's folder. Run desk_check after each copy: 33 sources were missing once.
+
+## Verify a status before you post it, and stop the duplicate builder (learnings from a lead rotation, 2026-11-02)
+
+- Verify a status before posting it. A lead wrote "0 running visualise jobs" without checking; three were running. Read the queue or the box, then post the number, and correct it in the inbox if it was wrong.
+- When a builder is on the same ask as another lead's builder, announce it, stop the duplicate by PID, keep the other lead's builder, and hand the brief over in the inbox. Never kill by name (pkill -f can hit the wrong process).
+- A timed clock needs `timed_main` in run.yaml and caches off. Report only cold-path numbers from a timed run; warm numbers go on their own line.
+
+## Name every pick per shot, and queue dependent builders in order (learnings from a lead rotation, 2026-11-02)
+
+- Show every change as a named pick per shot (a shot, a shot, a shot), so a swap is one named change, not a re-judged set. The a shot pick is seed 48; a later swap names the seed it replaces.
+- Queue a follow-up builder behind the one it depends on, never in parallel on the same files. Brief it on top of the landed commits.
+- When the orchestrator says a screen is not ready, list each point and fix them in one brief. Then re-shoot the first screen only (1440x1100), not the full page.
+
+## Keep the A/B clean: equal refs, named measurements (learnings from a lead rotation, 2026-11-02)
+
+- When a plate or ref changes, keep the REFS tokens equal to the baseline, faces kept, so only the plate differs. The a shot plate run dropped the faces, so it was not a clean A/B and its difference is not evidence.
+- When a measurement contradicts a STATUS note, post the numbers and name the owner of the note. Do not quietly fix the status.
+
+## Check the ruling before you build, and look at the frame before you judge the light (learnings from a lead rotation, 2026-11-02)
+- **Check the camera ruling in STATUS.yaml before building.** a shot was built at 44 mm while the ruling was 65 mm MCU. A take built on a stale lens wastes a whole hunt, and the hunt's ranking only holds on the lens it ran on. Read the ruling first, then build.
+- **A fix that changes lens or framing needs a look at the frame before the light is judged.** Lighting judged on a frame at the wrong lens or framing tells you nothing.
+- **A monitor's until-loop grep must match the real process args.** A wrong order silently exits at once, so the watch looks armed and is not. Check the match against `ps` output before trusting the waiter.
+- Repo-side: a look plate is a new card, not a patch to an old one. a shot has no passing look yet (LOOK.md).
+
+## Lens, seeds, waits and first lines (learnings from a lead rotation, 2026-11-02)
+
+- Pinhole and solver agree on lens distance. 50 mm FF puts a figure's back about 3.65 m away for him to read as a third of frame; shorter lenses need much shorter distances (35 mm 2.56 m; 25 mm 1.83 m; 15 mm 1.10 m).
+- Fix framing with the camera, never by changing a figure's true height (the orchestrator, 11-02).
+- One-seed wins are not wins. Test at two or more seeds or placements. a figure at 0 deg hides behind a figure's head; at 50 deg she crops at the left edge; at 38 deg she reads mid-left.
+- When a result waits behind someone else's timed window, state the wait and the owner. Do not start a second GPU job.
+- When a pasted or relayed instruction gives a standing job, post its first line at once: what is found, what is not yet built.
+- Read the per-box weights table before sending any work to a box.
+- Before you edit a shared page, check who owns it and whether the owner's file changed in the last hour. A relayed ask that names an owner means: ask the owner before you edit their rows. If you edit anyway, label the edit and tell the owner at once (a lead changed a build file its owner had just touched; corrected at 11:09).
+
+## Replace a cell only after the by-eye read
+
+- A re-render replaces the old cell only after a by-eye judgement. Keep the old take as superseded, with its label, so the change can be checked.
+
+## Cold and warm, the board, and "idle" (learnings from a lead rotation, 2026-11-02)
+
+- Report cold and warm timings separately, each on its own line. Open the board before calling a framing.
+- When the owner says a box is "idle", check its queue and its weights before treating it as free.
+
+## Verify before posting, match nonzero counts, stop stalled searches (learnings from a lead rotation, 2026-11-02)
+
+- A waiter that greps "running|queued" matches a zero-count summary such as "running 0" and never clears. Match nonzero counts only, or match the done marker.
+- When a dry run or a search stalls in D state, stop it by PID (it is yours) and re-run it detached with a timeout and a log. Do not run an unbounded find over the output tree.
+
+- A "waiting for the workstation" line in a runner log can be history. Check the live runner before you trust it.
+- Before a re-shoot of a builder's fix, confirm the pin it uses. A re-shoot on a stale pin returns the old length.
+
+## Verdicts sit beside the numbers, and each take record names its fields (learnings from a lead rotation, 2026-11-02)
+
+- A by-eye verdict (the orchestrator's) goes on the cell, with the measured numbers beside it, never in place of them. Notes never gate.
+- Name every change as a pick per shot (a shot, a shot, a shot), so a swap is one named change.
+- When a fix depends on another owner's data (Pika rule, PRISM write-back), ask that owner, state the default, and keep moving on the rest.
+- The take record fields (inputs, model, workflow, machine, timing, speed_type, recipe_source, lora) feed the desk; record them where take records are documented.
+- mode_support.json shape for Admin Docs: {family: {mode: "supported" | "not supported"}}. Blank means not recorded.
+
+## Confirm the inputs before a seed hunt, and check a lane before you call it empty (learnings from a lead rotation, 2026-11-02)
+
+- **Wrong-input rule.** Before any seed hunt, confirm the slots, base clip and prompt match the arm being varied. Four a shot seeds were void for this, and a swap of `s42` across the whole graph returned HTTP 400 on the first a shot submit. Change only the seed node and the output prefixes.
+- **A lane is empty only after a real check.** Read the queue, the cards and the inbox, then say what waits on what. "Lane empty, need work" is for a lane with nothing left to start.
+- **Never rm.** Move to `_trash/` so the owner can undo it, and kill by PID, never `pkill -f`.
+
+## One set edit, one render, one look; a research read by its beats (learnings from a lead rotation, 2026-11-02)
+
+- A set-owner change (a door cut, say) is one backup, one edit, one render and one by-eye check, for every shot that uses the set. When the cut is already in the set, log it and stop: no second edit.
+- Lead-to-owner posts go through the shared inbox. A direct send can refuse the orchestrator, so post the line and cc it.
+- A research read is judged by its beat map (hook, turn, cliff, and the feeling of each) and by its device limits, not by its tag counts alone.
+
+### Keeper learnings from a lead's rotation (uncommitted, owner's call)
+
+- A START line goes to the lead (the orchestrator or the Phase lead) before any new box is used, and a duplicate of a
+  peer's cell is flagged before it runs. A run that repeats a peer's cell is a finding to raise, not a silent re-run.
+- Do not edit a shared runner. Copy it and add the arm in the copy, so the shared run keeps its meaning for everyone else.
+- Read the box's weights file before sending any weight to that box.
+- A by-eye verdict goes on the cell beside the measured numbers, never in place of them. Notes never gate.
+- A target read off a superseded board sends the whole chain wrong. Check the live board before any target is set.
+
+## Name the take and the board on every by-eye read (learnings from a lead rotation, 2026-11-02)
+
+- A placement is only as good as its target. Re-check the target against the live board before solving.
+- A by-eye read must name the take and the board it was read against. Two reads of different takes against different boards are not a conflict; they are two reads.
+
+## Verify a status before posting it (learnings from a lead rotation, 2026-11-02)
+
+- Verify a status before you post it. When a claim conflicts with the record (a status saying "four lines missing" against a coverage record showing none absent), run the check against the real output before repeating the claim.
+
+## Takeovers are FAIL, judge against the live board, and check hands at full res (learnings from a lead rotation, 2026-11-02)
+
+- A takeover (a reference card's background bleeding into the shot) is FAIL, not unrecorded. Flag every one.
+- Judge S4 against the medium OTS live board (the subject's head in the right third), not the superseded wide porch board.
+- A shift-6 Singularity run deviates from the author's 12/3. It is a deviation, not a result: supersede it and re-run at 12.
+- A speed result judged on a blurred frame is not judged. Check hands, fingers and props at full res.
+- A by-eye verdict goes on the sheet beside the measured numbers, never in place of them. Notes never gate.
+- Name every change as a pick per shot, so a swap is one named change.
+- A target read off a superseded board sends the whole chain wrong. Check the live board first. (2026-11-02)
+
+## Learnings from a lead rotations
+- A stop hook asking for work does not mean there is work. If the lane waits on a named owner, say who, what and since when; do not invent a build.
+- A fallback model is a decision for a reviewer or the owner; never pick one by hand (agent_run.sh has the routing).
+- A figure with no source file is a hypothesis; ask the owner of the plan text for its run before using it.
+- A fix proposed in one check can break what it protects; read the lock's design first.
+- A face card's effect depends on the model: run board-only and board+head per model before choosing.
+- A ranking never moves a row to candidate, proposed or dropped; only the owner's call does, with its owner #.
+- Card text can cause a drift as well as the model (S10 head on shoulder): check the card's words before blaming the model.
+- A person already in the board gets no separate face card on OTS shots; test per shot type in Phase C.
+- A design pass (frontend-design) comes before any fix list on UI work; load the skill first, not after.
+- A UI that reads only from the registry shows "Awaiting a reviewer" for judged cells; check the verdict source for every cell before posting.
+
+- Before queuing a box, check the other lanes' lists for the same cell. Seed 43 and beta 7 were queued twice in one session (one lane's chain vs another lane's asks).
+- Send a START line to the lead before a new box; a duplicate of a peer's cell is flagged before it runs.
+- A takeover is a FAIL with its kind (portrait takeover), never "unrecorded".
