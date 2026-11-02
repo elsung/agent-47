@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.66.1 (2026-11-01): hardware is a lane too
+- **Method doc:** one line in "Spend where it counts, in practice": the same board job measured 2 min 17 s on the big
+  workstation card and 16 min 58 s on a small box (~7.4x), so time each hardware lane once in the real system, route
+  heavy board work to the big card when it is free, and treat the small-box time as the bar for speed variants. From
+  the 2026-11-01 timed S10 drafts.
+
 ## 1.66.0 (2026-11-01): a worker missing its asset fails the job, not the batch
 - **Method doc:** one more worked example in "Spend where it counts, in practice": the board fan-out spread ~31 board
   jobs across idle boxes and 24 failed twice because their boxes lacked the one control model the boards need. The fix

@@ -351,6 +351,10 @@ models' prompts doesn't fix that. Moving each kind of work to the cheapest thing
 | Building code | The fast, cheap build model | Owner rule |
 | Judgment, owner calls, steering | The expensive model, the orchestrator only | Where its quality moves the goal |
 
+Hardware is a lane too: the same board job measured **2 min 17 s on the big workstation card and 16 min 58 s on a small
+box — about 7.4x**. Time each hardware lane once, in the real system, and route by the clock: when the big card is free
+between production runs, heavy board work belongs there, and the small-box number is the bar any speed variant has to beat.
+
 **The pattern that saves the most:** before an agent spends LLM tokens on a decision, a decision model answers the typed
 question. The LLM sees only the cases the decision model is unsure about. It's a sorting step in front of the
 expensive thinking, not a judge with a veto: scores travel with the work as notes, never as gates.
