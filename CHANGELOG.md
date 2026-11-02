@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.20 (2026-11-02)
+
+Patch, wording only. One method line from a lead rotation: a result queued behind someone's timed window
+states the wait and its owner, and does not start a second GPU job. The other lines (camera solve across arms, two seeds,
+read the box before queuing) were already in.
+
 ## 1.71.19 (2026-11-02)
 
 Patch, wording only. One method line from a lead rotation: when a GO names an exact record, check the
