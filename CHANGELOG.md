@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.8 (2026-11-02)
+
+Patch, wording only. Six method lines from a lead rotation: check the input before tuning; a slow job may be a queue
+wait; check a builder's claim on disk; run the desk check before saying what exists; report STUCK with the default and
+move on; judge the picture, not the mean.
+
+
 ## 1.71.7 (2026-11-02)
 
 Patch, wording only. Two notes from a lead rotation: use absolute paths in every detached command (a `cd && ... &`

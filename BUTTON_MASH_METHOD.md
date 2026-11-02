@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.7 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.8 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -264,6 +264,16 @@ not kept as a third copy.
   Why: a detached run wrote its log somewhere the watcher did not look.
 - **List worktrees with git, not a find.** A find over the worktree folder times out and leaves a stray job; ask git
   instead: `git -C <repo> worktree list`. Why: git reads its own index, so the answer returns at once.
+- **Check the input before you tune the paint.** A hazy look came from an input plate with no colour. Why: tuning the
+  output cannot add what the input never had.
+- **A slow job may be a queue wait, not a stall.** Check the queue entry (`gpu_run`) before you call it stuck. Why: a
+  job waiting its turn on the GPU lock looks the same as a hung one from outside.
+- **A builder's claim is a claim.** Check the outputs on disk. Why: a builder said it saved a memory note; it had not.
+- **Run the desk check before you say what exists.** Why: "no page" was written without looking at the families review.
+- **When a fix fails, report STUCK with the cause and the default taken, then move on.** Why: a stuck fix that is
+  reported and defaulted keeps the lane moving.
+- **Judge the picture, not the mean.** A look can be warm in numbers and still hazy by eye. Why: the numbers and the
+  picture can disagree, and the owner watches the picture.
 - **Read the output that counts, not a placeholder.** A small file written at queue time can stand in for the real
   output. Name the real output before you read a result. Why: two false reads came from a 10 KB placeholder.
 - **Verify an input reached the graph before you read a difference.** A take with an empty input matched the default
