@@ -8,6 +8,16 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.68.3 (2026-11-02)
+
+**Patch: two lessons on the context budget and continuity (owner #2502, #2506, #2508).** Added to BUTTON_MASH_METHOD.md
+under "Context and continuity". (A) "Context is a budget: spend it on judgment, not transport": leads started at 44 to 58K
+of a 100K window and grew about 4.4K a minute, mostly raw tool output; the good move is a lean launch, tools/ask.py,
+output caps and subagents that return conclusions. (B) "Continuity is the agent's own note at a seam, not a scrape or a
+/clear": a /clear behind six working leads lost their threads and six owner asks; the good move is an 80K transition
+window, a hand-off note written by the lead itself, a lean relaunch that loads it first, and STALE-LAUNCH flags. The skill
+SKILL.md is unchanged at 1.68.2 (owner #2508: it was just cut to 8KB on purpose and stays small).
+
 ## 1.68.2 (2026-11-02)
 
 **Patch: a shorter skill (owner #2492, too much bloat in every session).** The skill is loaded into every session's system

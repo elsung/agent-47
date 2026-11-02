@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.68.2 (2026-11-02), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.68.3 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) stays at 1.68.2 (owner #2508: SKILL.md is not grown). History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -136,6 +136,25 @@ a closed run, a status file that stopped updating). It keeps the archive index c
 **Why it works:** compaction keeps a summary of the conversation, but the work's real state lives in files. When those
 files are current, a summary is enough; when they rot, no summary can save the run. Freshness of the sources, not
 the length of the context, is what lets a long run stay coherent.
+
+## Context and continuity: a budget, and a seam (November 2026, owner #2502, #2506, #2508)
+
+Two lessons from a week when the leads' windows, not the work, set the pace.
+
+**Context is a budget: spend it on judgment, not transport.** Measured on the leads (tools/ctx_breakdown.py): each lead
+started at 44 to 58K tokens of a 100K window, before any work, and grew about 4.4K a minute, mostly from raw tool
+output, command reads and pane captures. A lead that spends its window moving bytes runs out in fifteen minutes and
+has no room left to judge. The good move: launch leads lean (no connectors or tool text they never use), send status,
+log and lookup questions through tools/ask.py (a picker chooses the tool, a reader digests long output), cap tool
+output, and let subagents return conclusions instead of dumps. Spend the window on the decision, not on the transport.
+
+**Continuity is the agent's own note at a seam, not a scrape or a /clear.** On 2 November a /clear behind six working
+leads lost their threads. The state the orchestrator relied on was cut to a 2K preview and missed six owner asks, and
+the generators fed the north-star file's header line, not the north star. The good move: an 80K transition window in
+which the lead writes its own hand-off note (what it is mid-way on, the exact next step, every waiter it watches and how
+to re-arm it, the cards it touched), a lean relaunch that loads that note first, owner asks listed back to the lead as
+state, and a check that flags a running session older than its launch inputs (STALE-LAUNCH). The lead knows its own
+thread best; the note is how that knowledge survives the seam.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 
