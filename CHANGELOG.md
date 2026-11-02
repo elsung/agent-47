@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.65.0 (2026-11-01): land the ordering fix, then re-measure on a controlled run
+- **Method doc:** one more lesson in "Spend where it counts, in practice": the ordering fix from the work-vs-wait
+  split (timed scene's board first under its own lane) was landed and re-measured the same day — a controlled
+  single-scene rerun cut board-release-to-draft from 37.8 to 7.5 minutes on identical board and seed. The next
+  sink moved with it: a full scene's ~26 boards would still queue on one card, so the next lever is spreading
+  boards across idle boxes. From the 2026-11-01 timed-shot-first run.
+
 ## 1.64.0 (2026-11-01): a distilled variant wins only with the frame anchored
 - **Method doc:** one more worked example in "Spend where it counts, in practice": a distilled speed variant drew the
   same board 645 s → 146 s (4.4x, same seed) and held framing by eye and typed-model read, so it was approved for the

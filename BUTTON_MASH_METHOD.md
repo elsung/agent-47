@@ -390,6 +390,11 @@ expensive thinking, not a judge with a veto: scores travel with the work as note
   pure waiting — on its own scene's intermediate render, which sat behind ~20 others in an exclusive-render queue.
   One per-stage work-vs-wait table showed it in a single read: the cost was ordering, not routing or model speed.
   Order the current scene's jobs first under their own lane before buying a faster anything.
+- **Land the ordering fix, then re-measure on a controlled run.** The same-day rerun with the timed scene's board
+  first under its own lane cut board-release-to-draft from 37.8 to 7.5 minutes on identical board and seed — the
+  wait, not the card, was the cost. The next sink moved with it: one board alone renders in minutes, but a full
+  scene's ~26 boards would still queue on one card, so the 15-minute target now needs the boards spread across idle
+  boxes, not a faster card.
 
 **A local decision model, built by a sister team (same box, same night).** The hosted decision model has a local
 counterpart. Open-weights "System One" models (the Apache-2.0 Wald family: a 26B-A4B MoE fine-tune of Gemma 4, and a
