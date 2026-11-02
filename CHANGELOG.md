@@ -8,6 +8,11 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.73.1 (2026-11-02)
+
+Patch, wording from a keeper rotation (owner #2532). A ranking never moves a row to candidate, proposed or not-now; only
+the owner's call does, with its owner number. Priority is Orca's or the owner's, never the ranking's.
+
 ## 1.73.0 (2026-11-02)
 
 Minor, three new guidelines from a lead rotation. A figure with no source record is a hypothesis: find the record that
