@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.6 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.7 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -259,6 +259,11 @@ not kept as a third copy.
   and can leave a stray background job. Use e.g. `timeout 20 find <one folder> -maxdepth 4 ...`. To spot stray jobs,
   run `tools/procs.py <pattern>` (long arguments are elided). Why: one lead's broad search and another's both left a
   stray job; a bounded search returns, and the job list shows what is still running.
+- **Use absolute paths in every detached command.** `cd X && setsid nohup cmd > log &` backgrounds the whole `&&`
+  list, so variables set in it are unset in the parent shell, and a relative log path resolves in the wrong folder.
+  Why: a detached run wrote its log somewhere the watcher did not look.
+- **List worktrees with git, not a find.** A find over the worktree folder times out and leaves a stray job; ask git
+  instead: `git -C <repo> worktree list`. Why: git reads its own index, so the answer returns at once.
 - **Read the output that counts, not a placeholder.** A small file written at queue time can stand in for the real
   output. Name the real output before you read a result. Why: two false reads came from a 10 KB placeholder.
 - **Verify an input reached the graph before you read a difference.** A take with an empty input matched the default

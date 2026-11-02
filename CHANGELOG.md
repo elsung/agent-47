@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.7 (2026-11-02)
+
+Patch, wording only. Two notes from a lead rotation: use absolute paths in every detached command (a `cd && ... &`
+backgrounds the whole list); list worktrees with `git worktree list`, not a find.
+
+
 ## 1.71.6 (2026-11-02)
 
 Patch, wording only. Five method lines from a lead rotation: name the real output before reading a result; verify an
