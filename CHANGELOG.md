@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.75.0 (2026-11-02)
+A JEV note is a reading, never a verdict; label it so in any UI or card. Via keeper's learnings from a lead's rotation (owner #2532).
+
 ## 1.74.0 (2026-11-02)
 Check the existing research library before a new read; write a gap note and read only a real gap (owner #2659). A chained short sleep is refused like a foreground one; wait on a background timer. Via keeper's learnings from a lead's rotation.
 

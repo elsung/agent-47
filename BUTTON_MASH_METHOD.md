@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.74.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.75.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -1900,6 +1900,7 @@ check's 34 views on real projects.
 - A background timer (run_in_background sleep) waits without polling; foreground sleep is blocked by the harness.
 - A page's header guard refuses every change without its request header. A new POST from the matrix must send `X-Requested-With: director-view`, or it fails with 403.
 - A UI that reads only from the registry shows "Awaiting a reviewer" for judged cells; check the verdict source for every cell before posting.
+- A JEV note is a reading, never a verdict. Label it as a reading in any UI or card, so nobody reads it as a judgement.
 
 - A figure with no source record is a hypothesis. Find the record that produced it before you use it; two figures in one review came from the wrong source.
 - When a builder's result contradicts a spec claim, report the contradiction and fix the spec in place, in the same change.
