@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.67.0 (2026-11-01): three worked examples: a speed pack that held the frame, a default kept by measure and eye, the best face not the first
+- **Method doc:** three worked examples in "Spend where it counts, in practice": a speed pack approved only where its frame
+  held (about 4.4x on the same shot, the reference mode dropped); a newer checkpoint kept out by a rerun at each side's own
+  settings, the default changed only where measure and eye agree; a face check that now scores every face and keeps the
+  best, with the score as a note. From the night of 2026-11-01.
+- **Method doc header:** the version line read 1.63.0 while the changelog was at 1.66.1; it now matches this entry.
+
 ## 1.66.1 (2026-11-01): hardware is a lane too
 - **Method doc:** one line in "Spend where it counts, in practice": the same board job measured 2 min 17 s on the big
   workstation card and 16 min 58 s on a small box (~7.4x), so time each hardware lane once in the real system, route

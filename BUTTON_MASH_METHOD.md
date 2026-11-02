@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.63.0 (2026-11-01), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.67.0 (2026-11-01), with the skill [skills/button-mash](skills/button-mash/SKILL.md). History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -524,6 +524,41 @@ A worker's report never decides either one; its recorded facts do. Spreading wor
 quietly unqualified, so the skip rule belongs in the scheduler, not in anyone's memory of the run.
 
 From the 2026-11-01 board-spread failures and the same-day fix.
+
+### A speed pack that held the frame (November 2026)
+
+A speed pack for a video model was measured on one dialogue shot against the stock model at the same settings: 146 s
+against 645 s for the stock model's ten steps, about 4.4x faster, at the same 768x1344 size and 141 frames. The gain
+counted only because the frame held. The pack's dialogue preset kept the board's framing on a static dialogue shot, so
+it was approved for static and gently moving dialogue. Its reference mode lost the framing, so it was dropped, and the
+card says so. The other preset, for push-ins, is not verified yet and stays marked that way.
+
+Lesson: check the frame before the clock. A speed claim is a claim about the picture; time a variant against the stock
+settings on the real shot, then keep the mode that holds and drop the one that doesn't, both written on the card.
+
+### A default kept by the measure and the eye together (November 2026)
+
+A newer checkpoint of the same model family was tested against the current default on the same close and two-shot
+frames, each at its own published settings. Its first test had run at the default's settings, which made it no test, and
+it was withdrawn. On the rerun the newer checkpoint read wider on the wide shot (0.46 against 0.23) but lower on the medium
+two-shot (0.86 against 0.90), and the eye found the older checkpoint held the close framing on the finals. The default
+stayed the older checkpoint; the newer stays a candidate with its redo written down.
+
+Lesson: a comparison counts only when each side runs its own published settings, and a withdrawn run is said so on the
+card. Change a default only when the measure and the eye agree on the same takes; one of them alone is a note.
+
+### A face check that scored every face (November 2026)
+
+A reference-face check compared each output with the subject's card and reported the first face the detector returned.
+On a frame with a second face in the background it scored the wrong face: a correct frame could fail, and a wrong one
+could pass. The fix takes the highest-scoring face in the frame as the subject, and the score is written with the note so
+a reviewer can see why the frame was read the way it was.
+
+Lesson: a check that takes "the first match" trusts detection order, and detection order is not evidence. Score every
+candidate, take the best, and keep the score as a note. It informs the review; it does not gate the work.
+
+From the night of 2026-11-01: the speed pack, the checkpoint rerun and the face-check fix, each measured on the real
+pipeline, not on a benchmark.
 
 ## Results so far (updated by hand from `loop_stats.py`)
 
