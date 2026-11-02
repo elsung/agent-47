@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.3 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.4 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -246,6 +246,15 @@ not kept as a third copy.
 - **A "faster" claim needs a before and after number, measured the same way.** Take both on the same input, with the same
   method, and read the result cold, from the real output or a direct read, not from a status line. Why: owner-facing
   speed is only real when the two numbers are comparable; a status line can report progress that was never measured.
+- **Read the board before you call a take clean.** A verdict from frames alone can be wrong. On one S3 pass, the reads
+  came from frames only, and the camera check then showed a different shot. Why: a clean call is a claim about the
+  board, so check it against the board.
+- **Pick a replay target whose board has been read.** The shot that stood was the one whose board had been read; the
+  one that failed the camera check had not. Why: a replay tests the take against its plan, and only a read board gives
+  a plan to test against.
+- **When blocked on other leads, post one blocked line, then wait on a real signal.** The line names the owner and the
+  time. Repeated pings to the same lead add noise, not progress. Why: a blocked lane that says so once keeps the
+  others moving.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 

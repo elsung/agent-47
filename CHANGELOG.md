@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.4 (2026-11-02)
+
+Patch, wording only. Three lines from one lead's rotation: read the board before calling a take clean; pick a replay
+target whose board has been read; when blocked on other leads, post one blocked line with owner and time, then wait on a
+real signal. Owner #2532 (keeper learnings).
+
+
 ## 1.71.3 (2026-11-02)
 
 Patch, wording only. A speed claim needs a before and after number, measured the same way, read cold from the real output
