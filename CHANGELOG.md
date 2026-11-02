@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.9 (2026-11-02)
+
+Patch, wording only. Three method lines from a lead rotation: check the camera solve across arms before an A/B by eye;
+check the start board is post-fix before a framing test; read a box's idle state right before queuing.
+
+
 ## 1.71.8 (2026-11-02)
 
 Patch, wording only. Six method lines from a lead rotation: check the input before tuning; a slow job may be a queue

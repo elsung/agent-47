@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.8 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.9 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -274,6 +274,12 @@ not kept as a third copy.
   reported and defaulted keeps the lane moving.
 - **Judge the picture, not the mean.** A look can be warm in numbers and still hazy by eye. Why: the numbers and the
   picture can disagree, and the owner watches the picture.
+- **Check the camera solve across arms before you read an A/B by eye.** A camera mismatch makes the comparison invalid.
+  Why: the frames can look alike while the camera differs, so the eye reads a difference that is not there.
+- **Check the start board is post-fix before any framing test.** Why: a run started on a board drawn before the fix
+  tests the old framing.
+- **Read a box's idle state right before you queue on it.** Why: an idle reading goes stale in minutes; by the time the
+  job was queued, every box was busy.
 - **Read the output that counts, not a placeholder.** A small file written at queue time can stand in for the real
   output. Name the real output before you read a result. Why: two false reads came from a 10 KB placeholder.
 - **Verify an input reached the graph before you read a difference.** A take with an empty input matched the default
