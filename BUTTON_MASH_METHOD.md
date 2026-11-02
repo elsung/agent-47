@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) stays at 1.69.0. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.1 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -16,19 +16,20 @@ The method is carried to every agent as a skill, [skills/button-mash](skills/but
 start. It has three layers, and it deliberately avoids brittle mechanical rules:
 
 1. **Hard guidelines** always hold, and each comes with its why so it can be applied in cases nobody foresaw:
-   - never destroy the owner's work (move instead of delete);
-   - never spend or publish without the owner's OK;
-   - never stop someone's live work;
-   - while working toward a goal, push hard and never leave a run stuck without saying why (idle capacity matters only when goal work waits for it);
+   - move the owner's work aside rather than deleting it, since a move can be undone and a delete can't;
+   - ask the owner before spending money or publishing, since those can't be taken back;
+   - leave someone's live work alone until you know what it is, who owns it and whether it is moving;
+   - while working toward a goal, push hard, and say why whenever a run is stuck (idle capacity matters only when goal work waits for it);
    - pace deliberately when told, or for real limits: power and heat, cost, rate limits;
-   - no gates;
+   - checks are notes, not gates;
    - nothing private in public material.
 2. **Strong steering** gives direction:
    - push toward the goal behind the goal, with the ambition protocol (altitude, depth with the pros' real tools, range) and nouns turned into verbs;
    - act on the best default;
    - prefer reversible moves;
    - find the smallest move that unblocks progress;
-   - fix causes and apply the fix to the live work at once;
+   - fix causes and apply the fix to the live work at once; while a fix is in flight, wait for its builder rather than hand-editing a live catalog (hand edits made duplicates that the runner claimed before they were cancelled);
+   - check a belief with a live probe before acting on it: a "DOWN" claim taken on trust was wrong once (the box was up and busy);
    - assess the real output;
    - mash, but spend where it counts: burn tokens on the hard problem and the live blocker, and use the cheapest capable model, short briefs and one agent per task elsewhere;
    - keep the owner's view live (archive what your work supersedes, with a note on what replaced it);
@@ -228,6 +229,17 @@ the code. Every other thread follows one rule, in order:
 The toolsmith writes a short daily retro: calls mined, tool uses, picker misses, what was built, extended, merged or
 retired, and the estimated tokens and minutes saved. A tool unused for fourteen days is reviewed, and a duplicate is merged,
 never kept as a third copy.
+
+## Briefs, restarts and builder claims (keeper learnings, a lead rotation)
+
+- **Open every builder brief with the ask.** Start with "YOUR TASK ... do it now", then the context. A heading-first brief
+  was read as background twice, and the builder went looking for the task. Why: the first lines set the job.
+- **A long-lived process keeps old code.** A running process holds the code it loaded at start. Any change to a window's
+  targets lists the restarts it needs (autopilot via loops_keeper). Why: a fix on disk is not in a process that is still up.
+- **Verify a builder's claim before --go.** "Old code stays correct after the reorder" can be wrong in the risky direction.
+  Check the claim against the real run or the real output before the go-ahead. Why: a confident claim is a hypothesis.
+- **Handoff notes are rewritten whole, under 8K.** No tacked-on addenda. Size is managed where a file is written, not cut
+  at load. Why: owner #2538/#2543; an appended note grows until the load cuts the part that matters.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 

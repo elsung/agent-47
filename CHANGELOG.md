@@ -8,6 +8,15 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.1 (2026-11-02)
+
+Patch, wording only. Prompt hygiene: MUST/NEVER/all-caps and "think carefully" habits reworded as plain reasons, in the
+skill summary and the method summary (rule words 66 to 47). Three keeper learnings from a lead rotation added: open
+builder briefs with the ask; a long-lived process keeps old code, so list the restarts for any target change; verify a
+builder's claim before --go. Handoff notes are rewritten whole under 8K (owner #2538/#2543). Skill to 1.69.1. Owner
+#2526 (prompt hygiene), #2532 (keeper learnings), #2543 (handoff size).
+
+
 ## 1.71.0 (2026-11-02)
 
 **Minor: a toolsmith thread keeps the set of standing tools small (owner, 2 November).** The build-once section gains the
