@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.2 (2026-11-02)
+
+Patch, wording only. Method body pass: the rule words (never, must, always) in the rules and principles reworded as plain
+reasons, so each rule reads with its why (139 hits down to 75; the rest are owner quotes and incident descriptions, which
+stay as written). Context loads: one file per hook, sized where it is written. Owner #2538/#2543. Skill unchanged (1.69.1).
+
+
 ## 1.71.1 (2026-11-02)
 
 Patch, wording only. Prompt hygiene: MUST/NEVER/all-caps and "think carefully" habits reworded as plain reasons, in the

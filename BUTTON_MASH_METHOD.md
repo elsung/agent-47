@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.1 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.2 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -15,7 +15,7 @@ the old name now points here.)
 The method is carried to every agent as a skill, [skills/button-mash](skills/button-mash/SKILL.md), read at every
 start. It has three layers, and it deliberately avoids brittle mechanical rules:
 
-1. **Hard guidelines** always hold, and each comes with its why so it can be applied in cases nobody foresaw:
+1. **Hard guidelines** hold in every case. Each comes with its why, so it can be applied in cases nobody foresaw:
    - move the owner's work aside rather than deleting it, since a move can be undone and a delete can't;
    - ask the owner before spending money or publishing, since those can't be taken back;
    - leave someone's live work alone until you know what it is, who owns it and whether it is moving;
@@ -60,19 +60,19 @@ orchestrator. The owner wants it to:
 | 23:40 | **land.sh**: a branch merges if it merges cleanly and the code starts (import + app build, about 20 s); no suite before or after | Main moved again: 16 merges in the first 10 minutes, from a backlog. |
 | 23:49 | **Loop v1**: autopilot lands a builder when its process exits; a work queue starts the next job when a slot frees; inbox events for progress, stalls (20 min with no commit) and silent deaths; after every land, an outcome check starts the merged app on the real projects and loads 34 views | The old gated review in autopilot (two full suites per finished worker) was removed, because it duplicated land.sh. |
 | 00:25 | **Missions** (see below): intent, then an inferred purpose, then living milestones; a cheap judge looks at the real output each round and writes the next area-owned jobs | Round 1 of the UI mission took about 2 minutes. It found phone-width clipping, label collisions and a 404 on every page, and queued 2 jobs that wait for the lead's own builder to free those areas. |
-| 00:14 | **Areas** (this page): `AREAS.yaml` maps the engine into 24 owned areas; a brief names its areas; the queue never gives one area to two running builders; the watcher posts a collision when two running builders touch one area anyway; every gate and suite step is gone from briefs, standing orders and scripts | Running: see Results. |
+| 00:14 | **Areas** (this page): `AREAS.yaml` maps the engine into 24 owned areas; a brief names its areas; the queue does not give one area to two running builders; the watcher posts a collision when two running builders touch one area anyway; every gate and suite step is gone from briefs, standing orders and scripts | Running: see Results. |
 
 ## The method
 
 1. **Intent first, in the brief.** Goal, why, what good looks like, the areas the builder owns, and how to look at the
    real output. No acceptance tests, and no suite command.
-2. **Own areas, never overlap.**
+2. **Own areas; no overlap.**
    - The engine is cut into areas along its seams: UI shell, styles, pages, API, crew, render, finish, checks, edit
      and sound, previs, library, methods, docs.
    - Files that nearly every change touches get a single-owner area of their own, so they don't serialise everything
      else. Examples: the 4,500-line `app.js`, `app.py`, `creative.py`, `CHANGELOG.md`.
    - Catch-all areas (core, docs) are claimed file by file.
-   - Tests and per-branch change notes are shared paths, never an area conflict.
+   - Tests and per-branch change notes are shared paths, so they are not an area conflict.
 3. **A collision means the map is wrong.** When two builders touch one area, the area gets split or the seam gets one
    owner, and the later job waits in the queue. The conflict itself is not just resolved and forgotten.
 4. **Land on exit, no gate.** Clean merge plus "the code starts" means merged and pushed. Fix forward. A bad merge is
@@ -80,13 +80,13 @@ orchestrator. The owner wants it to:
 5. **Look at the real thing.**
    - The builder opens what it changed (page and screenshot, clip, shot list) and says what it saw.
    - After every land, the merged app runs against the real projects, and the result goes to the inbox.
-6. **Never wait.**
+6. **Work moves on events, not waits.**
    - Completions are events.
    - A freed slot pulls the next queued job whose areas are free.
    - Stalls and silent deaths are posted, and the lead takes an unsticking move (split, smaller proof, fresh worker,
      a default decision).
 7. **Code pastes the facts.** Status lines (merged, conflict, progress, stall, collision, outcome) are written by
-   scripts, never typed by a model.
+   scripts, not typed by a model.
 
 8. **Missions, not metrics** (owner, 00:25). The owner gives an intent, often loose ("a UI that helps us make
    hits from scripts").
@@ -124,10 +124,10 @@ documents: what keeps the models smart and focused is not memory but **living so
   card or an item with nothing to look at is caught within minutes, not discovered by the owner.
 - **The research docs and the pipeline spec are the sources of truth.** An agent arriving fresh, or one whose context
   was just summarised, reads them and knows what is true now. The spec is regenerated whenever the settings it
-  describes change, so its version always matches what runs.
+  describes change, so its version matches what runs.
 - **Regular checking keeps them clean, current and improving,** so they give a clear picture of what we are doing.
-- **Old documents are archived, never left to rot and never deleted:** moved aside, listed in an archive index
-  (where each went, why, and how to fetch it back), so a stale page never misleads and nothing is lost.
+- **Old documents are archived, not left to rot and not deleted:** moved aside, listed in an archive index
+  (where each went, why, and how to fetch it back), so a stale page does not mislead and nothing is lost.
 
 **How we apply it:** a regression watch runs on every heartbeat (every 15 minutes). It fixes what is safe (a pipeline
 spec out of date is rewritten; a card still open after its branch merged is closed; a duplicate queued job is moved
@@ -145,7 +145,7 @@ Two lessons from a week when the leads' windows, not the work, set the pace.
 **Context is a budget: spend it on judgment, not transport.** Measured on the leads (tools/ctx_breakdown.py): each lead
 started at 44 to 58K tokens of a 100K window, before any work, and grew about 4.4K a minute, mostly from raw tool
 output, command reads and pane captures. A lead that spends its window moving bytes runs out in fifteen minutes and
-has no room left to judge. The good move: launch leads lean (no connectors or tool text they never use), send status,
+has no room left to judge. The good move: launch leads lean (no connectors or tool text they do not use), send status,
 log and lookup questions through tools/ask.py (a picker chooses the tool, a reader digests long output), cap tool
 output, and let subagents return conclusions instead of dumps. Spend the window on the decision, not on the transport.
 
@@ -193,7 +193,7 @@ language would save hundredths of a second per call, while a model writes Python
 already Python, so tools need no build step. Rust or Go earns its place only where a measurement shows a tool is
 CPU-bound: scanning gigabytes of logs, per-frame image or video analysis, a tight polling loop. Measure first.
 
-**Rules that hold.** No gates: a pick that fails is a miss and a note, not a stop. The picker suggests and never refuses.
+**Rules that hold.** No gates: a pick that fails is a miss and a note, not a stop. The picker suggests and does not refuse.
 The model runs the tool rather than re-deriving its command. Output is capped at the point it is read.
 
 **The standard for a tool: fast to write and change, lean, effective, less buggy** (owner, 2 November). It is a page in
@@ -209,7 +209,7 @@ the loop's tools folder, and each tool follows it.
   answer. Catch the named error and say what failed.
 - **A linter on every edit, as a note.** Each edit to a Python tool runs a fast linter (about 0.05 s) that hands back
   bug-class findings: undefined or unused names, shadowed names, loop-variable closures, mutable defaults. Fix what is
-  real. It is a note, never a gate.
+  real. It is a note, not a gate.
 - **Search first, then extend.** Before building, look through the toolbook and the tools for one that exists; extend it.
   Each tool ships three to five example questions, which the picker uses to route to it.
 - **Run it on live data.** Read the output before committing: an experiment, not a test suite.
@@ -228,7 +228,7 @@ the code. Every other thread follows one rule, in order:
 
 The toolsmith writes a short daily retro: calls mined, tool uses, picker misses, what was built, extended, merged or
 retired, and the estimated tokens and minutes saved. A tool unused for fourteen days is reviewed, and a duplicate is merged,
-never kept as a third copy.
+not kept as a third copy.
 
 ## Briefs, restarts and builder claims (keeper learnings, a lead rotation)
 
@@ -240,6 +240,9 @@ never kept as a third copy.
   Check the claim against the real run or the real output before the go-ahead. Why: a confident claim is a hypothesis.
 - **Handoff notes are rewritten whole, under 8K.** No tacked-on addenda. Size is managed where a file is written, not cut
   at load. Why: owner #2538/#2543; an appended note grows until the load cuts the part that matters.
+- **One file per context load, sized where it is written.** A hook loads one file, and that file's size is kept
+  under its limit when it is written, not cut at load. Why: owner #2538/#2543; a load that cuts is a silent loss.
+  No tests: the proof is the real output, read by eye.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 
@@ -255,12 +258,12 @@ judgement-heavy measures on a trend board. Agents' failure mode is measured and 
 already exists, because they can't see it, not because they're careless. So the cure is mostly a map plus a nudge,
 not discipline.
 
-**The practices (each with the trend that shows it working; never a gate):**
+**The practices (each with the trend that shows it working; a note, not a gate):**
 
 1. **One commit, one kind.** A behaviour change and a structure change (rename, move, extract) go in separate
    commits. *Trend:* share of mixed commits.
 2. **Tidy what the next change needs, in its own small commit, first or right after.** The rest goes on a list,
-   never a cleanup branch. *Trend:* size of structure commits.
+   not a cleanup branch. *Trend:* size of structure commits.
 3. **Second copy: look it up. Third copy: consolidate.** Agents reach a re-implementation by the second time, so the
    brief says "before you add a player, modal, poller or endpoint, find the existing one and extend it". *Trend:*
    how many places define each pattern (rot signals: players, modals, toasts, pollers).
@@ -276,13 +279,13 @@ not discipline.
 7. **Delete by moving, only what the evidence says is dead.** Dead code, flags and endpoints go to a retired folder
    when nothing references them (search proves it; for endpoints, the request log too). False positives are the
    worse failure. *Trend:* count of dead items found vs moved.
-8. **Small landings; migrations, never rewrites.** A big change goes in shards behind a seam (strangler fig, branch
+8. **Small landings; migrations, not rewrites.** A big change goes in shards behind a seam (strangler fig, branch
    by abstraction), each shard landed and undoable, and the temporary seam has a removal date. *Trend:* the biggest
    landed diff; the oldest open branch.
 9. **Rot as a trend on the board.** The rot signals are measured hourly from main and kept as history; the board
-   shows the slope. A threshold may ratchet one notch with a reason; it never blocks. *Trend:* the board's slope.
+   shows the slope. A threshold may ratchet one notch with a reason; it does not block. *Trend:* the board's slope.
 10. **Outside eyes on the real output.** A fresh-context look at the running page, render or run, and a red-team
-    crew member whose job is to show the change is wrong; never the builder grading itself. *Trend:* faults the
+    crew member whose job is to show the change is wrong; not the builder grading itself. *Trend:* faults the
     outside look catches before the owner does.
 
 **Where we differ from the sources.** Nearly every team studied blocks merges on deterministic checks and runs full
@@ -334,7 +337,7 @@ Each source was checked; second-hand figures are marked as such.
   [Grok Bot launch](https://x.ai/news/introducing-grok-bot)).
   - Rules: "Completions are queue events, not interrupts." "The brief is the product." One writer per worktree.
   - A rolling window of workers, refilled as children finish ("blocking batches pay the slowest child").
-  - Landing is continuous, never a terminal phase.
+  - Landing is continuous, not a terminal phase.
   - "Never reaches the human: … 'should I keep going'. When in doubt, act and log."
   - Its playbooks were used about 10,000 times in a week by Cursor's engineers (author's claim).
   - *Not gate-free:* every unit gets a verdict against the real artifact (live-ui-verified, …). Verification is scaled
@@ -355,7 +358,7 @@ Each source was checked; second-hand figures are marked as such.
 ### What the research says about intent judges (and what we changed)
 
 A second digest (MiniMax M3.1 over about 30 sources, October 2026; figures as reported, not all re-checked) found
-one structural rule above all: **the judge must open the real artifact, not read the transcript.**
+one structural rule above all: **the judge opens the real artifact, not the transcript.**
 - "Across 54 cycles a frontier agent claimed improvement every time, yet 56 percent had a measured delta of zero or
   below". The in-band judge "accepted cycles of which 44 percent were real-world regressions"
   ([arXiv 2607.25152](https://arxiv.org/abs/2607.25152)).
@@ -369,10 +372,10 @@ one structural rule above all: **the judge must open the real artifact, not read
 
 What we built from it, the same hour:
 1. **Default-fail evidence.** A judge's "met" counts only if it lists the real outputs it opened, and they exist.
-2. **A fresh second judge confirms every "met"**, told to try to show it isn't. One lucky pass never ends a milestone.
+2. **A fresh second judge confirms every "met"**, told to try to show it isn't. One lucky pass does not end a milestone.
 3. **Anti-spin as a counter, not a judgment.** Three rounds with nothing new landed puts the mission in `blocked` for
    its lead (Devin: stop when "a round fixes nothing new").
-4. **A non-progress exit and an attempt floor.** A plateau is not a stop; the judge must change approach (pstack).
+4. **A non-progress exit and an attempt floor.** A plateau is not a stop; the judge changes approach (pstack).
 
 ### Ambition as a protocol (owner #338)
 
@@ -403,7 +406,7 @@ poteto's Orchestrate playbook is the closest working example, and we take most o
 - a rolling window of workers;
 - continuous landing;
 - one writer per worktree (our areas);
-- never asking the human "should I keep going".
+- not asking the human "should I keep going".
 
 Its Autonomous run playbook is our mission loop in small: "State the exit condition as a checkable predicate", then
 "each iteration makes the smallest change the evidence justifies… A plateau is not a stop".
@@ -461,7 +464,7 @@ between production runs, heavy board work belongs there, and the small-box numbe
 
 **The pattern that saves the most:** before an agent spends LLM tokens on a decision, a decision model answers the typed
 question. The LLM sees only the cases the decision model is unsure about. It's a sorting step in front of the
-expensive thinking, not a judge with a veto: scores travel with the work as notes, never as gates.
+expensive thinking, not a judge with a veto: scores travel with the work as notes, not as gates.
 
 **How we picked the reading model (a bake-off on real tasks, not benchmarks):**
 - **Same two jobs for every model:** real code reads of 38k and 97k tokens, against the larger model's reads of the
@@ -490,7 +493,7 @@ expensive thinking, not a judge with a veto: scores travel with the work as note
 - **Speed numbers lie when the control pays a cold start.** In a render speed test, every "speed-up" arm looked 37%
   faster, because the control ran right after a model swap and paid the reload. Time each stage (load, encode,
   sample, decode) and judge each change on the stage it touches.
-- **Finals settings are decided on paired frames read by eye, never single frames.** Single-frame numbers swing too
+- **Finals settings are decided on paired frames read by eye, not single frames.** Single-frame numbers swing too
   much to rank on. An int8 VAE matched fp16 on every paired frame and saved 10–14 s of decode per take — a free
   speed-up. A 4-step speed LoRA that drifted the framing was dropped although it was the fastest arm: speed only
   counts when the audience can't tell.
@@ -624,7 +627,7 @@ The fix is one rule at claim time, not a per-run checklist:
    worker is skipped on the next claim. "I can't run this" (re-queue, skip the box) is a routing fact.
 2. A refusal on the job's own card still fails the job. "This work is bad" (fail, show the card) is a verdict.
 
-A worker's report never decides either one; its recorded facts do. Spreading work multiplies the ways a box can be
+A worker's report does not decide either one; its recorded facts do. Spreading work multiplies the ways a box can be
 quietly unqualified, so the skip rule belongs in the scheduler, not in anyone's memory of the run.
 
 From the 2026-11-01 board-spread failures and the same-day fix.
@@ -690,7 +693,7 @@ One broken main so far: a stray character in `edl.py` landed through a merge at 
   could claim the job. Fix: claim the job before launching, and launch with `cd dir || exit; nohup agent &`, which
   returns in milliseconds.
 - **A judge proposed jobs on another lead's live run** ("unstick a run"). They were stopped after 42 s with nothing
-  committed. Fix: every judge prompt now carries standing constraints: never touch a running run; use a scratch copy.
+  committed. Fix: every judge prompt now carries standing constraints: do not touch a running run; use a scratch copy.
 - **A judge read an expected 404** (the app probing a dev-only endpoint) as a defect. The builder it sent found this in
   minutes and said so. Cost: one small job. Fixing forward absorbed the judge's mistake.
 - **The loop worked end to end within the hour.** The UI judge looked at real screenshots, a builder fixed the phone
@@ -801,7 +804,7 @@ fix. Loop numbers: since 2026-10-18 23:40: 257 merges (30.5/h), 28 land conflict
 14. **A deploy is part of a merge.** The dashboard kept serving old web code after a web merge until the orchestrator restarted it
     (the orchestrator). land.sh now restarts it after any merge that touches the web code, and says so in the inbox.
 
-15. **The model's own limits are an outage the loop must ride out.** From 10:56 to 12:37 every judge died on the
+15. **The model's own limits are an outage the loop rides out.** From 10:56 to 12:37 every judge died on the
     Claude session limit within a minute. The loop relaunched each one 10 minutes later, about 30 wasted rounds, and
     builders started then died too. Fix: a judge that dies on a usage limit makes its mission wait 15 minutes, and
     the round isn't counted.
@@ -818,7 +821,7 @@ fix. Loop numbers: since 2026-10-18 23:40: 257 merges (30.5/h), 28 land conflict
     worktrees, 152 GB of failed land copies (owner #405/406). Fix:
     - everything agents make lives on the 24 TB data disk: worktrees symlinked, scratch, TMPDIR, pytest temp, land copies;
     - the engine refuses agent scratch and runs anywhere else;
-    - an hourly job moves merged worktrees and old scratch to an archive, never deleting;
+    - an hourly job moves merged worktrees and old scratch to an archive, not deleting;
     - the watchdog alerts below 200 GB free.
     A self-healing loop needs garbage collection as much as it needs retries.
 18. **Resource rules belong in one runtime file every router reads.** "Route nothing to two named GPU boxes" (owner #392)
@@ -827,7 +830,7 @@ fix. Loop numbers: since 2026-10-18 23:40: 257 merges (30.5/h), 28 land conflict
     hands it back by editing one file, with no merge.
 19. **Failover has to be rehearsed on a real pane.** Account failover (owner #394) keeps each lead's transcript and
     flags. Its first trial found that pointing `CLAUDE_CONFIG_DIR` at the default dir makes Claude Code start as a
-    fresh install, and that a new account must trust each lead's folder once. Neither was in the docs.
+    fresh install, and that a new account has to trust each lead's folder once. Neither was in the docs.
 
 20. **A retry must be keyed on the state it retries, not on its own output.** The conflict re-land was keyed on the
     inbox line it reacted to, and every re-land wrote a new line. Two watchers (autopilot and the watchdog) each
@@ -887,7 +890,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     current folder found nothing, and the next switch would have skipped six leads. The first switch also showed the
     other trap: `/exit` can raise a dialog (feedback, "stop background tasks"). Fix: look in both folders. Never type
     into a pane with background shells or child jobs. Dismiss the feedback prompt; cancel any other dialog and skip
-    the pane with the reason. A switch must leave every pane either moved or untouched, never half-exited.
+    the pane with the reason. A switch must leave every pane either moved or untouched, not half-exited.
 
 28. **A slow step in the loop holds every job behind it, so time each step.** One autopilot pass took 11 minutes, and
     a UI round sat queued behind areas whose round had already merged. Timing each step showed the cause:
@@ -907,7 +910,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 31. **Order rules written as waits deadlock; write them as priorities.** "B waits for A" stops B forever when A cannot
     start. Write it as "A goes first when it can run; otherwise B runs". A queued shoot that could not start once held every image job behind
     it, though there was nothing for them to wait for.
-32. **Never hold one resource while waiting for another.** A first draft was classed as GPU work for the whole job,
+32. **Do not hold one resource while waiting for another.** A first draft was classed as GPU work for the whole job,
     so it held the GPU window through its CPU steps, and the work behind it waited. Fix: one owner per GPU, a queue per card,
     and leases with heartbeats, so a holder that stops renewing loses the card.
 33. **Leave memory to its owner.** Estimating free VRAM from outside the image server
@@ -926,18 +929,18 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     two minutes from merge to the live run. Long-running supervisors load their code once, and one kept enforcing a
     lock rule that main had already changed, blocking the live run. Fix: the watchdog restarts any supervisor whose
     loaded revision is behind main, and stops a leftover old one. A run left "running" for days beside the live run
-    is posted for retirement after 24 hours, and its queue never goes ahead of the live run's.
+    is posted for retirement after 24 hours, and its queue does not go ahead of the live run's.
 38. **An account switch must cover background services, not only sessions.** Switching the interactive sessions to a
     second account left the schedulers and watchers on the first, still spending its limit. The switch now rewrites
     one environment file that every service reads and restarts the services.
-39. **A default that limits is a visible per-run setting, never a silent rule (#512).** "One machine per roll" was a
+39. **A default that limits is a visible per-run setting, not a silent rule (#512).** "One machine per roll" was a
     hidden default, and it looked like a slow pipeline. Now each run lists its machines at start, and a run without
     the setting says so.
 40. **Inherit, don't invent.** When each prompt layer writes its own camera and lighting words, the layers drift
     apart. Every layer now derives from one source per scene and shot: one camera spec and one lighting
     sentence, copied down, not rewritten.
 
-41. **Tell stale from important by owner and progress, never by location alone.** A cleanup stopped dozens of
+41. **Tell stale from important by owner and progress, not by location alone.** A cleanup stopped dozens of
     "orphaned" scratch runners by path. At least one belonged to a builder that was still working. Ask what the thing
     is, who owns it and whether they are still here, and whether it is moving. Stop it only when it clearly belongs to
     no one's live work, and say what you stopped. When unsure, flag it. The root fix: scratch runners end with the
@@ -1017,16 +1020,16 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     same stale-vs-important question a person would.
 72. **A service that starts work in the background and returns can kill that work on exit.** A timer-started board
     pass died at birth every hour for four hours, because the service manager cleaned up the unit's processes when its
-    start command returned. A job that must outlive its starter says so in how it is run.
+    start command returned. A job that has to outlive its starter says so in how it is run.
 73. **A declared output must be read where the worker writes it.** Two reports written to a path relative to the
     worker's folder were read as absolute, called missing, and their readers rerun. Resolve paths the way the worker
     would.
 74. **A new rule meets the old ones.** "Agent run work goes to the main card" and "only the owner's roll on the main
     card while it runs" were each right; together they moved a lab run onto the card mid-roll, because the first ran
     after the second had cleared it. When you add a rule, find the rules it overlaps and decide which wins, in code.
-75. **A hold must not wait on what it holds.** A hold "until the episode's cut" blocked the items the cut needed, so
+75. **A hold does not wait on what it holds.** A hold "until the episode's cut" blocked the items the cut needed, so
     the cut could never come. Before a hold, ask what its release depends on.
-76. **A waiting job must not hold capacity.** Every render slot was taken by jobs that were themselves waiting for the
+76. **A waiting job does not hold capacity.** Every render slot was taken by jobs that were themselves waiting for the
     card, so the work the card needed could not be claimed. Count waiting and working separately.
 77. **One state, one owner.** Two watchers both paused and resumed the same runs; one resumed what the other still
     needed held. Hand state over explicitly instead of letting two loops act on it.
@@ -1056,7 +1059,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     check that the source exists is not a check that it says what is claimed; quote the source beside the claim.
 87. **A copy inherits its source's state; decide what it keeps.** Scratch copies carried their source's holds (they sat
     queued forever), its closed status and its code pin. When you copy work, say which state comes along.
-88. **A per-worker file must not live in a shared place.** Every branch edited one report file at the repository's
+88. **A per-worker file does not live in a shared place.** Every branch edited one report file at the repository's
     root, and almost every merge conflicted on it. Per-worker records live per worker, or merge with a fixed rule.
 89. **The rules you give the agents bind you too.** The orchestrator searched the busy disk it had told every agent
     never to search. Run your own commands past your own standing orders.
@@ -1081,7 +1084,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     the failed jobs' reason field said a content check failed, and the same two items failed after every requeue.
     Read the record first; the same item failing the same way after each retry is not a wait.
 97. **A fixed-size list drops the urgent item.** The board covered a fixed list of ten missions, and the one blocking
-    the main goal was not on it. Build the list from the priority source, urgent first, and never cap away the urgent.
+    the main goal was not on it. Build the list from the priority source, urgent first, and do not cap away the urgent.
 98. **Ending a state clears its fields.** Two missions ran for hours with pause fields still set, so every reader
     called them paused. The step that leaves a state moves its fields to history, in the same write.
 99. **Hand cleanup that repeats becomes the system's.** A lead moved paused scratch folders off the full disk by hand,
@@ -1165,16 +1168,16 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 127. **Two forms of one fact never compare equal.** A record wrote a full hash and the check compared it with a
     shortened one, so every item that held one looped as "changed". When two places record the same fact, make them
     one function or compare them in one form.
-128. **A step must not record its own product as its input.** A stage recorded a derived file as an input, then
+128. **A step does not record its own product as its input.** A stage recorded a derived file as an input, then
     rewrote that file from its own output, so it always looked stale and re-ran. Record what a derived file is built
-    from, never the file itself.
+    from, not the file itself.
 129. **Measure where the bytes go before naming the culprit.** The obvious suspect (agent transcripts and caches) came
     to under one gigabyte an hour; the code checkouts made per pin were seventeen. Per-source numbers first, then the
     fix where most of them are.
 130. **A failure nobody retries is a stale page.** A judge that hit its limit left the status page stale for over an
     hour, because only the next hourly run would try again. A failed step says so and tries again soon, not at the
     next scheduled slot.
-131. **A breaker must not lean on what the stall breaks.** A rule that moved a stuck queue head needed the lock to be
+131. **A breaker does not lean on what the stall breaks.** A rule that moved a stuck queue head needed the lock to be
     free and the same head for thirty seconds; the stalls held the lock and flipped the head, so it never fired, three
     times. Key a breaker on how stuck looks from outside: the card free, work waiting, nothing taken.
 132. **Check the premise in the data before you build.** A board was said to hold the card through its CPU steps; its
@@ -1200,7 +1203,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 139. **A test copy at new code is a different run.** A copy pinned to the newest code restaled its whole world and
     started redoing it, and marking the stopped work "failed" made the planner retry it. Copy at the source's own pin
     plus your commits, and stop work as cancelled, the state the planner leaves alone.
-140. **A check must not carry what it hides.** A public repository's leak check held the private words it refused, in
+140. **A check carries nothing it hides.** A public repository's leak check held the private words it refused, in
     plain text. Keep the list outside the repository, and fail closed when it is missing.
 141. **A code repository holds code: megabytes, not gigabytes.** Agents saved their evidence (boards, strips, clips,
     logs) beside their notes and committed it. Nothing refused it, so a repository of 12-30 MB of source grew to 1.7 GB
@@ -1224,7 +1227,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     run's prep reads. It covers:
     - the result against its targets, and where the time went;
     - what went right, and what went wrong with each cause and its fix at that cause;
-    - a pre-flight checklist for the next run, and a regression table it must match or beat.
+    - a pre-flight checklist for the next run, and a regression table it has to match or beat.
 
     Link it to the one before, and keep a rolling index with each run's date and headline numbers. Update it while the
     fixes land. Before the next run starts, tick its checklist and check its regression table. The file is the source of
@@ -1237,7 +1240,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     move, so a second mover skips what the first holds.
 148. **An order that only ranks waiters cannot hold back work that is not waiting.** A priority put previews ahead of
     final renders, but only among calls queued at the card. While the previews ran on the CPU, a ready render took the
-    free card. If the order must hold, put it where work is planned, not only where it waits.
+    free card. If the order has to hold, put it where work is planned, not only where it waits.
 149. **Measure a switch by the slow first call, not by the load step.** Loader steps added up to a few minutes because
     the weights move to the GPU lazily, inside the first sampling step. Compare a call's first run after a switch with its
     usual time to see what a switch really costs, and how often a big model really reloads.
@@ -1248,7 +1251,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     checked a core cause in files outside their areas, then stopped with "needs a change outside my scope", and each
     needed a second worker started by hand. Let the worker widen its own scope to the files the cause is in when no one
     else holds them, and queue the follow-up behind the holder when someone does. Either way, nothing waits on a person.
-152. **A copy must not inherit settings that only the original should have.** A scratch copy of a production run kept
+152. **A copy does not inherit settings that only the original should have.** A scratch copy of a production run kept
     its no-retry setting, so the copy's trials stopped at their first miss and read as a bug. When you make a copy, drop
     the settings that belong only to production, and note what was dropped and why, so the copy's behaviour explains
     itself.
@@ -1258,7 +1261,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 154. **A lock that is re-entrant in one thread is not re-entrant for the child of a wrapper.** Leads were told to wrap
     their scripts in a wrapper that takes the card lock; the code inside asked for the same lock and waited on its own
     wrapper for most of an hour. When a wrapper holds a lock for a command, hand the hold down to its children (and
-    check the holder is still a live ancestor), so wrapping is always safe.
+    check the holder is still a live ancestor), so wrapping is safe.
 155. **Check that a priority setting is honoured before you rely on it.** Background movers were put on idle disk
     priority to spare live work, but that disk's scheduler ignores the setting, so they kept competing at full speed
     and test copies crawled. Read what the system really does with the setting; if it does nothing, pause the
@@ -1315,7 +1318,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 170. **Give an agent the paths it needs, or it will search for them.** A reviewing agent wanted a change note that
     was not in its evidence and searched the whole disk for it, at full CPU. List the files an agent is meant to read,
     by path, in what it is given; then a forbidden search has no reason to happen.
-171. **Never switch branches in a checkout others use.** The main checkout is read and landed into by other
+171. **Do not switch branches in a checkout others use.** The main checkout is read and landed into by other
     processes; checking out a branch there, even for a minute, changes the files under them. Make a separate working
     copy for your change.
 172. **Readiness must use the same "made" rule as the rest of the run.** In a run that makes each thing once, a card
@@ -1334,7 +1337,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     row under one name, and the refresher removed it as a duplicate under another. Give each part of a shared file one
     owner; every other process reads it, and flags, in the owner's own terms.
 177. **An urgent line must name its reader.** An urgent finding sat in a shared inbox for 30 minutes because it fell
-    between the reader's checks, and the run lost that time. Address urgent lines to the one who must act, so they
+    between the reader's checks, and the run lost that time. Address urgent lines to the one who has to act, so they
     can watch for their own name.
 178. **Put a machine rule where every caller passes, not in a name list.** A rule kept agents off the owner's test
     machines by name, and a worker that was handed a machine's address went straight to it. Check the rule in the one
@@ -1370,9 +1373,9 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 188. **One resource, one lock, whatever it is called.** One machine had three locks because it could be named three
     ways, so jobs on it did not wait for each other and a reader saw a busy machine as free. Map every name of a
     resource to its one lock.
-189. **A watchdog must never undo the owner's own work.** A rule that took back work sent around the lock would have
+189. **A watchdog does not undo the owner's own work.** A rule that took back work sent around the lock would have
     cancelled the owner's hand runs, which never take the lock. When the owner is hands-on, the watchdog's corrective
-    actions stand down; it may report, never cancel.
+    actions stand down; it may report, not cancel.
 190. **A relaunch repeats the brief it was saved with.** A worker whose job was to start a timing run died after starting
     it; the relaunch read the saved brief, "start a new run", and would have started a second one. When a worker's
     task moves on (from "start it" to "measure it"), update the brief a relaunch reads, not only the worker.
@@ -1447,7 +1450,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 212. **A copy that cannot be a clone is made once and kept.** Across two disks, a copy is a full copy; made per run it
     outlived its caller and left a partial copy behind. One kept copy, refreshed only where the run changes it, costs
     nothing per run.
-213. **Importing a module must not change how the rest of the process behaves.** Loading a web app replaced a core check
+213. **Importing a module does not change how the rest of the process behaves.** Loading a web app replaced a core check
     for the whole process with its own older copy of the rules, so the dashboard judged work by rules the planner had
     moved past, and tests failed only when that module happened to load first. Keep one body for a rule, and install
     any override when the app is created, not when it is imported.
@@ -1500,7 +1503,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 230. **Delete nothing, not even what you made a minute ago.** A cache folder from a compile check was removed with a
     recursive delete. It was harmless, and it still broke the rule that anything removed goes to the trash folder
     instead. Generated files get the same handling as the owner's.
-231. **A redraw loop writes beside the original, never over it.** A loop that replaced its input would lose the picture
+231. **A redraw loop writes beside the original, not over it.** A loop that replaced its input would lose the picture
     the check measured against, and the one to compare with. Each new try gets its own name, the original stays, and the
     note names the best try for the caller to stage.
 
@@ -1527,7 +1530,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 
 236. **Each runtime reads its own hooks, so probe each one with a fresh session that shows the text back.** A Claude hook did
     not reach an omp session, which reads no Claude hooks. The probe ran omp once with the extension loaded and once with
-    extensions off: the first quoted the north star, the second said none. Test on a new probe run, never on a live lead,
+    extensions off: the first quoted the north star, the second said none. Test on a new probe run, not on a live lead,
     so a check cannot disturb the work it is checking.
 
 237. **Read why a worker exited before you relaunch it with the same brief.** A watchdog relaunched four builders that had
@@ -1576,7 +1579,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     the card the crashed scene now builds, read on the page. Builders write no unit tests and run no test files; they look at
     what the user sees (the page, the file, the render, the run) and say what they saw. A passing test is not progress.
 
-247. **The owner should never be the one keeping the goal complete.** On one day the owner had to ask for ten things: comments
+247. **The owner should not be the one keeping the goal complete.** On one day the owner had to ask for ten things: comments
     in link reads, every model side by side, a test of a rival tool, a second round of a model, planned timing, clean test
     sources, the whole scene rather than single shots, workflow families, a master plan with a status page, and a
     retrospective. Good move: a goal-gap pass every heartbeat. It compares the plan with what happened: items marked not run
@@ -1589,7 +1592,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     edited by hand. Good move: keep one results log as the source. The master plan holds everything, with a changelog of how
     the plan changed. The live status page is generated from the plan and links every result. The retrospective is generated
     from the results log: lessons, causes and fixes, rules, a pre-flight list, and a regression table. Edit the log, then
-    regenerate; never edit a generated page.
+    regenerate; do not edit a generated page.
 
 249. **Test a model at its author's or community recipe first.** A new model was judged on a settings guess and looked bad.
     Good move: run its published recipe first, then vary one thing at a time. A bad render is checked against the recipe
@@ -1609,7 +1612,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     paths the owner could not open, and one page needed a sign-in to read. Good move: post the real address, check it opens,
     and publish a no-login copy beside each page.
 
-253. **A decision with a sensible default never waits.** One test stalled for 21 hours on a question nobody answered. Good
+253. **A decision with a sensible default does not wait.** One test stalled for 21 hours on a question nobody answered. Good
     move: take the default, label it as a default, and let the owner swap it. A stall with no default is the only kind that
     should stop work, and it should say what it is waiting for.
 
@@ -1632,11 +1635,11 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     Good move: learn its method, then build the shipped version from our own code. Keep the licence note with the rebuild.
 
 259. **Repeated patterns become tools, routed by a cheap classifier, pruned on a schedule; guidance lives in every brief,
-    never as a gate.** A pattern repeated across a dozen tasks was rebuilt each time, and a stale tool was picked by the
+    not as a gate.** A pattern repeated across a dozen tasks was rebuilt each time, and a stale tool was picked by the
     router. Good move: when a pattern repeats, make it a tool and list it. A cheap classifier routes each task to a tool.
     Once a week, sweep the list: a tool unused for fourteen days, a broken tool, or a duplicate is fixed, merged or retired
-    (archived, never deleted). The guidance on which model to call goes into every brief, so every thread type reads it,
-    leads, workers, subagents and new threads alike. It never stops a job.
+    (archived, not deleted). The guidance on which model to call goes into every brief, so every thread type reads it,
+    leads, workers, subagents and new threads alike. It does not stop a job.
 
 260. **Under pressure we reach for gates and tests; the cure is notes and defaults.** A day's audit found six checks added in
     a hurry: a refusal on a link that was not a web address, a cut that refused an edit it did not like, a refusal before a
@@ -1647,7 +1650,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 
 261. **No hard rules, no gates, no coding tests. Experiments stay.** Models will get through tests anyway, and a test that
     fails stops a land that was fine. Good move: keep the experiments, A/Bs, comparisons, model trials and timed runs judged
-    by eye: they are the engine of the method. Drop unit tests, test suites and "tests pass" as proof, and never let a
+    by eye: they are the engine of the method. Drop unit tests, test suites and "tests pass" as proof, and do not let a
     failing suite stop a merge. The builders check the real output (the page, the file, the render, the run) and say what
     they saw.
 
