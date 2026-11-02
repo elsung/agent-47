@@ -1547,6 +1547,8 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     failing suite stop a merge. The builders check the real output (the page, the file, the render, the run) and say what
     they saw.
 
+262. **Guidance reaches a worker only through the brief it is started with.** The model-stack guide was added to every builder brief and every lead brief, so both read it. A subagent started from a session gets only the prompt its spawner writes, so it never saw the guide. Good move: when you spawn a subagent, paste the one-line pointer to the guide into its prompt, and check a sample of subagent prompts once a week with the toolbook pass.
+
 **Today's results (2026-10-20).**
 - A replay of real run histories through the scheduler simulator: GPU idle time with runnable work fell from 2.9 h to
   0, and deadlocks fell to 0.

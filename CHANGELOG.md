@@ -8,6 +8,10 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.68.1 (2026-11-02)
+
+**Patch: lesson 262.** Guidance reaches a worker only through the brief it is started with. Builder and lead briefs carry the model-stack pointer; subagents started from a session did not, so each spawner pastes the pointer and the weekly toolbook pass samples subagent prompts.
+
 ## 1.68.0 (2026-11-02)
 
 **Minor: fifteen lessons (247-261) and the gates-to-notes rule.** Follows 1.67.0. The owner's process lessons from the last day, written
