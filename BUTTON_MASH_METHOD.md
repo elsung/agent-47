@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.17 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.18 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -322,6 +322,10 @@ not kept as a third copy.
   on it. Why: a launch on someone else's request runs against a plan its owner has not seen.
 - **Open the board before you name a framing.** A verdict from notes can name the wrong shot type. Why: a shot called a
   doorway had a close-up drawing and two-shot notes.
+- **Judge a tie at full resolution, on hands, fingers and props.** A blurred or downscaled frame hides a smear. Why: a
+  3-step read called S4 a tie and missed a hand smear that the by-eye pass at full res caught.
+- **Write prompt files with a heredoc script, not inline quoting.** Why: inline quoting in `python -c` broke the
+  prompt text on each try and cost a rerun.
 - **Check the live queue before you launch on an owner box.** A status line can be stale. Why: a launch on a stale
   status duplicates or blocks work.
 

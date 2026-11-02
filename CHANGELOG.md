@@ -8,6 +8,11 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.18 (2026-11-02)
+
+Patch, wording only. Two method lines from a lead rotation: judge a tie at full
+resolution on hands, fingers and props; write prompt files with a heredoc script, not inline quoting.
+
 ## 1.71.9 (2026-11-02)
 
 Patch, wording only. Three method lines from a lead rotation: check the camera solve across arms before an A/B by eye;
