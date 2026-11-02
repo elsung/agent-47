@@ -1472,6 +1472,81 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     the card the crashed scene now builds, read on the page. Builders write no unit tests and run no test files; they look at
     what the user sees (the page, the file, the render, the run) and say what they saw. A passing test is not progress.
 
+247. **The owner should never be the one keeping the goal complete.** On one day the owner had to ask for ten things: comments
+    in link reads, every model side by side, a test of a rival tool, a second round of a model, planned timing, clean test
+    sources, the whole scene rather than single shots, workflow families, a master plan with a status page, and a
+    retrospective. Good move: a goal-gap pass every heartbeat. It compares the plan with what happened: items marked not run
+    or not started get a lead and a next step; a "now" row with no result in three hours gets a nudge; an owner ask with no
+    motion in two hours gets an owner and a step; a result with no watchable link is flagged; a rule broken by a test is
+    named; a plan or page not regenerated after new results is regenerated. For each approach, ask one question: what would a
+    top professional do next that nobody asked for? Answer it with one concrete step.
+
+248. **Three living documents from one source.** The plan, the status page and the retrospective drifted apart when each was
+    edited by hand. Good move: keep one results log as the source. The master plan holds everything, with a changelog of how
+    the plan changed. The live status page is generated from the plan and links every result. The retrospective is generated
+    from the results log: lessons, causes and fixes, rules, a pre-flight list, and a regression table. Edit the log, then
+    regenerate; never edit a generated page.
+
+249. **Test a model at its author's or community recipe first.** A new model was judged on a settings guess and looked bad.
+    Good move: run its published recipe first, then vary one thing at a time. A bad render is checked against the recipe
+    and rerun once before it counts as a result. A render that differs from the recipe measures the setup, not the model.
+
+250. **Make a comparison fair before reading it.** Four things made an A/B unreadable: padded timing (a planned length that
+    was stretched with idle frames), dirty sources (the test inputs had their own faults), a cold load in a warm run (the
+    first run paid the model load), and different sizes or aspects. Good move: plan the timing with no padding, use clean
+    sources, time warm runs with cold loads recorded apart, match size and aspect, record the mode, and screen with one seed
+    before any second seed.
+
+251. **A result is watchable only when its settings are read from the artifact.** A clip's notes said one setting while its
+    graph ran another. Good move: read the settings from the artifact's own record (the graph saved with the file), and
+    show them beside the clip. A note that disagrees with the record loses.
+
+252. **A link must be a real address, and every page needs a copy that opens without a login.** Several reports pointed at
+    paths the owner could not open, and one page needed a sign-in to read. Good move: post the real address, check it opens,
+    and publish a no-login copy beside each page.
+
+253. **A decision with a sensible default never waits.** One test stalled for 21 hours on a question nobody answered. Good
+    move: take the default, label it as a default, and let the owner swap it. A stall with no default is the only kind that
+    should stop work, and it should say what it is waiting for.
+
+254. **Reading a link means reading all its comments, and recording how many there were.** A review was closed after reading
+    the first comment of a thread that had forty. Good move: open every comment, record the count with the summary, and say
+    which were not read.
+
+255. **Ration the fast, smart models by urgency and difficulty.** The expensive model ran on routine checks all day and the
+    budget ran out by the afternoon. Good move: route each call by urgency times difficulty, keep a daily budget ledger, and
+    fall back to a cheaper model automatically when the budget is near its limit.
+
+256. **Judge the whole, not only the parts.** Each shot of a scene looked right on its own; the scene as a sequence did not
+    cut together. Good move: review the scene in order, as the viewer sees it, before passing any single shot.
+
+257. **Check a claim against the real record before saying it.** A config folder was called a login, and a four-times speed-up
+    was a cold load measured against a warm one. Good move: read the record that would prove the claim (the login file, the
+    warm timing) before the claim goes out. If the record is missing, say so.
+
+258. **Non-commercial tools may be used to learn; ship your own rebuild.** A tool's licence allowed study but not shipping.
+    Good move: learn its method, then build the shipped version from our own code. Keep the licence note with the rebuild.
+
+259. **Repeated patterns become tools, routed by a cheap classifier, pruned on a schedule; guidance lives in every brief,
+    never as a gate.** A pattern repeated across a dozen tasks was rebuilt each time, and a stale tool was picked by the
+    router. Good move: when a pattern repeats, make it a tool and list it. A cheap classifier routes each task to a tool.
+    Once a week, sweep the list: a tool unused for fourteen days, a broken tool, or a duplicate is fixed, merged or retired
+    (archived, never deleted). The guidance on which model to call goes into every brief, so every thread type reads it,
+    leads, workers, subagents and new threads alike. It never stops a job.
+
+260. **Under pressure we reach for gates and tests; the cure is notes and defaults.** A day's audit found six checks added in
+    a hurry: a refusal on a link that was not a web address, a cut that refused an edit it did not like, a refusal before a
+    job queued, a "test sources must read clean" rule, "one test" written into the builder brief, and a watchdog that
+    killed a running test suite. Good move: turn each into a note that travels with the work, or a default the owner can
+    swap. A refused job notes why and waits for the next pass. A test run a builder left going gets a note, once, and its
+    lead stops it.
+
+261. **No hard rules, no gates, no coding tests. Experiments stay.** Models will get through tests anyway, and a test that
+    fails stops a land that was fine. Good move: keep the experiments, A/Bs, comparisons, model trials and timed runs judged
+    by eye: they are the engine of the method. Drop unit tests, test suites and "tests pass" as proof, and never let a
+    failing suite stop a merge. The builders check the real output (the page, the file, the render, the run) and say what
+    they saw.
+
 **Today's results (2026-10-20).**
 - A replay of real run histories through the scheduler simulator: GPU idle time with runnable work fell from 2.9 h to
   0, and deadlocks fell to 0.

@@ -8,6 +8,17 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.68.0 (2026-11-02)
+
+**Minor: fifteen lessons (247-261) and the gates-to-notes rule.** Follows 1.67.0. The owner's process lessons from the last day, written
+generally, each with its story and the good move: a goal-gap pass every heartbeat (247); three living documents from one
+source (248); test a model at its recipe first (249); a fair comparison (250); a result watchable from its own record
+(251); real links and a no-login copy (252); a sensible default never waits (253); read every comment (254); ration the fast
+models by urgency and difficulty (255); judge the whole scene (256); check a claim against the record (257); learn from
+non-commercial tools, ship your own rebuild (258); repeated patterns become tools, pruned weekly, guidance in every brief
+(259); the cure for pressure is notes and defaults (260); no hard rules, no gates, no coding tests, experiments stay (261).
+The skill's "No gates" bullet now names coding tests and says every guideline is a reason, not a rule to enforce.
+
 ## 1.67.0 (2026-11-01): three worked examples: a speed pack that held the frame, a default kept by measure and eye, the best face not the first
 - **Method doc:** three worked examples in "Spend where it counts, in practice": a speed pack approved only where its frame
   held (about 4.4x on the same shot, the reference mode dropped); a newer checkpoint kept out by a rerun at each side's own

@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.59.0 (2026-11-01). See CHANGELOG.md in the repo root.
+VERSION 1.68.0 (2026-11-02). See CHANGELOG.md in the repo root.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -50,8 +50,12 @@ only to serve it.
 - **Pace deliberately when told to, or when a real limit applies.** That means power and heat (a tripped breaker or UPS costs more
   than any speed-up), cost (paid APIs), or another site's rate limits (throttling gets us blocked).
   Going flat-out into one of those loses more time than it saves.
-- **No gates.** A check that stops work until it passes trades motion for a feeling of safety. Turn the check into a
-  note that travels with the work.
+- **No gates, no coding tests.** A check that stops work until it passes trades motion for a feeling of safety. Turn the
+  check into a note that travels with the work, or a default the owner can swap. Experiments are the engine: A/Bs,
+  comparisons, model trials and timed runs judged by eye stay. Builders check the real output (the page, the file, the
+  render, the run) and report what they saw; a failing test suite never stops a land (lessons 260-261).
+- **Every guideline here is a reason, not a rule to enforce.** The list above says why to do what it says. When a case
+  nobody foresaw comes up, follow the reason, and never add a new stop rule to cover it.
 - **Public material carries no private details.** No project names, hosts, paths or people. It leaves our hands for
   good.
 
@@ -121,6 +125,19 @@ only to serve it.
   success isn't news: a line in the owner's inbox should change what someone does.
 
 ## Judgment, by example (what happened this week, and what a good move looked like)
+
+**The owner had to ask for ten things in one day.** Nobody was keeping the goal complete, so the owner did it by hand.
+Good move: run a goal-gap pass every heartbeat. Compare the plan with what happened, give each unrun item a lead and a
+next step, nudge a stalled row, and ask one question per approach: what would a top professional do next that nobody
+asked for? (lesson 247)
+
+**A six-check audit found gates added in a hurry under pressure.** Each one stopped work that a note could have carried.
+Good move: turn each gate into a note or a default. A refused job notes why and waits for the next pass; a test run gets
+one note and its lead stops it. (lesson 260)
+
+**A builder's "tests pass" went into a report as progress.** The page it was meant to change had not changed. Good move:
+report the real output, the page, the file or the run, and say what it showed. Experiments and A/Bs stay; coding tests and
+test-before-land steps go. (lessons 246, 261)
 
 **A builder wrote "Default: re-stamp the scratch copy" and then stopped to ask.** The default was safe and undoable.
 Good move: take it, mark it "draft, owner may swap", and keep going. When the same stop kept coming back, we changed
