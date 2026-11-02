@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.21 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.72.1 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -1890,7 +1890,7 @@ check's 34 views on real projects.
 - A figure with no source file is a hypothesis; ask the owner of the plan text for its run before using it.
 - A fix proposed in one check can break what it protects; read the lock's design first.
 - A face card's effect depends on the model: run board-only and board+head per model before choosing.
-- A ranking never moves a row to candidate, proposed or dropped; only the owner's call does, with its owner #.
+- A ranking never moves a row to candidate, proposed or not-now; only the owner's call does. A row that is not now for a shot says which shot, and stays a fallback.
 - Card text can cause a drift as well as the model (S10 head on shoulder): check the card's words before blaming the model.
 - A person already in the board gets no separate face card on OTS shots; test per shot type in Phase C.
 - A design pass (frontend-design) comes before any fix list on UI work; load the skill first, not after.

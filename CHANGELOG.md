@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.72.1 (2026-11-02)
+
+Patch, wording only. Lesson 263 is now "phases are a focus order, not locks": build the big picture, then optimise, then
+confirm; never eliminate options, keep the rest as fallbacks; GPUs mostly go to the current focus, with no hard lock.
+The ranking line no longer says "dropped": a row is "not now for" a named shot and stays a fallback. The eight keeper
+lines from the lead rotations were already in the file.
+
 ## 1.72.0 (2026-11-02)
 
 Minor, a new guideline. Owner #2608: cluster the open work and finish one phase at a time (lesson 263). Clusters carry
