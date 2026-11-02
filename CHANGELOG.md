@@ -8,6 +8,13 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.68.2 (2026-11-02)
+
+**Patch: a shorter skill (owner #2492, too much bloat in every session).** The skill is loaded into every session's system
+prompt, so SKILL.md shrinks from 26,675 to 7,979 bytes (-70%). The north-star section, hard guidelines and strong steering
+stay in SKILL.md with the same meaning in fewer words. The 38 worked examples that were in SKILL.md moved to
+references/EXAMPLES.md, read on demand, next to the 18 older examples already there. Counts checked: 38 and 18, none lost.
+
 ## 1.68.1 (2026-11-02)
 
 **Patch: lesson 262.** Guidance reaches a worker only through the brief it is started with. Builder and lead briefs carry the model-stack pointer; subagents started from a session did not, so each spawner pastes the pointer and the weekly toolbook pass samples subagent prompts.
