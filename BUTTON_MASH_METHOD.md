@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.16 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.17 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -279,7 +279,8 @@ not kept as a third copy.
 - **When a fix fails, report STUCK with the cause and the default taken, then move on.** Why: a stuck fix that is
   reported and defaulted keeps the lane moving.
 - **One fix per build.** Change one thing per build, so a result means something. Why: a build that changed light
-  energy and occlusion together could not say which one moved the look.
+  energy and occlusion together could not say which one moved the look. Name the pick for each shot, so a swap is one
+  named change.
 - **Judge the picture, not the mean.** A look can be warm in numbers and still hazy by eye. Why: the numbers and the
   picture can disagree, and the owner watches the picture.
 - **Check the camera solve across arms before you read an A/B by eye.** A camera mismatch makes the comparison invalid.

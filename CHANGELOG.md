@@ -14,6 +14,13 @@ Patch, wording only. Three method lines from a lead rotation: check the camera s
 check the start board is post-fix before a framing test; read a box's idle state right before queuing.
 
 
+## 1.71.17 (2026-11-02)
+
+Patch, wording only. From a lead rotation: name the pick for each shot, so a swap is one named change. The by-eye read
+(from the lead who made the take) with a machine note beside it, and the blocked-line rule, were already in the method
+(checks are notes, not gates; 1.71.14).
+
+
 ## 1.71.16 (2026-11-02)
 
 Patch and one addition. From a lead rotation: check the ruling of record before building (a wrong focal length cost a
