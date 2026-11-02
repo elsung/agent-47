@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.2 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.3 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -243,6 +243,9 @@ not kept as a third copy.
 - **One file per context load, sized where it is written.** A hook loads one file, and that file's size is kept
   under its limit when it is written, not cut at load. Why: owner #2538/#2543; a load that cuts is a silent loss.
   No tests: the proof is the real output, read by eye.
+- **A "faster" claim needs a before and after number, measured the same way.** Take both on the same input, with the same
+  method, and read the result cold, from the real output or a direct read, not from a status line. Why: owner-facing
+  speed is only real when the two numbers are comparable; a status line can report progress that was never measured.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 

@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.71.3 (2026-11-02)
+
+Patch, wording only. A speed claim needs a before and after number, measured the same way, read cold from the real output
+rather than a status line. Owner #2532 (keeper learnings).
+
+
 ## 1.71.2 (2026-11-02)
 
 Patch, wording only. Method body pass: the rule words (never, must, always) in the rules and principles reworded as plain
