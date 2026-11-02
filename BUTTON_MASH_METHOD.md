@@ -1752,6 +1752,8 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 
 262. **Guidance reaches a worker only through the brief it is started with.** The model-stack guide was added to every builder brief and every lead brief, so both read it. A subagent started from a session gets only the prompt its spawner writes, so it never saw the guide. Good move: when you spawn a subagent, paste the one-line pointer to the guide into its prompt, and check a sample of subagent prompts once a week with the toolbook pass.
 
+263. **Cluster the work, finish one phase at a time.** Group the open work into clusters (models, control, speed, and so on), each with a milestone and a done-test the owner can watch by eye. The scarce resource (GPUs) goes only to the current phase: in-flight runs finish, nothing off-phase is queued, and idle hands do non-GPU prep for the next phase. Close a milestone, with the owner calling it by eye, before opening the next. New asks land in their cluster, not as interrupts. Every learning and repo technique is placed in a cluster or marked parked, so nothing is lost. The orchestrator's heartbeat checks phase discipline. Good move: keep one phase file that every lead reads first, and name the phase in every check-in. Source: owner #2606 and #2608, 2026-11-02.
+
 **Today's results (2026-10-20).**
 - A replay of real run histories through the scheduler simulator: GPU idle time with runnable work fell from 2.9 h to
   0, and deadlocks fell to 0.

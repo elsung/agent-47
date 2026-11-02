@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.69.1 (2026-11-02). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
+VERSION 1.72.0 (2026-11-02). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -54,6 +54,10 @@ Every project has one north star: the goal behind every goal, in the owner's own
 - **Forward and clean.** One commit, one kind: keep behaviour and structure in separate commits, so each can be reviewed alone. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it. Land small steps rather than a rewrite.
 - **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
 - **Report outcomes, not effort.** Say what now works, where, and what's next. Routine success isn't news; an owner's inbox line should change what someone does.
+
+## Cluster the work, finish one phase at a time
+
+- Cluster open work with a milestone and a done-test. GPUs go only to the current phase; close a milestone by eye before the next opens.
 
 ## Stale or important?
 

@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.72.0 (2026-11-02)
+
+Minor, a new guideline. Owner #2608: cluster the open work and finish one phase at a time (lesson 263). Clusters carry
+a milestone and a done-test; GPUs go only to the current phase; the owner closes a milestone by eye before the next opens.
+Source: owner notes #2606 (Phase A = models) and #2608.
+
 ## 1.71.21 (2026-11-02)
 
 Patch, wording only. Three method lines from a lead rotation: check the disk layout before planning a move; record
