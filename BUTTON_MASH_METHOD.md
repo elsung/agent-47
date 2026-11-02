@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.69.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is 1.69.0: one line changed in its strong steering. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.70.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) stays at 1.69.0. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -194,6 +194,26 @@ CPU-bound: scanning gigabytes of logs, per-frame image or video analysis, a tigh
 
 **Rules that hold.** No gates: a pick that fails is a miss and a note, not a stop. The picker suggests and never refuses.
 The model runs the tool rather than re-deriving its command. Output is capped at the point it is read.
+
+**The standard for a tool: fast to write and change, lean, effective, less buggy** (owner, 2 November). It is a page in
+the loop's tools folder, and each tool follows it.
+- **Python 3, standard library first.** Measured: Python starts in about 0.01 s and our tools run in 0.06 to 0.2 s; the
+  time is I/O (the multiplexer, HTTP, disk). The cost we cut is the throwaway script. Rust or Go only for a measured
+  CPU-bound hot path: profile it, then port that part alone.
+- **One file, one job.** A docstring says what it does, for whom and why; `--help`; plain text out, about 40 lines at most;
+  `--json` for machines. Flags, not near-copies.
+- **Shared code in one helper module.** A tool imports the helper for paths, the inbox, the card board and the use log;
+  it does not re-implement them. Every run writes one use line, so the miner and the weekly prune see the use.
+- **Typed, small, and honest about errors.** Type hints on signatures; small functions; no bare `except` that hides a wrong
+  answer. Catch the named error and say what failed.
+- **A linter on every edit, as a note.** Each edit to a Python tool runs a fast linter (about 0.05 s) that hands back
+  bug-class findings: undefined or unused names, shadowed names, loop-variable closures, mutable defaults. Fix what is
+  real. It is a note, never a gate.
+- **Search first, then extend.** Before building, look through the toolbook and the tools for one that exists; extend it.
+  Each tool ships three to five example questions, which the picker uses to route to it.
+- **Run it on live data.** Read the output before committing: an experiment, not a test suite.
+
+The lookup picker follows the same standard.
 
 ## Forward and clean: fast motion without code rot (owner, 2026-10-21)
 

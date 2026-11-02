@@ -8,6 +8,15 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.70.0 (2026-11-02)
+
+**Minor: the standard for a tool (owner #2520: fast to write and iterate, lean, effective, less buggy).** The
+"Build a tool once, then refine it" section gains the standard: Python 3 with the standard library first (measured
+startup about 0.01 s, our tools 0.06 to 0.2 s, the time is I/O; Rust or Go only for a measured CPU-bound hot path); one
+file, one job, `--help`, `--json`; a shared helper module and one use line per run; typed, small functions and no bare
+`except`; a fast linter on every edit as a note, never a gate; search and extend before building; three to five example
+questions per tool. The lookup picker follows the standard. SKILL.md is unchanged at 1.69.0.
+
 ## 1.69.0 (2026-11-02)
 
 **Minor: build a tool once, then refine it; a picker chooses, code runs (owner, 2 November).** A new section in
