@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.71.9 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.71.10 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -280,6 +280,20 @@ not kept as a third copy.
   tests the old framing.
 - **Read a box's idle state right before you queue on it.** Why: an idle reading goes stale in minutes; by the time the
   job was queued, every box was busy.
+- **A "faster" claim needs the same measure on both sides.** Before and after numbers from the same file, with the same
+  residency (model loaded or not). Why: a speed-up measured with the model already in memory was not the one measured cold.
+- **A controlnet failure is usually the graph, not the server.** Test the server with a no-controlnet graph first. Why:
+  a pairing that does not fit fails the same way on any server, and the graph is the cheap thing to check.
+- **A one-file patch is not an update when the file imports core modules the old checkout lacks.** Check the imports
+  before you copy. Why: the copy ran, then failed at the first import on the old checkout.
+- **Write a check-in only after a real result.** A blocked line names the owner and the time. Why: a line with no
+  result is noise for the one who reads the inbox.
+- **Stop at two replacement passes and ask before a third.** Why: a second pass fixed 4 of 22, which is the point
+  where the next pass costs more than it returns.
+- **Fact-check titles before a review, not after.** Why: a report graded from memory of the titles needed replacing on
+  about 28% of its rows.
+- **One H3 video per box at a time, and check the live queue before you launch on a box.** Why: a second video on a busy
+  box waits in the same queue and slows both.
 - **Read the output that counts, not a placeholder.** A small file written at queue time can stand in for the real
   output. Name the real output before you read a result. Why: two false reads came from a 10 KB placeholder.
 - **Verify an input reached the graph before you read a difference.** A take with an empty input matched the default

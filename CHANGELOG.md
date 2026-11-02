@@ -14,6 +14,13 @@ Patch, wording only. Three method lines from a lead rotation: check the camera s
 check the start board is post-fix before a framing test; read a box's idle state right before queuing.
 
 
+## 1.71.10 (2026-11-02)
+
+Patch, wording only. Seven method lines from a lead rotation: a faster claim needs the same measure and residency on both
+sides; a controlnet failure is usually the graph; check imports before copying a one-file patch; a check-in follows a real
+result; stop at two replacement passes; fact-check titles before review; one H3 video per box.
+
+
 ## 1.71.8 (2026-11-02)
 
 Patch, wording only. Six method lines from a lead rotation: check the input before tuning; a slow job may be a queue
