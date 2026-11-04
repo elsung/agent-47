@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.7 (2026-11-03)
+- patch: stack table: Temporal live (rotation workflows per thread); GitHub Projects live (Phase B ranked).
+
 ## 1.84.6 (2026-11-03)
 - patch: the stack names the drive: Claude Code /goal + the orchestrator's session keep the system pressing forward today; a switch of harness needs a replacement (planned: a Temporal goal workflow).
 

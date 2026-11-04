@@ -42,8 +42,8 @@ GitHub Projects  ->  Temporal  ->  Slurm
 
 | System | Its one job | The loops it runs | State |
 |---|---|---|---|
-| **GitHub Projects** | What to do, in what order. The owner steers here. | Ranking, pinning, the owner's run / pause / stop | building |
-| **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | next (today: hooks do rotation) |
+| **GitHub Projects** | What to do, in what order. The owner steers here. | Ranking, pinning, the owner's run / pause / stop | live: Agent 47 project, Phase B ranked (Now / Next / Pinned) |
+| **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | live: rotation workflows for every thread (deadlines and the stuck check next) |
 | **Claude Code `/goal` + the orchestrator (the drive)** | What keeps the system moving. Today the forward motion comes from the orchestrator's session: `/goal` sets a done-condition and a stop hook that won't let the session end until it holds, plus the orchestrator's heartbeat. | Pressing toward the goal; picking the next step; refusing to stop early | live (tied to Claude Code) |
 | **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on the first box |
 | **JEV → Claude Code / omp** | Which tool or model answers. JEV is our small local routing model. | Tool first; omp models (MiniMax, GLM, local open models) for research and reading; Claude for orchestrating and building. The orchestrator sets each lane's budget; every call lands in the ask log | partly live |
