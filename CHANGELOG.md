@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.3 (2026-11-03)
+- patch: AGENT_47.md gains "Who runs what": every loop with its trigger, owner and where its result lands (owner asked who rotates, who improves the tools).
+
 ## 1.84.2 (2026-11-03)
 - patch: README gains "The stack" table (what each layer uses and its state), kept current with each change.
 

@@ -59,6 +59,8 @@ role owns the method.
 | Tools | One shared toolbook; the flywheel turns repeated model work into tools | live, growing |
 | Memory | Files in tiers (core / active / reference / stash) plus a daily after-action review | next |
 
+Every loop (rotation, ranking, GPU work, routing, the tool flywheel, reviews, memory, questions, steering) has one owner, one trigger and one place its result lands: see [Who runs what](AGENT_47.md#who-runs-what-the-loops).
+
 ## Runs on events, not timers
 
 Things trigger when they happen. One slow reconcile sweep and a dead-man's switch catch what the events miss.
