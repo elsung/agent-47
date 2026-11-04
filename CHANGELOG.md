@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.9 (2026-11-03)
+- patch: stack table: routing live with lane budgets; memory live in git (auto-commit).
+
 ## 1.84.8 (2026-11-03)
 - patch: stack table: Slurm live on all five GPU boxes.
 
