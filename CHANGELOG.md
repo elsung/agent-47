@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.4 (2026-11-03)
+- patch: one stack table, one job per system (owner: simpler and clearer); the loops sit under the system that runs them; the separate loops table is folded in.
+
 ## 1.84.3 (2026-11-03)
 - patch: AGENT_47.md gains "Who runs what": every loop with its trigger, owner and where its result lands (owner asked who rotates, who improves the tools).
 

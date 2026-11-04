@@ -31,35 +31,27 @@ commission: the thing nobody did is the costlier miss.
 Roles come from *Team Topologies*: stream leads own a goal, a platform crew owns the tools and the machines, and an enabling
 role owns the method.
 
-## The six layers
+## The stack: one job each
 
-1. **Work list.** One ranked list on GitHub Projects, tagged now / pinned / quick / stash.
-2. **Compute.** GPUs are scheduled through Slurm, so a run waits its turn.
-3. **Routing.** A small, fast routing model sits in front of every call. It picks a tool, a cheap model or a frontier model,
-   and answers the yes/no and typed checks itself, so the expensive model sees only what it is unsure of.
-4. **Conductor.** Temporal keeps the loop durable. A long-running lead rotates by continue-as-new: it lands its step, writes
-   a progress file, and a fresh session reads that file first.
-5. **Tool flywheel.** A model does a job once or twice, then it becomes a tool. Models evolve, so tools are forked, merged
-   and retired.
-6. **Memory.** Tiers: core, active, reference, stash. Items are promoted or stashed by use. A daily after-action review
-   reads the day's records.
+```
+GitHub Projects  ->  Temporal  ->  Slurm
+  what to do         who does it,     which GPU,
+  and in what        and what         and when
+  order              happens next
+```
 
-## The stack (kept current: each change lands here with a CHANGELOG line)
+| System | Its one job | The loops it runs | State |
+|---|---|---|---|
+| **GitHub Projects** | What to do, in what order. The owner steers here. | Ranking, pinning, the owner's run / pause / stop | building |
+| **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | next (today: hooks do rotation) |
+| **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on the first box |
+| **Routing model** | Which tool or model answers. | Tool first, then a cheap model, then a frontier one | partly live |
+| **Claude Code + omp** | The agents that do the work. | Orchestrator, leads, builders, readers | live |
+| **The toolbook** | The tools, shared by every agent. | Grows from the flywheel | live, growing |
+| **Memory files** | What we know, in tiers: core, active, reference, stash. | Promoted or stashed by the daily review | next |
 
-| Layer | What we use | State |
-|---|---|---|
-| Work list | GitHub Projects: one ranked board, Eisenhower tags (now / pinned / quick / stash) | building |
-| GPUs | Slurm: one controller, one lane per GPU box, priority and reservations, job timing recorded | live on the first box; the rest next |
-| Agents | Claude Code (orchestrator and builders) and omp (research and reading models) | live |
-| Models | Frontier models through Claude Code; MiniMax, GLM and local open models through omp | live |
-| Routing | A small local model in front of every call: tool first, then a cheap model, then a frontier one | partly live (tool-first router) |
-| Conductor | Temporal: durable workflows, rotation as continue-as-new with a progress file | next |
-| Rotation today | The end-of-turn hook rotates a thread at a quiet moment, with a written handoff | live |
-| Events | Hooks, Slurm triggers, file watchers; one reconcile sweep and a dead-man's switch | building |
-| Tools | One shared toolbook; the flywheel turns repeated model work into tools | live, growing |
-| Memory | Files in tiers (core / active / reference / stash) plus a daily after-action review | next |
-
-Every loop (rotation, ranking, GPU work, routing, the tool flywheel, reviews, memory, questions, steering) has one owner, one trigger and one place its result lands: see [Who runs what](AGENT_47.md#who-runs-what-the-loops).
+People run roles, not loops: the orchestrator ranks the work; a toolsmith keeps the tools; a machinist keeps the boxes; a
+method keeper runs the review; the owner steers. Every stack change updates this table and the CHANGELOG.
 
 ## Runs on events, not timers
 
