@@ -48,7 +48,7 @@ GitHub Projects  ->  Temporal  ->  Slurm
 | **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on the first box |
 | **JEV → Claude Code / omp** | Which tool or model answers. JEV is our small local routing model. | Tool first; omp models (MiniMax, GLM, local open models) for research and reading; Claude for orchestrating and building. The orchestrator sets each lane's budget; every call lands in the ask log | live: tool-first router, lane budgets that route a new job one tier down past 100% |
 | **Claude Code + omp** | The agents that do the work. | Orchestrator, leads, builders, readers | live |
-| **Git + one MCP server (the toolbook)** | The tools, shared by every agent. Code in git; one MCP server exposes every tool to Claude Code and omp alike. | The flywheel: a model does it twice, then it becomes a tool; tools are improved, forked or merged; tool work is a card on the board | live (git + list); MCP next |
+| **Git + one MCP server (the toolbook)** | The tools, shared by every agent. Code in git; one MCP server exposes every tool to Claude Code and omp alike. | The flywheel: a model does it twice, then it becomes a tool; tools are improved, forked or merged; tool work is a card on the board | live: one stdio MCP server, allow-listed and audited; registered in Claude Code, the other runtime after hardening |
 | **Git + Markdown, in tiers (memory)** | What we know. Plain files with a source, a date and a last-used stamp, versioned so nothing is ever lost. | Core (always loaded), active, reference, stash; the daily review promotes or stashes | live: in git, auto-committed on every change; tiers next |
 
 **One dependency to keep in view.** The drive is Claude Code's `/goal` plus the orchestrator's session. If we switch
@@ -103,9 +103,25 @@ list is empty or the budget is spent, and it never invents work to stay busy.
   five principles.
 - **Next:** the durable conductor (one lead first), the tool flywheel and daily reviews on it, memory in tiers.
 
+## Security
+
+We publish the principles, not the map. Specifics (addresses, ports, services, versions, rules, accounts) stay in a
+private record that the crew reads and the owner can always open.
+
+- **Private by default.** Nothing in the stack is reachable from the open internet.
+- **Least privilege.** Each part can do only its job. Agent tools have no network surface, allow-list what they accept,
+  and leave out anything irreversible.
+- **No secrets in the repo.** Credentials live outside it, readable only by the account that uses them.
+- **Humans hold the irreversible.** Spending, publishing, deleting and account changes always wait for the owner.
+- **Everything is recorded.** Tool calls, memory edits and decisions leave a trace that can be read and reverted.
+- **Public text is checked.** Nothing is pushed until a check confirms it names no private project, host or person.
+
+How each layer is set up, and why: [SETUP.md](SETUP.md).
+
 ## The repo
 
 - [AGENT_47.md](AGENT_47.md): the harness, the principles, the layers.
+- [SETUP.md](SETUP.md): how each layer is set up, and why.
 - [BUTTON_MASH_METHOD.md](BUTTON_MASH_METHOD.md): the method, with its examples and results.
 - [skills/button-mash](skills/button-mash/SKILL.md): the skill that runs the method.
 - [FIELD_GUIDE.md](FIELD_GUIDE.md): an earlier chapter on cutting model cost.

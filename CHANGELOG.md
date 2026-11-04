@@ -8,6 +8,14 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.85.1 (2026-11-03)
+- patch: Security section rewritten as principles only (the owner: minimal exposure); specifics live in a private record. SETUP.md drops network details.
+
+## 1.85.0 (2026-11-03)
+- minor: SETUP.md: how each layer is set up and why (board, Slurm and licences, Temporal, the caps file, the toolbook,
+  memory), with the first bring-up's lessons: restart munge after a key swap, a job log in a slurm-writable place, rotate
+  only on a fresh note (20 minutes). README gains a Security section.
+
 ## 1.84.9 (2026-11-03)
 - patch: stack table: routing live with lane budgets; memory live in git (auto-commit).
 
