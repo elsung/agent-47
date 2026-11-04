@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.85.4 (2026-11-04)
+- patch: README stack rows read true: Temporal runs QuestionWatch and the stuck sweep (caps-watch) now; JEV is a tool-first router for asks, every start routed still in progress (agent_run.sh bypasses it).
+
 ## 1.85.3 (2026-11-04)
 - patch: README stack table reads live: Slurm runs on all five boxes (was "the first box"); the drive row names the goal record, the stop hook and the session-start carry-over (was "Claude Code /goal").
 
