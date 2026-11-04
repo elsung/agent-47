@@ -8,6 +8,12 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.85.3 (2026-11-04)
+- patch: README stack table reads live: Slurm runs on all five boxes (was "the first box"); the drive row names the goal record, the stop hook and the session-start carry-over (was "Claude Code /goal").
+
+## 1.85.2 (2026-11-04)
+- patch: README stack rows brought current: the board (local cards, a local view, an off-site mirror); a dependencies line (each outside service has a generic role and a local fallback); accounts (subscriptions first, warn ahead, switching optional with the owner's go); the control page (one local page to see and adjust).
+
 ## 1.85.1 (2026-11-03)
 - patch: Security section rewritten as principles only (the owner: minimal exposure); specifics live in a private record. SETUP.md drops network details.
 

@@ -34,7 +34,7 @@ role owns the method.
 ## The stack: one job each
 
 ```
-GitHub Projects  ->  Temporal  ->  Slurm
+Board  ->  Temporal  ->  Slurm
   what to do         who does it,     which GPU,
   and in what        and what         and when
   order              happens next
@@ -42,10 +42,10 @@ GitHub Projects  ->  Temporal  ->  Slurm
 
 | System | Its one job | The loops it runs | State |
 |---|---|---|---|
-| **GitHub Projects** | What to do, in what order. The owner steers here. | Ranking, pinning, the owner's run / pause / stop | live: Agent 47 project, Phase B ranked (Now / Next / Pinned) |
+| **Board** | What to do, in what order. The owner steers here. Local card files are the record; a local Vikunja view shows them; GitHub is the off-site mirror. | Ranking, pinning, the owner's run / pause / stop | live: local cards and the Vikunja view; GitHub mirror; Phase B ranked (Now / Next / Pinned) |
 | **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | live: rotation workflows for every thread (deadlines and the stuck check next) |
-| **Claude Code `/goal` + the orchestrator (the drive)** | What keeps the system moving. Today the forward motion comes from the orchestrator's session: `/goal` sets a done-condition and a stop hook that won't let the session end until it holds, plus the orchestrator's heartbeat. | Pressing toward the goal; picking the next step; refusing to stop early | live (tied to Claude Code) |
-| **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on the first box |
+| **The drive (goal record + stop hook, + the orchestrator)** | What keeps the system moving. The goal is kept in a record with its active flag and state; a stop hook holds the session until the done-condition holds, and a session-start hook carries the goal across rotation. The orchestrator's heartbeat picks the next step. | Pressing toward the goal; picking the next step; refusing to stop early; carrying the goal across fresh contexts | live: goal record, stop hook and session-start carry-over |
+| **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on all five boxes (one workstation GPU and four Spark-class nodes) |
 | **JEV → Claude Code / omp** | Which tool or model answers. JEV is our small local routing model. | Tool first; omp models (MiniMax, GLM, local open models) for research and reading; Claude for orchestrating and building. The orchestrator sets each lane's budget; every call lands in the ask log | live: tool-first router, lane budgets that route a new job one tier down past 100% |
 | **Claude Code + omp** | The agents that do the work. | Orchestrator, leads, builders, readers | live |
 | **Git + one MCP server (the toolbook)** | The tools, shared by every agent. Code in git; one MCP server exposes every tool to Claude Code and omp alike. | The flywheel: a model does it twice, then it becomes a tool; tools are improved, forked or merged; tool work is a card on the board | live: one stdio MCP server, allow-listed and audited; registered in Claude Code, the other runtime after hardening |
@@ -55,8 +55,20 @@ GitHub Projects  ->  Temporal  ->  Slurm
 harnesses or move the orchestrator off Claude Code, the forward motion has to move too: the plan is a Temporal workflow
 that holds the goal and its done-condition, and wakes the orchestrator until it holds.
 
+**Dependencies, each with a local fallback.** The stack leans on outside services, and each one has a generic role and a
+local way to keep going: a board (local cards first, a mirror off-site); a scheduler (a local timer when the workflow service
+is down); a GPU queue (run the job on its box directly); a model (the local one when the hosted one is out). When an outside
+service fails, the local path keeps the work moving and the failure goes on the board.
+
 People run roles, not loops: the orchestrator ranks the work; a toolsmith keeps the tools; a machinist keeps the boxes; a
 method keeper runs the review; the owner steers. Every stack change updates this table and the CHANGELOG.
+
+## Accounts and control
+
+- **Subscriptions first.** Work runs on flat-rate subscriptions before any metered API. The crew warns ahead of a limit,
+  so the owner sees it coming. Switching to another account is optional, and needs the owner's go (a boundary above).
+- **One control page.** A single local page shows what every thread is doing and lets the owner adjust it: pause, run,
+  stop, and the budgets. The page is the owner's view; the record stays the source.
 
 ## What we borrowed, and where it lives
 
