@@ -44,6 +44,21 @@ role owns the method.
 6. **Memory.** Tiers: core, active, reference, stash. Items are promoted or stashed by use. A daily after-action review
    reads the day's records.
 
+## The stack (kept current: each change lands here with a CHANGELOG line)
+
+| Layer | What we use | State |
+|---|---|---|
+| Work list | GitHub Projects: one ranked board, Eisenhower tags (now / pinned / quick / stash) | building |
+| GPUs | Slurm: one controller, one lane per GPU box, priority and reservations, job timing recorded | live on the first box; the rest next |
+| Agents | Claude Code (orchestrator and builders) and omp (research and reading models) | live |
+| Models | Frontier models through Claude Code; MiniMax, GLM and local open models through omp | live |
+| Routing | A small local model in front of every call: tool first, then a cheap model, then a frontier one | partly live (tool-first router) |
+| Conductor | Temporal: durable workflows, rotation as continue-as-new with a progress file | next |
+| Rotation today | The end-of-turn hook rotates a thread at a quiet moment, with a written handoff | live |
+| Events | Hooks, Slurm triggers, file watchers; one reconcile sweep and a dead-man's switch | building |
+| Tools | One shared toolbook; the flywheel turns repeated model work into tools | live, growing |
+| Memory | Files in tiers (core / active / reference / stash) plus a daily after-action review | next |
+
 ## Runs on events, not timers
 
 Things trigger when they happen. One slow reconcile sweep and a dead-man's switch catch what the events miss.

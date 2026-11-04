@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.2 (2026-11-03)
+- patch: README gains "The stack" table (what each layer uses and its state), kept current with each change.
+
 ## 1.84.1 (2026-11-04)
 - patch: README rewritten for Agent 47 (owner #3052): what it is, the five principles, how the crew is led, the six layers,
   events not timers, never waits on the human, the repo map. The earlier cost-routing README moved whole to FIELD_GUIDE.md.
