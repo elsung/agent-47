@@ -44,11 +44,16 @@ GitHub Projects  ->  Temporal  ->  Slurm
 |---|---|---|---|
 | **GitHub Projects** | What to do, in what order. The owner steers here. | Ranking, pinning, the owner's run / pause / stop | building |
 | **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | next (today: hooks do rotation) |
+| **Claude Code `/goal` + the orchestrator (the drive)** | What keeps the system moving. Today the forward motion comes from the orchestrator's session: `/goal` sets a done-condition and a stop hook that won't let the session end until it holds, plus the orchestrator's heartbeat. | Pressing toward the goal; picking the next step; refusing to stop early | live (tied to Claude Code) |
 | **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on the first box |
 | **JEV → Claude Code / omp** | Which tool or model answers. JEV is our small local routing model. | Tool first; omp models (MiniMax, GLM, local open models) for research and reading; Claude for orchestrating and building. The orchestrator sets each lane's budget; every call lands in the ask log | partly live |
 | **Claude Code + omp** | The agents that do the work. | Orchestrator, leads, builders, readers | live |
 | **Git + one MCP server (the toolbook)** | The tools, shared by every agent. Code in git; one MCP server exposes every tool to Claude Code and omp alike. | The flywheel: a model does it twice, then it becomes a tool; tools are improved, forked or merged; tool work is a card on the board | live (git + list); MCP next |
 | **Git + Markdown, in tiers (memory)** | What we know. Plain files with a source, a date and a last-used stamp, versioned so nothing is ever lost. | Core (always loaded), active, reference, stash; the daily review promotes or stashes | next (files exist; not yet in git) |
+
+**One dependency to keep in view.** The drive is Claude Code's `/goal` plus the orchestrator's session. If we switch
+harnesses or move the orchestrator off Claude Code, the forward motion has to move too: the plan is a Temporal workflow
+that holds the goal and its done-condition, and wakes the orchestrator until it holds.
 
 People run roles, not loops: the orchestrator ranks the work; a toolsmith keeps the tools; a machinist keeps the boxes; a
 method keeper runs the review; the owner steers. Every stack change updates this table and the CHANGELOG.

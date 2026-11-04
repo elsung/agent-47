@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.6 (2026-11-03)
+- patch: the stack names the drive: Claude Code /goal + the orchestrator's session keep the system pressing forward today; a switch of harness needs a replacement (planned: a Temporal goal workflow).
+
 ## 1.84.5 (2026-11-03)
 - patch: the stack names a real system per row (JEV routing to Claude Code or omp; the toolbook as git + one MCP server; memory as git + Markdown tiers); new "What we borrowed, and where it lives" with the research learnings.
 
