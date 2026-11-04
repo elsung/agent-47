@@ -8,30 +8,71 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.1 (2026-11-04)
+- patch: README rewritten for Agent 47 (owner #3052): what it is, the five principles, how the crew is led, the six layers,
+  events not timers, never waits on the human, the repo map. The earlier cost-routing README moved whole to FIELD_GUIDE.md.
+- patch: AGENT_47.md: the lineage is told through its traits and the year only; the name is not used.
+
+## 1.84.0 (2026-11-03)
+- minor: named the harness Agent 47 and added AGENT_47.md: five principles (Aim, Move, Record, Tool, Learn), boundaries kept
+  separate, and the six layers. The skill keeps its name (button-mash).
+- patch: README points to AGENT_47.md; REFERENCES.md lists the harness research sources.
+
+## 1.83.0 (2026-11-03)
+- minor: added "Today's principles" (owner #2953-#2963): one road (a recipe is a methodology), tools compound (JEV routes, a repeated job becomes a tool, retros generated from records), rotation is continuity (window, holds, carry the last messages whole, thresholds from the real thing), phases are focus, and check a take's inputs and length before showing it. Folding of the learnings file by meaning is not done in this revision.
+- minor: added "A hand stamp is not a check; name the picture and the numbers" (a lead's rotation learnings from a lead: hand-stamped records read fresh; owner-approved look vs canon; exact numbers in check-ins; 'gapless' needs a presented-frame measurement; route a message tagged to another lane; check 'by design' before calling a bug; a stop-hook next step is a real post plus non-GPU work; check the lead key before a follow-up; name owner, announce and check together on another lead's live run; from a lead's rotation: dry run then --write with a backup and CHANGE.txt, check approved boards before a canon change, a restamp cannot make a shoot current).
+
+## 1.82.2 (2026-11-02)
+- patch: added "A brief from memory goes stale; check the tree first" (a lead rotation: the gen_s brief was superseded by code already in place).
+
+## 1.82.1 (2026-11-02)
+- patch: added "Check a model's report against the file" (a lead rotation: a GLM report about its own work can miscount its unsure marks and paths; check the file, spot-check quotes, then accept).
+
+## 1.82.0 (2026-11-02)
+- minor: added "Measured or not claimed" (a lead rotation: a gapless claim needs a presented-frame measurement; retract a test save in the same session and read it back; no measured number, no checked claim).
+
+## 1.81.0 (2026-11-02)
+- minor: added "Hands on a board, one camera change at a time, and checking who you reach" (a lead rotation: say which hand and keep the other figure's hands out of frame; check a note's path on disk; check the window a lead key reached; one camera change per board, s4 a2 finding).
+
+## 1.80.0 (2026-11-02)
+- minor: added "Pins, buffered output and the bound before a pick" (a lead rotation: a pin change needs a relaunch by PID; buffered silence is not a hang; run the replay at full and zero before a pick; check status before a stall diagnosis).
+
+## 1.79.0 (2026-11-02)
+- minor: added "Routing, the research library first, and safe process handling" (a lead rotation learnings: fallback is a routing decision; check the library before a read; stop by PID; detached reads with a timeout; research page shape). BUTTON_MASH_METHOD.md only.
+
+## 1.78.0 (2026-11-02)
+- minor: added "Words come from the run, and a fix on a live run names its owner" (a lead rotation learnings: board words come from the generated prompt unless --words is passed; live-run fixes name owner, announce and check). BUTTON_MASH_METHOD.md only.
+
+## 1.77.0 (2026-11-02)
+- minor: added "Judged cells, readings, missing data, and nudges" (a lead rotation learnings: stale judged cells, JEV pill labels, missing recipe values, measured numbers in a check, one escalation per nudge). BUTTON_MASH_METHOD.md only.
+
+## 1.76.0 (2026-11-02)
+- minor: added "Failed reads, buffered calls and shared live runs" (lead rotation learnings: failed reads, buffered long calls, backups, recipe values, bounds, spec fixes, local branch commits, same-minute notice on shared live runs). BUTTON_MASH_METHOD.md only; skill not touched.
+
 ## 1.75.0 (2026-11-02)
-A JEV note is a reading, never a verdict; label it so in any UI or card. Via keeper's learnings from a lead's rotation (owner #2532).
+A JEV note is a reading, never a verdict; label it so in any UI or card. Via a lead's learnings from a lead's rotation (owner #2532).
 
 ## 1.74.0 (2026-11-02)
-Check the existing research library before a new read; write a gap note and read only a real gap (owner #2659). A chained short sleep is refused like a foreground one; wait on a background timer. Via keeper's learnings from a lead's rotation.
+Check the existing research library before a new read; write a gap note and read only a real gap (owner #2659). A chained short sleep is refused like a foreground one; wait on a background timer. Via a lead's learnings from a lead's rotation.
 
 ## 1.73.4 (2026-11-02)
 A status line is a bet, not a verdict: every option carries its why and the shot it applies to. From a lead's rotation (owner #2639).
 
 ## 1.73.3 (2026-11-02)
 
-Patch, three routing and wait lines from a keeper rotation (owner #2532): a fallback model is routed, never picked by hand; a stop
+Patch, three routing and wait lines from a a lead rotation (owner #2532): a fallback model is routed, never picked by hand; a stop
 hook asking for work is not work; a background timer waits without polling.
 
 ## 1.73.2 (2026-11-02)
 
-Patch, three UI lines from a keeper rotation (owner #2532). The design pass is named before any UI fix list (owners
+Patch, three UI lines from a a lead rotation (owner #2532). The design pass is named before any UI fix list (owners
 #2628, #2629). A UI reading one data source shows stale judged cells: check the verdict source per cell before posting.
 The matrix's POSTs send the director-view request header, or the page's header guard returns 403.
 
 ## 1.73.1 (2026-11-02)
 
-Patch, wording from a keeper rotation (owner #2532). A ranking never moves a row to candidate, proposed or not-now; only
-the owner's call does, with its owner number. Priority is Orca's or the owner's, never the ranking's.
+Patch, wording from a a lead rotation (owner #2532). A ranking never moves a row to candidate, proposed or not-now; only
+the owner's call does, with its owner number. Priority is the lead's or the owner's, never the ranking's.
 
 ## 1.73.0 (2026-11-02)
 
@@ -44,7 +85,7 @@ a pick that holds both ways is settled.
 
 Patch, wording only. Lesson 263 is now "phases are a focus order, not locks": build the big picture, then optimise, then
 confirm; never eliminate options, keep the rest as fallbacks; GPUs mostly go to the current focus, with no hard lock.
-The ranking line no longer says "dropped": a row is "not now for" a named shot and stays a fallback. The eight keeper
+The ranking line no longer says "dropped": a row is "not now for" a named shot and stays a fallback. The eight a lead
 lines from the lead rotations were already in the file.
 
 ## 1.72.0 (2026-11-02)
@@ -157,20 +198,20 @@ framing; check the live queue before launching on an owner box.
 ## 1.71.5 (2026-11-02)
 
 Patch, wording only. A broad search over the repo root or `/` times out and leaves a stray job: scope it to one folder
-with a timeout, and check for stray jobs with the process listing. Owner note from two lead rotations (Pixel, Smithy).
+with a timeout, and check for stray jobs with the process listing. Owner note from two lead rotations (a builder, the tool builder).
 
 
 ## 1.71.4 (2026-11-02)
 
 Patch, wording only. Three lines from one lead's rotation: read the board before calling a take clean; pick a replay
 target whose board has been read; when blocked on other leads, post one blocked line with owner and time, then wait on a
-real signal. Owner #2532 (keeper learnings).
+real signal. Owner #2532 (a lead learnings).
 
 
 ## 1.71.3 (2026-11-02)
 
 Patch, wording only. A speed claim needs a before and after number, measured the same way, read cold from the real output
-rather than a status line. Owner #2532 (keeper learnings).
+rather than a status line. Owner #2532 (a lead learnings).
 
 
 ## 1.71.2 (2026-11-02)
@@ -183,10 +224,10 @@ stay as written). Context loads: one file per hook, sized where it is written. O
 ## 1.71.1 (2026-11-02)
 
 Patch, wording only. Prompt hygiene: MUST/NEVER/all-caps and "think carefully" habits reworded as plain reasons, in the
-skill summary and the method summary (rule words 66 to 47). Three keeper learnings from a lead rotation added: open
+skill summary and the method summary (rule words 66 to 47). Three a lead learnings from a lead rotation added: open
 builder briefs with the ask; a long-lived process keeps old code, so list the restarts for any target change; verify a
 builder's claim before --go. Handoff notes are rewritten whole under 8K (owner #2538/#2543). Skill to 1.69.1. Owner
-#2526 (prompt hygiene), #2532 (keeper learnings), #2543 (handoff size).
+#2526 (prompt hygiene), #2532 (a lead learnings), #2543 (handoff size).
 
 
 ## 1.71.0 (2026-11-02)

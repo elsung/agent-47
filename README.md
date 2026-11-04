@@ -1,165 +1,71 @@
-# Agentic steering: getting cheap agents to finish the job
+# Agent 47
 
-> **New: [BUTTON_MASH_METHOD.md](BUTTON_MASH_METHOD.md), the Button Mash Method (v1.65.0, [CHANGELOG](CHANGELOG.md), [skill](skills/button-mash/SKILL.md)).** Hyper-aggressively push the agents' work forward: assessment loops, not evals or tests, and no gates. We dropped test and review gates for owned code areas, landing on exit, looking at the real output and fixing forward. That page has the method, the examples it comes from, and live results, kept honest either way. The gated method below is what came before.
+Always on target. Loose tolerances, cheap, lasts decades.
 
-A field guide to running many AI coding agents from one orchestrator: one capable model steers, many cheap workers execute, and mechanical checks (not the workers' own reports) decide whether the work is done. It started as a way to cut the token bill; it grew into a playbook for keeping cheap agents from skipping work, over-claiming, or failing silently.
+## What it is
 
-**The setup:**
-- One expensive model steers: priorities, briefs, review, merge.
-- Many cheap workers execute.
-- Tests and scripted checks decide whether the work is done; silence or a claim never does.
+Agent 47 is a harness for running many AI agents on real work. An orchestrator leads a crew of agents, each in a long-running
+thread, and they share tools instead of each writing their own one-offs. It runs on the
+[Button Mash Method](BUTTON_MASH_METHOD.md): push hard toward the goal behind the goal, with assessment loops (look at the
+real output, against the intent), not tests or gates.
 
-**The two halves of this repo:**
-1. **Cost**: route every worker to a small model, scoped to one tmux session (this page).
-2. **Steering**: what goes wrong when cheap workers build real features, and the briefs, report shape and review scripts that fix it ([STEERING.md](STEERING.md)).
+## The five principles
 
-Everything here was checked against the official docs, a source we could fetch, or our own logged runs. Anything we could not verify is marked as such.
+1. **Aim.** Know the why: the goal, and the intent two levels up from the task. Assess the real output against it.
+2. **Move.** Take the best reversible default and keep going. Don't wait on a choice you can make and undo. Don't stop
+   other people's work. Stop when nothing is left.
+3. **Record.** One ranked list, one home for each fact. The record is the memory, not the chat.
+4. **Tool.** Do a job with a model once or twice, then make it a tool. Re-check the tools when the models change.
+5. **Learn.** Fix what caused the mistake, not with a new rule. Every review feeds the tools, the principles and the memory.
 
-## The situation we started from
+Boundaries sit apart from the principles: no spending, no publishing, no deleting someone's work, no switching accounts
+without a human's go, and a cap on every unattended loop.
 
-We run about ten Claude Code sessions side by side in one tmux session.
-- One window is the **orchestrator**: it plans, talks to the human, reviews and merges.
-- The others are long-lived **workstream threads**: build, research, audio, tests and so on. Each spawns its own subagents.
+## How the crew is led
 
-Every one of them ran on the largest model, and so did every subagent. The bill was dominated by:
-- **execution work** (edits, test runs, file reading) done on the most expensive model;
-- **long contexts re-read on every turn** (cache reads);
-- **notifications that woke the orchestrator.** Every finished subagent sent a report and then a near-identical "idle" summary, and each one cost an orchestrator turn.
+The method borrows from *The Art of Action* (Bungay): a leader closes three gaps: between intent and detail, between
+what is said and what is understood, and between the plan and the moment. Our answers: give intent, not detail; brief two
+levels up and ask for a three-line back-brief; give freedom within boundaries. Errors of omission count more than errors of
+commission: the thing nobody did is the costlier miss.
 
-## The rule we adopted
+Roles come from *Team Topologies*: stream leads own a goal, a platform crew owns the tools and the machines, and an enabling
+role owns the method.
 
-> **No worker or subagent in this tmux set runs on the large model. Every coding, build and fix worker runs on the small model (Haiku 5.5, high effort). A cheaper third-party model, through a separate CLI, only does bulk reading, research and summaries that aren't time-sensitive; it lost a measured head-to-head on code (PRACTICES.md section 12). The large model only steers, writes specs and reviews.**
+## The six layers
 
-The rule covers this tmux session only, not every Claude session on the machine. Scoping it took one gotcha to get right (see below).
+1. **Work list.** One ranked list on GitHub Projects, tagged now / pinned / quick / stash.
+2. **Compute.** GPUs are scheduled through Slurm, so a run waits its turn.
+3. **Routing.** A small, fast routing model sits in front of every call. It picks a tool, a cheap model or a frontier model,
+   and answers the yes/no and typed checks itself, so the expensive model sees only what it is unsure of.
+4. **Conductor.** Temporal keeps the loop durable. A long-running lead rotates by continue-as-new: it lands its step, writes
+   a progress file, and a fresh session reads that file first.
+5. **Tool flywheel.** A model does a job once or twice, then it becomes a tool. Models evolve, so tools are forked, merged
+   and retired.
+6. **Memory.** Tiers: core, active, reference, stash. Items are promoted or stashed by use. A daily after-action review
+   reads the day's records.
 
-## What the sources taught us (verified)
+## Runs on events, not timers
 
-1. **Route by verifiability, not by difficulty.** If a cheaper model's output can be checked by a grep, a diff or a test, send the work down. Keep the expensive model for judgment calls, where a plausible but wrong answer spreads quietly. (Reddit comment, ref 1.)
-2. **Haiku 5.5 has a 100k cliff.**
-   - Under 100k tokens of context: input $0.10 per million, output $0.50 per million, cache reads $0.01 per million.
-   - **Above 100k, every price is ×5.** Keep each worker's context small. (Ref 10.)
-3. **Many cheap, checkable attempts beat one smart attempt.**
-   - The large model alone: 3.5 minutes, $0.47.
-   - The large model directing 10 Haiku workers: under a minute, $0.14. (Ref 10.)
-4. **The trap.** "If Opus solves something in 100,000 tokens and Haiku burns a million before giving up, Haiku costs more." Small models also mishandle odd tool errors: one saved a rate-limit error page as data. Give workers precise specs and tests, not open-ended problems. (Ref 10.)
-5. **Cache reads can be 30–50% of an agentic bill.** Long contexts that are re-read are the hidden cost. (Ref 10.)
-6. **For no-reasoning categorisation, a dedicated small judge model can beat the small chat model.** Routing and labelling is a good job for a local judge. (Ref 10, ref 9 context.)
-7. **From a practitioner's setup** (ref 1):
-   - the advisor writes a spec, and workers build to it and note any deviation;
-   - Haiku at **high** effort was the best balance;
-   - a fresh worker started with about 72k fixed tokens until trimmed to about 6k;
-   - checks are mechanical, and a reviewer from a *different model family* sees only load-bearing work;
-   - timed wake-ups were about half of one setup's tokens.
-8. **The counterpoint: watch how often the expensive model is called.** One tester ran five setups on the same real bug, 3 runs each, graded by hidden tests (ref 2):
+Things trigger when they happen. One slow reconcile sweep and a dead-man's switch catch what the events miss.
 
-   | Setup | Cost per fix | Time |
-   |---|---|---|
-   | Sonnet alone | $0.15 | ~1 min |
-   | Haiku alone | $0.23 | ~6 min |
-   | Opus + Haiku subagent | $0.23 | ~7 min |
-   | Opus alone | $0.52 | ~2 min |
-   | Haiku main + Opus advisor | $0.69 | ~7 min |
+## Never waits on the human
 
-   - All five scored about the same.
-   - In the advisor setup, the large model was about 90% of the bill.
-   - On easy bugs the ranking flipped, and Haiku alone was cheapest.
-   - The lesson: the saving comes from **how rarely the expensive model is woken**, not from the cheap model alone. It's one bug and a handful of runs, so treat it as a data point.
+Every question carries a default and a deadline. A run can be run, paused, stopped or steered at any point. It stops when the
+list is empty or the budget is spent, and it never invents work to stay busy.
 
-## The setup
+## Where it stands
 
-### 1. Force the small model for every subagent, scoped to one tmux session
+- **Built:** rotation at the end of a turn for every thread; the GPU scheduler's controller and first lane; parked work
+  is never handed out; idle agents holding for a named reason aren't pinged; a question router that tries a tool first.
+- **In progress:** the rest of the GPU lanes; the ranked work list on GitHub Projects; ~1,600 old rules collapsed into the
+  five principles.
+- **Next:** the durable conductor (one lead first), the tool flywheel and daily reviews on it, memory in tiers.
 
-Both variables are documented in the official subagent docs.
-```bash
-tmux set-environment -t <session> CLAUDE_CODE_SUBAGENT_MODEL claude-haiku-5-5
-tmux set-environment -t <session> CLAUDE_CODE_SUBAGENT_MODEL_FORCE 1      # overrides agent frontmatter
-tmux set-environment -t <session> ANTHROPIC_MODEL claude-haiku-5-5       # new windows start on Haiku
-tmux set-environment -t <session> CLAUDE_CODE_EFFORT_LEVEL high
-```
-New windows and panes in that session inherit these. The orchestrator window is started explicitly with the large model (`claude --model opus`). See `setup/scope-to-tmux.sh`.
+## The repo
 
-### 2. Switch already-running windows in place
-
-In each idle window:
-```
-/model claude-haiku-5-5
-/effort high
-```
-
-**Gotcha 1: `/model` and `/effort` save a machine-wide default.** They write `model` and `effortLevel` into `~/.claude/settings.json`, which changes every future Claude session on the machine, not just this tmux set. If the rule should stay scoped, restore the settings file afterwards, as `setup/scope-to-tmux.sh` does, and rely on the tmux environment instead.
-
-**Gotcha 2: older CLI builds resolve the alias `haiku` to the previous Haiku.** Use the full model ID. Check the model name in the status line after switching.
-
-**Gotcha 3: a window holding more than 100k of context should be compacted (`/compact`) before switching.** Otherwise the small model starts above its price cliff.
-
-Only switch windows that are idle at the prompt. A window showing a pending question belongs to the human.
-
-### 3. How work flows
-
-| Role | Model | Does |
-|---|---|---|
-| Orchestrator | large model | priorities, specs with acceptance tests, review, merge, talks to the human |
-| Workers / subagents | Haiku 5.5, high effort | build to the spec, run the tests, report once |
-| Readers / researchers | cheaper third-party model via its own CLI | fetch and summarise sources, verbatim quotes with citations |
-| Judges | small local model | route, label and sort review queues. Diagnostics only, never a gate |
-| Cross-family reviewer | a model from another lab | only load-bearing changes |
-
-**Rules that make it work:**
-- **Spec first.** The orchestrator writes: the files, the interfaces, the acceptance tests. The worker builds until the tests pass. If the same task fails twice, the orchestrator narrows the task instead of letting the worker loop. This avoids the "a million tokens before giving up" trap.
-- **Stay under 100k per worker.**
-  - one small, self-contained task per fresh worker;
-  - a short context packet (paths and a few lines of summary) instead of "read everything";
-  - git worktrees so workers never touch the live checkout.
-- **One report per milestone.** The worker writes detail to a `RESULT.md` and sends one short message. The orchestrator answers duplicates in a line. This alone removed a large share of orchestrator turns.
-- **The orchestrator rotates.** When its own context grows long, it writes a handoff and a fresh session takes over.
-- **Mechanical checks over prose:**
-  - the full test suite before every merge;
-  - output checks for generated media;
-  - citation checks on research (every claim quotes a fetched source; unfetched sources are marked).
-- **Research gets verified.** Our first summary from a worker recommended mid-size workers and large-model threads, the opposite of the rule. It also cited a source it had never fetched. A second, cheap pass that fetched every source verbatim caught both. Treat worker research as a draft until it is checked against the sources.
-
-See `templates/worker-brief.md` for the brief we hand every worker.
-
-### 4. Steering: keep cheap workers from skipping work
-
-Cheap workers on a real build stop halfway and call it done, claim tests pass when they don't, put worktrees in the wrong place, and sometimes make a check pass by weakening it. [STEERING.md](STEERING.md) has the failure log, the brief rules (goal and why first, checked facts, numbered deliverables), the fixed report shape, a table pairing each rule with what enforces it, and the ideas we took from [pstack](https://github.com/cursor/plugins/tree/main/pstack). The scripts in `tools/`: `wt_new.sh` (the orchestrator makes every worktree), `make_brief.py` (refuses a brief without goal, why, scope and verify; pastes the standing orders), `check_report.py` (the worker's REPORT.json and changed files against the brief), `review_branch.sh` (mechanical checks and the full suite, recorded in a ledger by commit) and `merge_verified.sh` (merges only a reviewed commit).
-
-## Not verified / open
-
-- The exact setting that caps auto-compact near 100k. The claim comes from a news recap; we have not found it in the docs.
-- Whether a `PreToolUse` hook can see the resolved model of an Agent call, to block large-model subagents. Not documented, so we use the environment variables.
-- Three of the ten sources were blocked by bot walls or paywalls and are not used for any claim.
-
-## References
-
-See [REFERENCES.md](REFERENCES.md).
-
-## License
-
-MIT
-
-## How we use it
-
-We run the Button Mash Method ([BUTTON_MASH_METHOD.md](BUTTON_MASH_METHOD.md), skill
-[skills/button-mash](skills/button-mash/SKILL.md), [CHANGELOG.md](CHANGELOG.md)) on a video production engine built by
-many agents at once, all in one terminal multiplexer:
-
-- **One orchestrator and a handful of leads.** Each lead owns a mission: an intent, the goal behind it, and a few
-  milestones inferred from what the owner said.
-- **Builders work in owned code areas.** Many cheap builders each work in their own worktree and their own area, so
-  two of them never write the same code. A builder's branch lands on exit with no gate; conflicts are resolved or the
-  areas are reshaped.
-- **Assessment loops instead of tests.** A judge opens the real output (the cut, the page, the frames), compares it
-  with the intent, names the gap, and issues the next jobs. Wrong work is fixed forward.
-- **A watchdog outside every session.** It reads signals: idle capacity with waiting work, quiet runs, silent exits,
-  orphaned processes, stale runs, and services on old code. It acts when the answer is clear and asks when it isn't.
-- **A button-mash thread** keeps all of this moving. It reads the stalls, root-causes them, puts fixes into the live
-  work, nudges idle or waiting leads with the default and the next action, and turns each lesson into a new version of
-  the method and the skill.
-
-Every agent starts with the skill, including the ambition protocol (aim at the goal beyond the goal, build to the
-bar of the field's best and their real tools, borrow from other fields, design for the activity), so the same judgment travels from the orchestrator to the cheapest worker. We mash
-hard but spend where it counts: the expensive model steers and takes the hard decisions, and cheap models read and
-build. Whoever supersedes an owner-facing item archives it at once, so the owner sees only live decisions. When a milestone
-stalls, the first question is whether the fixes were ever measured, and whether the goal is worded so the loop can
-meet it at all.
+- [AGENT_47.md](AGENT_47.md): the harness, the principles, the layers.
+- [BUTTON_MASH_METHOD.md](BUTTON_MASH_METHOD.md): the method, with its examples and results.
+- [skills/button-mash](skills/button-mash/SKILL.md): the skill that runs the method.
+- [FIELD_GUIDE.md](FIELD_GUIDE.md): an earlier chapter on cutting model cost.
+- [STEERING.md](STEERING.md), [PRACTICES.md](PRACTICES.md): steering briefs and everyday practice.
+- [REFERENCES.md](REFERENCES.md): the sources. [CHANGELOG.md](CHANGELOG.md): every revision.

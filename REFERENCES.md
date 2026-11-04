@@ -20,3 +20,66 @@ Status: **used** means the source was fetched and every claim we took from it is
 - [Subagents](https://code.claude.com/docs/en/sub-agents): `CLAUDE_CODE_SUBAGENT_MODEL`, `CLAUDE_CODE_SUBAGENT_MODEL_FORCE`, and the per-agent `model` field.
 - [Model configuration](https://code.claude.com/docs/en/model-config): model aliases and effort levels.
 - [Environment variables](https://code.claude.com/docs/en/env-vars): `ANTHROPIC_MODEL`, `CLAUDE_CODE_EFFORT_LEVEL`, and the `CLAUDE_CODE_DISABLE_*` context trims.
+
+## Harness research for Agent 47 (public sources only)
+
+Listed from the harness research notes; each URL is a public source. These rows are **listed, not fetched in this
+revision**, so no claim in AGENT_47.md is quoted from them here. Status moves to **used** only after a fetch.
+
+| # | Source | Status |
+|---|---|---|
+| H1 | <https://alignment.openai.com/auto-review> | listed |
+| H2 | <https://arxiv.org/abs/2305.16291> | listed |
+| H3 | <https://arxiv.org/abs/2505.22954> | listed |
+| H4 | <https://arxiv.org/abs/2506.13131> | listed |
+| H5 | <https://claude.com/blog/harnessing-claudes-intelligence> | listed |
+| H6 | <https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop> | listed |
+| H7 | <https://claude.com/resources/articles/building-with-claude-managed-agents> | listed |
+| H8 | <https://claude.com/resources/articles/message-threads> | listed |
+| H9 | <https://code.claude.com/docs/en/agent-view> | listed |
+| H10 | <https://code.claude.com/docs/en/goal> | listed |
+| H11 | <https://code.claude.com/docs/en/routines> | listed |
+| H12 | <https://code.claude.com/docs/en/scheduled-tasks> | listed |
+| H13 | <https://deepmind.google/blog/alphaevolve-impact/> | listed |
+| H14 | <https://developers.openai.com/api/docs/guides/agents/guardrails-approvals> | listed |
+| H15 | <https://developers.openai.com/blog/codex-as-a-platform> | listed |
+| H16 | <https://docs.devin.ai/product-guides/automations> | listed |
+| H17 | <https://docs.factory.ai/missions/overview> | listed |
+| H18 | <https://docs.langchain.com/oss/python/langgraph/add-memory> | listed |
+| H19 | <https://docs.langchain.com/oss/python/langgraph/checkpointers> | listed |
+| H20 | <https://docs.langchain.com/oss/python/langgraph/interrupts> | listed |
+| H21 | <https://docs.langchain.com/oss/python/langgraph/persistence> | listed |
+| H22 | <https://docs.temporal.io/develop/task-queue-priority-fairness> | listed |
+| H23 | <https://docs.temporal.io/evaluate/use-cases-design-patterns> | listed |
+| H24 | <https://dspy.ai/deep-dive/optimizers/miprov2/> | listed |
+| H25 | <https://github.com/anthropics/cwc-long-running-agents> | listed |
+| H26 | <https://github.com/anthropics/single-agent-loop-kit> | listed |
+| H27 | <https://github.com/ghuntley/how-to-ralph-wiggum> | listed |
+| H28 | <https://github.com/SakanaAI/ShinkaEvolve> | listed |
+| H29 | <https://newsletter.pragmaticengineer.com/p/what-is-loop-engineering> | listed |
+| H30 | <https://openai.com/index/harness-engineering/> | listed |
+| H31 | <https://openai.com/index/unlocking-the-codex-harness/> | listed |
+| H32 | <https://openai.com/index/unrolling-the-codex-agent-loop/> | listed |
+| H33 | <https://openai.github.io/openai-agents-python/guardrails/> | listed |
+| H34 | <https://openai.github.io/openai-agents-python/handoffs/> | listed |
+| H35 | <https://paddo.dev/blog/ralph-wiggum-playbook/> | listed |
+| H36 | <https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool> | listed |
+| H37 | <https://platform.claude.com/docs/en/agent-sdk/sessions> | listed |
+| H38 | <https://platform.claude.com/docs/en/agent-sdk/subagents> | listed |
+| H39 | <https://platform.claude.com/docs/en/build-with-claude/compaction> | listed |
+| H40 | <https://platform.claude.com/docs/en/build-with-claude/context-editing> | listed |
+| H41 | <https://platform.claude.com/docs/en/build-with-claude/message-threads> | listed |
+| H42 | <https://temporal.io/blog/durable-flexible-multi-agent-systems> | listed |
+| H43 | <https://tessl.io/patterns/agentic-development-workflow/loop-engineering/> | listed |
+| H44 | <https://www.anthropic.com/engineering/building-c-compiler> | listed |
+| H45 | <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents> | listed |
+| H46 | <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents> | listed |
+| H47 | <https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents> | listed |
+| H48 | <https://www.anthropic.com/engineering/harness-design-long-running-apps> | listed |
+| H49 | <https://www.anthropic.com/engineering/managed-agents> | listed |
+| H50 | <https://www.anthropic.com/engineering/multi-agent-research-system> | listed |
+| H51 | <https://www.anthropic.com/engineering/writing-tools-for-agents> | listed |
+| H52 | <https://www.anthropic.com/research/long-running-Claude> | listed |
+| H53 | <https://www.anthropic.com/research/measuring-agent-autonomy> | listed |
+| H54 | <https://www.augmentcode.com/guides/autonomous-engineering-loop> | listed |
+| H55 | <https://www.inteqgroup.com/blog/which-decisions-can-an-ai-agent-make-and-which-require-human-approval> | listed |

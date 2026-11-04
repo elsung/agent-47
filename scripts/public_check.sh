@@ -11,6 +11,6 @@ if [ ! -r "$LIST" ]; then
 fi
 PAT=$(grep -v '^\s*#' "$LIST" | grep -v '^\s*$' | paste -sd'|')
 [ -n "$PAT" ] || { echo "public check FAILED: the denylist $LIST is empty"; exit 2; }
-HITS=$(grep -rniE "$PAT" . --include='*.md' --include='*.sh' --include='*.py' --include='*.json' --include='*.yaml' --include='*.yml' --include='*.txt' | grep -v '^./.git/')
+HITS=$(grep -rniE "$PAT" . --include='*.md' --include='*.sh' --include='*.py' --include='*.json' --include='*.yaml' --include='*.yml' --include='*.txt' | grep -v '^./.git/' | grep -v '^./_trash/')
 if [ -n "$HITS" ]; then echo "public check FAILED: private names in a public repo:"; echo "$HITS" | cut -c1-200; exit 1; fi
 echo "public check: clean"

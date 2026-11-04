@@ -1,6 +1,6 @@
 # The Button Mash Method
 
-VERSION 1.75.0 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
+VERSION 1.82.2 (2026-11-02). The skill [skills/button-mash](skills/button-mash/SKILL.md) is at 1.69.1. History: [CHANGELOG.md](CHANGELOG.md).
 
 > **Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.** (the owner's definition, #516)
@@ -9,6 +9,16 @@ Status: **live experiment, started 2026-10-18 23:40 PDT.** This page is kept up 
 why if it fails. The rest of this repo describes the gated method that came before it, where tests and review scripts
 decide when work is done. This page is what we switched to and why. (This page was first called METHOD_AGGRESSIVE.md;
 the old name now points here.)
+
+## Today's principles (1.83, owner #2953-#2963; November 2026)
+
+Five principles, in the owner's words, each with its why. Each one is a hypothesis in service of the north star.
+
+1. **One road.** "Every take, test or production, = shot plan + model recipe through one builder." A recipe is a methodology, not a parameter set. Locked principles stay fixed; open options each get an experiment that decides them. (owner #2937-#2943; the render intent doc.) Why: a second path for tests means a second set of mistakes.
+2. **Tools compound.** A dedicated toolsmith thread improves tools and how they are used, continuously. A router (JEV) picks the tool and code runs it, so an LLM does not redo a routine job. LLMs are spent on judging, finding gaps and refining the system. A job seen twice becomes a tool. Pages, docs and retros are generated from records, not hand-built. Learnings are a typed, routed pipeline, closed with a link when applied. (owner #2950, #2961.) Why: a hand job repeated is a tool not yet built.
+3. **Rotation is continuity.** A context window has a start line, a rotation at the next clean break, and a nudge near its end. Holds expire on their own. Nothing is cleared before the handoff. The last and pending owner messages travel whole. (owner #2953, #2956, #2957.) A check's threshold must come from the real thing: a fresh session measured about 55K, not under 20K, and the GPU floor is 8 GB, not 4 GB. A made-up threshold stalls work silently. Why: a wrong floor looks like a hang.
+4. **Phases are focus, not locks.** Finish the current phase's milestone first; other work continues where it does not conflict. (owner #2606, #2960.)
+5. **Check a take's real inputs, planned against rendered length, and its sound, before showing it.** (owner #2810, #2937.) Why: a take with the wrong length or a silent copy looks fine in a thumbnail.
 
 ## How it steers: hard guidelines, strong steering, judgment (owner #521, #522)
 
@@ -230,12 +240,12 @@ The toolsmith writes a short daily retro: calls mined, tool uses, picker misses,
 retired, and the estimated tokens and minutes saved. A tool unused for fourteen days is reviewed, and a duplicate is merged,
 not kept as a third copy.
 
-## Briefs, restarts and builder claims (keeper learnings, a lead rotation)
+## Briefs, restarts and builder claims (a lead learnings, a lead rotation)
 
 - **Open every builder brief with the ask.** Start with "YOUR TASK ... do it now", then the context. A heading-first brief
   was read as background twice, and the builder went looking for the task. Why: the first lines set the job.
 - **A long-lived process keeps old code.** A running process holds the code it loaded at start. Any change to a window's
-  targets lists the restarts it needs (autopilot via loops_keeper). Why: a fix on disk is not in a process that is still up.
+  targets lists the restarts it needs (autopilot via the loop keeper). Why: a fix on disk is not in a process that is still up.
 - **Verify a builder's claim before --go.** "Old code stays correct after the reorder" can be wrong in the risky direction.
   Check the claim against the real run or the real output before the go-ahead. Why: a confident claim is a hypothesis.
 - **Handoff notes are rewritten whole, under 8K.** No tacked-on addenda. Size is managed where a file is written, not cut
@@ -806,7 +816,7 @@ The loop was dead for 5 minutes, and tokens and time were lost. What we changed:
   brief, told to continue from its commits. A builder that finished but never landed is landed instead. A lost design
   call is relaunched. The signal for "killed, not finished": the agent's log is empty, because `claude -p` writes its
   reply only at the end.
-- A keeper restarts the supervisor within 30 s, with or without the service manager.
+- A a lead restarts the supervisor within 30 s, with or without the service manager.
 - Messages to leads are delivery-checked: the sender waits for an empty input box, confirms the message was taken,
   and retries.
 - Run stages have time budgets. Over budget, or no progress row for 15 minutes, raises a stall to the run's lead at
@@ -992,7 +1002,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     a UI round sat queued behind areas whose round had already merged. Timing each step showed the cause:
     `drive_missions` took 253 s because starting a judge round ran the mission's look command (up to 10 min) inside
     the pass. Fix: round starts run on their own, with the mission's own lock, and any step over 60 s is logged. The
-    same check found two autopilot loops running at once (keeper plus service); a lock file now allows one.
+    same check found two autopilot loops running at once (a lead plus service); a lock file now allows one.
 29. **Agents name a safe default and then stop anyway.** Three rounds each wrote "Default: ...",
     undoable and scratch-only, and posted it as a block. A rule in the brief was not enough. Fix: the block command
     itself (event.sh) turns any block that names a default into `[decided]` and tells the builder to take it and go
@@ -1890,7 +1900,7 @@ check's 34 views on real projects.
 - A figure with no source file is a hypothesis; ask the owner of the plan text for its run before using it.
 - A fix proposed in one check can break what it protects; read the lock's design first.
 - A face card's effect depends on the model: run board-only and board+head per model before choosing.
-- A ranking never moves a row to candidate, proposed or not-now; only the owner's call does, with its owner number. Priority is Orca's or the owner's, never the ranking's. A row that is not now for a shot says which shot, and stays a fallback.
+- A ranking never moves a row to candidate, proposed or not-now; only the owner's call does, with its owner number. Priority is the lead's or the owner's, never the ranking's. A row that is not now for a shot says which shot, and stays a fallback.
 - Card text can cause a drift as well as the model (S10 head on shoulder): check the card's words before blaming the model.
 - A person already in the board gets no separate face card on OTS shots; test per shot type in Phase C.
 - A design pass (frontend-design) comes before any fix list on UI work; load the skill first, not after. Owner #2628 and #2629 expect it.
@@ -1911,3 +1921,99 @@ check's 34 views on real projects.
 - A status line is a bet, not a verdict. Every option carries its why and the shot it applies to (owner #2639).
 - Before a new research read, check the existing library first. Write a gap note, and read only a real gap (owner #2659). Two of three topics in one round were already covered.
 - A chained short sleep is refused too, the same as a foreground sleep. Wait with a background timer, never a poll loop.
+
+## Failed reads, buffered calls and shared live runs (learnings from lead rotations, 2026-11-02)
+- A read that returns empty after its tries is a failed read. Re-run first; then use the reader fallback. Do not quote an empty read as a finding.
+- A long silent call is not a hang when its output is buffered (a world-words pass printed only at the end ran 8.5 to 13 min). Check the catalog timings before a kill; a good call killed early loses its whole run.
+- Back up a scratch output before a re-run overwrites it.
+- Do not guess missing recipe values. Leave the source's label and let the judge overturn it.
+- Check a bound before a pick: run the replay with the disputed input at full and at zero. If the options tie, the replay cannot choose.
+- When a builder's result contradicts a spec claim, report it and fix the spec in place.
+- A directive naming a config that a reviewer must check gets a quick local commit on the branch, not on main.
+- When a fix runs on another lead's live run, name the owner, the announce and the check in the same minute; then hand the run back.
+
+## Judged cells, readings, missing data, and nudges (learnings from a lead's rotation, 2026-11-02)
+- A UI that reads only one data source shows stale state for judged cells. Check the verdict source for every cell before you post it.
+- A JEV note is a reading, never a verdict. Label it as one in the UI (a grey "JEV note" pill).
+- Do not guess missing recipe values (sampler, shift). Show "not in the take record" and let the judge overturn it. Fix the data that is missing, not the label.
+- A claim of "checked" needs the measured numbers in the post, not the word "checked".
+- A card's "next" names who it waits on and when it lands. An idle nudge with no new ask gets one escalation, then a lane-empty check-in, escalated to the orchestrator once. Do not repeat the same status line on every nudge.
+
+## Words come from the run, and a fix on a live run names its owner (learnings from a lead's rotation, 2026-11-02)
+- The board's words come from the run's generated prompt unless `--words` is passed. The first A2 board drew a street because the generated words came from an older run's prompt. Check which prompt a board was built from before you read its frame.
+- When a fix runs on another lead's live run (a restart, a release), name the owner, the announce and the check in the same minute; then hand the run back.
+
+## Routing, the research library first, and safe process handling (learnings from a lead's rotation, 2026-11-02)
+- A fallback model is a routing decision (`READ_FALLBACK_MODEL`), never a hand pick. A default for a block is to hold and say who decides, and by when.
+- Check the research library first (the ComfyUI output, DEV reviews, the research library and its findings page). Write a gap note; read only a real gap.
+- Stop your own processes by PID (`ps`, then `kill <pid>`). `pgrep -f` and `pkill -f` are blocked in the harness. Move outputs to `_trash`; never `rm`.
+- A detached GLM read with `< /dev/null` and a timeout is the safe shape. A foreground run over 120 s hits the tool limit.
+- Research pages: a landed read is the right shape: feeling first, source tags, under 1500 words, `[unsure]` marks.
+
+## Pins, buffered output and the bound before a pick (learnings from a lead's rotation, 2026-11-02)
+- A pin change does not move a running runner. Stop the runner by PID and relaunch it on the new pin. Check `ps` for the runner's `--pin` before you call a crash unfixed.
+- A long silent call is not a hang when its output is buffered. Check the catalog timings before you kill it (a kill once lost 772 s).
+- Check the bound before a pick: run the replay with the disputed input at full and at zero. If the options tie, the replay cannot choose.
+- Check the run's status and its holds and release lists before you diagnose a stall. One stall was an idle status, not a hold.
+
+
+## Hands on a board, one camera change at a time, and checking who you reach (learnings from a lead's rotation, 2026-11-02)
+- A board's words carry each person's own hand: say which hand, and keep the other figure's hands down or out of frame. Redraws 2-4 failed on this.
+- Check a note's file path on disk before you rely on it: one lead's note file is a symlink to another's.
+- A lead key or tag can point at a different lead than your note says. Check the `send_lead.py` output for the window it reached before any follow-up.
+- One camera change at a time. A board path that changes the set, the face and the scale at once cannot isolate the camera (the s4 a2 board-set-lost finding).
+
+## Measured or not claimed (learnings from a lead's rotation, 2026-11-02)
+- A claim of "gapless" needs a presented-frame measurement, or a by-construction reason said out loud.
+- A test save into an owner's review is retracted in the same session and read back. Say what the log keeps.
+- No measured number, no "checked" claim. Post the numbers, and say what was not measured.
+
+## Check a model's report against the file (learnings from a lead's rotation, 2026-11-02)
+- A GLM report about its own work can miscount: its unsure marks and its paths. Check the file itself, spot-check its quotes, then accept.
+
+## A brief from memory goes stale; check the tree first (learnings from a lead's rotation, 2026-11-02)
+- A brief written from memory goes stale fast. Check the working tree before handing out a builder task: the gen_s brief was already superseded by code in place.
+
+## A hand stamp is not a check; name the picture and the numbers (learnings from a lead and a lead rotations, 2026-11-02)
+- A hand stamp makes a stale record read fresh with no real check. Before stamping, read the stale reason and the input's date, and say in the record when it was hand-stamped.
+- An owner-approved look and a canon change can both be right. Check which picture the owner approved (the live boards) before choosing a side.
+- A check-in that says "see the line above" means nothing to its reader. Post the exact numbers, with their source.
+- A "gapless" claim needs a presented-frame measurement, or a by-construction reason said out loud. A claim with neither is a hypothesis.
+- A message tagged to a lane may be meant for another lane. Route it, don't settle it.
+- Before calling a behaviour a bug, check the status backups for "by design". A 0-of-154 result was by design (a lead).
+- A stop hook that says "start your next item" wants a real next step: post it, then do the non-GPU part.
+- A lead key or tag can point at a different lead than its note says. Check the send_lead output before a follow-up.
+- When a fix runs on another lead's live run, name the owner, the announce and the check in the same minute.
+- A dry run first, then --write, every time. Keep the backup and a CHANGE.txt beside any hand edit.
+- Before a canon change is blessed, check the owner-approved boards for what they show (the gold can was on the approved S3 and S10 boards).
+- A restamp cannot make a shoot current; a render can. Say which stale records need a render and which need a decision.
+
+## A labelled A/B changes one thing; a denied move is an answer (learnings from a lead's rotation, 2026-11-02)
+
+- A labelled A/B changes one thing only (here the sampler). Before launching, check every other input against the arm A record; a second change hides which one moved the result.
+- A denied move is an answer. Ask the owner or the lead once, with the inventory attached, then leave it.
+
+## Check the recipe at the graph, and keep the steps apart (learnings from a lead's rotation, 2026-11-02)
+
+- Check a card's recipe against the take's graph nodes, not the matrix alone. A matrix row can read right while the graph ran something else.
+- A stale target is not reached by a restamp alone. Lock edit, board accept and the Phase A renders are separate steps; close each one on its own record.
+- Retro candidate: one run lost 11 minutes to an idle start, then a 30-minute idle exit. Log it in the retros before the next round.
+
+## Test a filter by its rows, and show gaps as gaps (learnings from a lead's rotation, 2026-11-02)
+
+- Test a filter by what the row contains (EMPTY vs take tiles), not by its header or pill state. A pill can look on while the rows say otherwise.
+- A gap in the data shows as an empty tile that says so. Do not fill it silently.
+
+## The owner sees every take; a count beats a silent filter (learnings from a lead's rotation, 2026-11-02)
+
+- The owner must see every take. A count line ("shown N of M") beats a silent filter: any view that hides takes prints how many it hid.
+
+## Read the traceback before a re-queue; a dry run's zero is a finding (learnings from a lead's rotation, relayed by a lead, 2026-11-02)
+
+- Before re-queueing a failed job on someone else's run, read the traceback and find the cause. A re-queue of a missing-input failure fails again.
+- Before a live release, read the dry-run count. An empty count means there is nothing to queue, not that the scope is right.
+- A dry run first, then --write, every time. Keep a backup and CHANGE.txt beside any hand edit.
+
+## A count label counts what the user ticked, not what the view shows (learnings from a lead's rotation, relayed by a lead, 2026-11-02)
+
+- A count label must count what the user ticked, not what the current view shows. A label that says 6 when 8 were ticked hides the two that are off the view (#2735).

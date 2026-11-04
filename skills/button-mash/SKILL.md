@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.72.0 (2026-11-02). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
+VERSION 1.83.0 (2026-11-03). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -45,14 +45,12 @@ Every project has one north star: the goal behind every goal, in the owner's own
 - **Check beliefs against raw data.** A story about why something is slow or broken is a hypothesis until you reproduce it on the real thing, from the real records, frames or numbers. A trimmed copy can hide the very cost you're chasing.
 - **Fix where the wrong thing is decided, once.** Not where its symptom shows. Remove the workarounds the fix makes unneeded, and stack no guard on top. A chain of patches, each correcting the last, means you're below the cause. Name the core cause in the change note.
 - **Give the work an outside check you can run yourself**: a measurement, a comparison with a pro reference, a viewer's-eye pass. It feeds the assessment loop and stays a note, not a gate.
-- **Build durable workflows and bring the right crew.** Give agents raw access and machines, so the loop runs without the human. Reviewing wants an editor and a producer; add a red team to show the work is wrong before the owner sees it.
+- **Build durable workflows and bring the right crew.** Give agents raw access and machines, so the loop runs without the human. Add a red team to catch wrong work before the owner sees it.
 - **Turn nouns into verbs** (Tom Kelley, *The Art of Innovation*). Design for the activity: reviewing, comparing, answering, sharing. Ask what the person is doing, then make that easy.
 - **Act on the best default, and prefer reversible moves.** A sensible, undoable default is not a block: take it, say so in one line, and let the owner swap it. Ask what the smallest move is that unblocks progress, and make it fast.
 - **Fix causes, and apply the fix to live work at once.** Trace a stall in the running system. A fix the live work isn't running yet hasn't fixed anything.
 - **Assess by looking at the real output against the intent**, not by evals or tests. Fix forward.
-- **Mash, but spend where it counts.** Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks others. Spend little elsewhere: the cheapest capable model for routine work, a fast decision model for typed questions, one agent per task. Don't re-derive what's known, and stop a loop that moves nothing. Cost practice: STEERING.md ("Context and intent first"), PRACTICES.md section 9.
-- **Forward and clean.** One commit, one kind: keep behaviour and structure in separate commits, so each can be reviewed alone. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it. Land small steps rather than a rewrite.
-- **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
+- **Mash, but spend where it counts.** Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks others. Spend little elsewhere: the cheapest capable model for routine work, a fast decision model for typed questions, one agent per task. Don't re-derive what's known, and stop a loop that moves nothing.- **Forward and clean.** One commit, one kind: keep behaviour and structure in separate commits, so each can be reviewed alone. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it.- **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
 - **Report outcomes, not effort.** Say what now works, where, and what's next. Routine success isn't news; an owner's inbox line should change what someone does.
 
 ## Cluster the work, finish one phase at a time
