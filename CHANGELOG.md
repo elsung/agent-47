@@ -8,6 +8,9 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.84.5 (2026-11-03)
+- patch: the stack names a real system per row (JEV routing to Claude Code or omp; the toolbook as git + one MCP server; memory as git + Markdown tiers); new "What we borrowed, and where it lives" with the research learnings.
+
 ## 1.84.4 (2026-11-03)
 - patch: one stack table, one job per system (owner: simpler and clearer); the loops sit under the system that runs them; the separate loops table is folded in.
 

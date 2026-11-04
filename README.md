@@ -45,13 +45,41 @@ GitHub Projects  ->  Temporal  ->  Slurm
 | **GitHub Projects** | What to do, in what order. The owner steers here. | Ranking, pinning, the owner's run / pause / stop | building |
 | **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | next (today: hooks do rotation) |
 | **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on the first box |
-| **Routing model** | Which tool or model answers. | Tool first, then a cheap model, then a frontier one | partly live |
+| **JEV → Claude Code / omp** | Which tool or model answers. JEV is our small local routing model. | Tool first; omp models (MiniMax, GLM, local open models) for research and reading; Claude for orchestrating and building. The orchestrator sets each lane's budget; every call lands in the ask log | partly live |
 | **Claude Code + omp** | The agents that do the work. | Orchestrator, leads, builders, readers | live |
-| **The toolbook** | The tools, shared by every agent. | Grows from the flywheel | live, growing |
-| **Memory files** | What we know, in tiers: core, active, reference, stash. | Promoted or stashed by the daily review | next |
+| **Git + one MCP server (the toolbook)** | The tools, shared by every agent. Code in git; one MCP server exposes every tool to Claude Code and omp alike. | The flywheel: a model does it twice, then it becomes a tool; tools are improved, forked or merged; tool work is a card on the board | live (git + list); MCP next |
+| **Git + Markdown, in tiers (memory)** | What we know. Plain files with a source, a date and a last-used stamp, versioned so nothing is ever lost. | Core (always loaded), active, reference, stash; the daily review promotes or stashes | next (files exist; not yet in git) |
 
 People run roles, not loops: the orchestrator ranks the work; a toolsmith keeps the tools; a machinist keeps the boxes; a
 method keeper runs the review; the owner steers. Every stack change updates this table and the CHANGELOG.
+
+## What we borrowed, and where it lives
+
+Each idea comes from a source in [REFERENCES.md](REFERENCES.md) and is a hypothesis we keep only while it works.
+
+- **The plan is a file, re-read first** (Anthropic's long-running agent harness): every thread keeps a progress file; a
+  fresh session reads it before anything else, and it lists the approaches that failed. *Lives in:* rotation (Temporal).
+- **Rotate, don't compact** (Anthropic's context-engineering guidance): a fresh context with a written handover beats a
+  long, summarised one; save the plan before the window runs out. *Lives in:* rotation.
+- **The record is a folder, not a chat** (OpenAI's harness writing): the context window is a cache that resets.
+  *Lives in:* principle 3 (Record) and memory.
+- **An open question is a record with a deadline** (durable-workflow practice): it falls to a stated default when the
+  deadline passes. *Lives in:* Temporal.
+- **The owner watches and redirects; they don't approve every step** (Anthropic's autonomy measurements): a live board
+  and one switch. *Lives in:* GitHub Projects.
+- **A narrow reviewer at the irreversible boundary** (OpenAI's guardrails): a small agent that sees only the proposed
+  action and the policy. *Lives in:* the four boundaries.
+- **Caps on every axis** (every system that runs unattended): budget, retries, queue depth, set before the run.
+  *Lives in:* Temporal and the routing budgets.
+- **A skill library is the whole effect** (Voyager; AlphaEvolve's keep-the-best loop): reusable tools that accumulate
+  are what make the system improve. *Lives in:* the toolbook flywheel.
+- **Re-check the scaffolding when the model changes** (Anthropic): every tool and rule carries the model and date it was
+  written for. *Lives in:* the daily review.
+- **Events, plus a reconcile sweep** (the Kubernetes controller pattern): react when things happen; a slow sweep fixes
+  what events missed. *Lives in:* Temporal.
+- **Intent, back-brief, freedom within boundaries** (Bungay, *The Art of Action*) and **stream, platform and enabling
+  roles** (Skelton and Pais, *Team Topologies*). *Lives in:* how the crew is led.
+- **Worse is better** (Gabriel): simple and working beats complete and perfect. *Lives in:* the name.
 
 ## Runs on events, not timers
 
