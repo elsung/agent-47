@@ -10,6 +10,14 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.88.1 (2026-11-13)
+Wording, applying 1.88.0 to the method's own text. The principles file, the skill, the worker-brief template and the owner-style
+page are rewritten from always/never into the guidance shape (lean, reason, usual default, when to depart). The skill's hard
+guidelines now say which four acts are firm (money, publishing, deletion, root: irreversible, or the owner carries the cost)
+and that the rest are strong leans, and gain one line on writing and reading guidance and on settling conflicts by reasons.
+Taught by: the owner's note that always/never wording "tends to overfit and creates fragile systems", and the incident count
+in the project's GUIDANCE.md. Owner quotes are unchanged.
+
 ## 1.88.0 (2026-11-13)
 - HOW_WE_OPERATE: "Guidance, not absolutes": principles, memories and briefs are guidance with reasons; always/never wording
   overfits into literal tripwires and conflicts; lean + reason + default + when to depart; conflicts resolve through reasons

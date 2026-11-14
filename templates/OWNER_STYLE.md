@@ -1,6 +1,6 @@
 # Writing to the owner: the house style
 
-Sources: communication patterns from high-velocity teams and distributed leadership. This page is the short version every agent uses. It governs how we *say* things, never how much we check.
+Sources: communication patterns from high-velocity teams and distributed leadership. This page is the short version every agent uses. It governs how we *say* things, not how much we check.
 
 ## The rules
 - **Line one is the answer.** The status, the result or the ask. Someone who reads only line one has it.
@@ -9,10 +9,10 @@ Sources: communication patterns from high-velocity teams and distributed leaders
 - **Numbers over adjectives.** "26/30 pass, 4 fail on one missing file", not "mostly passing".
 - **Status words are exact.** Built ≠ tested ≠ merged ≠ live. Cause confirmed ≠ suspected.
 - **Plain words.** Translate a tool or term the first time, in five words or fewer. No tool names in the UI.
-- **Never drop a risk or a blocker to be short.** It gets its own line.
-- **One labelled ask, last.** Say what happens if the owner doesn't answer (full auto never waits).
+- **A risk or a blocker gets its own line, however short the message.** It is the line that changes what the owner does.
+- **One labelled ask, last.** Say what happens if the owner doesn't answer (full auto does not wait).
 - **Depth on request.** "Walk me through it" switches brevity off for that reply.
-- **Never invent status.** Unknown is written as unknown, with what would settle it.
+- **Unknown is written as unknown, with what would settle it.** An invented status sends the owner the wrong way.
 
 ## Shapes
 **Status recap (orchestrator, status command):** the brief format.

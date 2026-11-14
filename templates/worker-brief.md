@@ -13,10 +13,10 @@ A worker that knows the purpose makes better calls than one that only has steps.
 - TIMEBOX: `<rough cap>`. On expiry, commit what is done, write REPORT.json with the rest not_done, and stop.
 
 ## Facts I checked
-- Worktree: `<absolute path>` on branch `<name>` (already created; work only there; never create worktrees; never edit the live checkout).
+- Worktree: `<absolute path>` on branch `<name>` (already created; work only there: a new worktree or an edit in the live checkout lands in what the services run).
 - `<path or function>`: <what it does today, one line>
 - `<real data example>`: <what it looks like>
-Read these first. If you need more, read the code that writes the data; never guess a path or layout.
+Read these first. If you need more, read the code that writes the data. A guessed path or layout fails on real projects.
 
 ## Deliverables
 1. <deliverable>. Acceptance: <test or check that proves it>.
@@ -26,11 +26,11 @@ Read these first. If you need more, read the code that writes the data; never gu
 ## Standing orders
 <tools/STANDING_ORDERS.md, pasted verbatim>
 
-## Rules for this unit (each with its reason)
-- WARNING: do not change existing API fields or file formats; add new ones. (Other screens depend on them.)
-- WARNING: do not delete or weaken a test or a check. If a check is wrong, say so under DECIDE.
+## Guidance for this unit (the lean, its reason, and when to depart)
+- Add new API fields and file formats beside the existing ones; other screens read the old shape. If a change is unavoidable, say so under DECIDE with who reads it.
+- A check that looks wrong: say so under DECIDE and leave it in place. Weakening it hides the question from the next reader.
 - Full suite before reporting: `<test command>`. Paste its summary line; "still running" is not a result.
-- Do not delete files; move them to `_trash/`. (Owner's rule.)
+- Move files to `_trash/` instead of deleting them. (Deleting is the owner's: a delete can't be undone.)
 - If you run low on room, commit each finished deliverable and continue. Do not end with parts deferred.
 - If the same test fails twice after real attempts, stop and report BLOCKED with what you tried.
 

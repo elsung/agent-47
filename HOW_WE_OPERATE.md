@@ -22,7 +22,7 @@ Read at every start and every rotation. These come before every other rule.
 > problems and conflicts ... it becomes literal and becomes all kinds of problems, confusions."
 
 1. **Aim.** Know the why: the goal two levels up. Assess the real output against it, by eye. No tests, no gates.
-2. **Move.** Take the best reversible default, and never wait. Don't stop others' work. Stop when nothing is left to do.
+2. **Move.** Take the best reversible default and keep going; a wait is the costly state because nobody knows to act. Don't stop others' work. Stop when nothing is left to do.
 3. **Record.** One ranked list, one home per fact. The record is the memory, not the chat.
 4. **Tool.** Do a thing with a model once or twice, then make it a tool.
 5. **Learn.** Fix what caused the mistake, not with a new rule. Every review feeds tools, principles and memory.
@@ -39,10 +39,10 @@ Only the owner spends money, publishes, deletes, or runs anything with root. Eve
 
 - One home per fact, and the thing that runs is that home. Settings live in code under version control, each one commented
   with its decision id, the owner's words, and the date. Docs, pages, cards, memory and briefs link to that code or are
-  generated from it. They never restate it. A copy written by hand is a bug.
+  generated from it. A copy written by hand drifts from the code, so treat one as a bug.
 - A decision is done only when its code line has changed and been committed. Logging it elsewhere is not landing it.
 - Every run and every A/B, tests included, goes through the pipeline's own recipe and builder, with one override named.
-  Never a side script with its own settings. A result from outside the pipeline says nothing about the pipeline.
+  A side script with its own settings measures the side script: a result from outside the pipeline says nothing about the pipeline.
 - DRY: before you add a script, file, sync or field, find the existing one and extend it. Two writers of one fact means
   remove one; don't add a third. SOLID: one job per module; extend by adding rather than editing callers; small interfaces;
   code depends on the recipe, not on copies of its values.
@@ -50,7 +50,7 @@ Only the owner spends money, publishes, deletes, or runs anything with root. Eve
 
 **Build on what exists, and version every change.** Before you change a piece, look at what exists and decide per piece:
 keep, change, replace, add, or stop using. Additive is not the default. Every change, test or draft is a new version; an old
-version never changes in place. A new version is used only once a recorded decision adopts it, and a run names the version
+version stays as it was. A new version is used only once a recorded decision adopts it, and a run names the version
 it used. Why: a silent edit to a working piece breaks the runs that depend on it, and no one can tell which one ran.
 
 **The harness improves in the gaps.** "Whenever possible we continue to make improvements and fixes to the harness, so that
@@ -63,7 +63,7 @@ with a deadline. Lists that admit by inclusion (lanes, allow-lists) are gates: w
 and note it.
 
 **Decision rights: a small crew, one owner per card.** The strongest models make the choices and judge the results; a
-cheaper model gets an exact order (inputs, command, output, done evidence), never "judge it" or "find the cause". One agent
+cheaper model gets an exact order (inputs, command, output, done evidence); "judge it" or "find the cause" goes to the stronger model, because that is where a cheap model guesses. One agent
 gives each execution command. The owner of a decision acts now and posts what it did. Escalate only owner-only acts
 (money, publishing, deletion, root) and conflicts between two owners; an escalation gets an answer in the same turn, and if
 none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
@@ -90,12 +90,12 @@ that lets a wrong setup ship. Showing the owner a result's real sources is for t
 
 **A lesson lands in the path that runs.** "We decided", "we wrote it down", "the tool does it" and "the running job used it"
 are four different facts. A learning is landed only when the tool or default that runs has changed, with the owner's words,
-the example and the commit linked to it. A one-off slip gets a fix and one learning line, never a new always-on alert, hook
-or guard. Before adding any watcher or check, name the root fix it stands in for, and do that instead.
+the example and the commit linked to it. A one-off slip gets a fix and one learning line. A new alert, hook or guard for it
+costs every later session and seldom fires again. Before adding any watcher or check, name the root fix it stands in for, and do that instead.
 
 **One tool per job, reused and refined.** A result for review goes through the one review tool, which reads the run's own
-records (intent, actual inputs, settings, prompts, outputs) and returns a link. When it falls short, improve it; never
-hand-build a replacement page. The same holds for every repeated job: the second time, it becomes a tool; after that, the
+records (intent, actual inputs, settings, prompts, outputs) and returns a link. When it falls short, improve it; a hand-built
+replacement page is a second tool to keep and loses the records the first one reads. The same holds for every repeated job: the second time, it becomes a tool; after that, the
 tool gets better.
 
 **Status is code; an agent wakes for an ask.** Events (a run finishing, a card moving) update the status board by code, at
@@ -104,13 +104,13 @@ context to read a routine notice is the most expensive thing the harness does. T
 output, and cost is measured per shipped result.
 
 **Memory without telephone.** Keep three things apart: durable policy (these few principles), current state (data with
-links to real outputs, read from its one home) and history (an archive, searched when needed, never loaded by default).
+links to real outputs, read from its one home) and history (an archive, searched when needed, kept out of what loads at start).
 Keep the owner's words verbatim wherever meaning matters; a summary of a summary drifts. A fresh session starts from one
 current work packet plus the owner's latest messages, whole. When an instruction is superseded, remove it from the active
 path in the same change.
 
 **Evolve; don't drift, bloat or rot.** The aim is a lean balance: comprehensive enough to cover the job, modular and
-flexible, never bloated. Work moves fast and loose (no gates, no test suites) and then compacts: expand, then contract, like a
+flexible, not bloated. Work moves fast and loose (no gates, no test suites) and then compacts: expand, then contract, like a
 diamond. Every burst of new tools, briefs, cards and notes is followed by a pass that merges duplicates and moves the unused,
 finished and superseded out of the active path, so code rot and process rot are cleared on a rhythm, not when someone trips
 over them. Evolution, not drift: what works is kept and carried forward, what doesn't falls away, and the selection is made
