@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.86.0 (2026-11-13). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
+VERSION 1.87.0 (2026-11-13). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.

@@ -13,6 +13,11 @@ Read at every start and every rotation. These come before every other rule.
 
 > "It's not about checking. Fix it at the fundamental level so we don't have these problems and have to check it."
 
+> "We don't want to just create bloat by adding stuff and layering on top, fixing things, duct-taping stuff. We want to figure
+> out at the principle why it doesn't work ... do it in a way where we don't even have to fix it in the first place."
+
+> "Expand, then compact. We need reduction and refinement too, of the system itself and of how it operates."
+
 1. **Aim.** Know the why: the goal two levels up. Assess the real output against it, by eye. No tests, no gates.
 2. **Move.** Take the best reversible default, and never wait. Don't stop others' work. Stop when nothing is left to do.
 3. **Record.** One ranked list, one home per fact. The record is the memory, not the chat.
@@ -61,13 +66,17 @@ gives each execution command. The owner of a decision acts now and posts what it
 none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
 machine may stay free when there is no current work.
 
-**No patch loops.** After two or three patches on one symptom, stop. Write a first-principles brief, name its owner, and fix the decision where it is made, once. A symptom that comes back after a patch is evidence the cause is below the patch.
-
-**Aligned by construction, not by checking.** When two stages disagree, the answer is never a check between them. Give each
-fact one writer, and make every later stage derive from what the earlier stage actually built: intent written once, the
-picked setup and its built result the same object, state in one timeline, prompts and labels generated from the built
-thing. A wrong fact is fixed at its source, and everything after it regenerates. A check, a note or a guard proposed as the
-fix is a sign the root has not been found. Showing the owner a result's real sources is for their review, not a check.
+**Right by construction: find the principle, don't duct-tape the symptom.** This is an architectural principle, for the
+harness and for everything it builds. When something doesn't do what it's meant to, step back and ask why at the level of
+principle: which decision, made where, produces the wrong thing? Fix it there, once, so the mistake can't be made, and remove
+the workarounds the fix makes unneeded. Give each fact one writer, and make every later stage derive from what the earlier
+stage actually built (intent written once, the picked setup and its built result the same object, state in one timeline,
+prompts and labels generated from the built thing); a wrong fact is fixed at its source and everything after it regenerates.
+Never layer on top: a patch, a guard, a check between stages or a "we'll check it afterwards and fix it" is a crutch, and
+proposing one as the fix is a sign the root hasn't been found. After two or three patches on one symptom, stop and write a
+first-principles brief; a symptom that comes back after a patch means the cause is below the patch. Assessments still have
+their place: looking at real output by eye, against the intent, to learn and steer. They are never the safety net that lets
+a wrong setup ship. Showing the owner a result's real sources is for their review, not a check.
 
 **A lesson lands in the path that runs.** "We decided", "we wrote it down", "the tool does it" and "the running job used it"
 are four different facts. A learning is landed only when the tool or default that runs has changed, with the owner's words,
@@ -90,8 +99,13 @@ Keep the owner's words verbatim wherever meaning matters; a summary of a summary
 current work packet plus the owner's latest messages, whole. When an instruction is superseded, remove it from the active
 path in the same change.
 
-**Progression, not regression.** Harness work is ranked by improvement per effort. Take one change, check its effect by eye
-on the live system, keep it or revert it, then take the next. Finish connections in what exists and retire each redundant
-layer as its replacement lands. Retros say what closed, what reopened, and which corrections repeated.
+**Evolve; don't drift, bloat or rot.** The aim is a lean balance: comprehensive enough to cover the job, modular and
+flexible, never bloated. Work moves fast and loose (no gates, no test suites) and then compacts: expand, then contract, like a
+diamond. Every burst of new tools, briefs, cards and notes is followed by a pass that merges duplicates and moves the unused,
+finished and superseded out of the active path, so code rot and process rot are cleared on a rhythm, not when someone trips
+over them. Evolution, not drift: what works is kept and carried forward, what doesn't falls away, and the selection is made
+against the mission (the harness exists to build the product and make it better), not against whatever was asked last.
+Harness work is ranked by improvement per effort: take one change, look at its effect on the live system, keep it or revert
+it, then take the next. The same holds for what the harness produces: better and better, never a spaghetti of one-offs.
 
 **Frame: six components, one job each.** Intent (what and why, set by the orchestrator per mission) → Work (cards, one owner each) → Agents (leads decide in their lanes; builders do one card) → Execution (Slurm is the only scheduler and GPU lock) → State (read from the system, never posted by hand) → Rhythm (back-brief, act, check effects, after-action). Each component has one source of truth and talks to the others only through a stated contract; anything that duplicates a component's job is folded into it or removed.

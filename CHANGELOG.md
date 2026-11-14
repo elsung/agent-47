@@ -8,6 +8,14 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+
+## 1.87.0 (2026-11-13)
+- HOW_WE_OPERATE: "Right by construction" merges "No patch loops" and "Aligned by construction" into one architectural
+  principle: find why at the level of principle and fix it where it's decided, so the mistake can't be made; patches, guards
+  and check-afterwards are crutches; assessments by eye stay for learning and steering, never as the safety net.
+- HOW_WE_OPERATE: "Evolve; don't drift, bloat or rot" replaces "Progression, not regression": lean but complete, expand then
+  compact on a rhythm, code and process rot cleared on a rhythm, selection against the mission; same standard for the output.
+
 ## 1.86.0 (2026-11-13)
 - minor: the week of 11-07 to 11-13, after an outside assessment of the harness ("a system that remembers how it failed
   more reliably than it changes how it works") and the owner's corrections.
