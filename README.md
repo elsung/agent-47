@@ -42,7 +42,7 @@ Board  ->  Temporal  ->  Slurm
 
 | System | Its one job | The loops it runs | State |
 |---|---|---|---|
-| **Board** | What to do, in what order. The owner steers here. Local card files are the record; a local Vikunja view shows them; GitHub is the off-site mirror. | Ranking, pinning, the owner's run / pause / stop | live: local cards and the Vikunja view; GitHub mirror; Phase B ranked (Now / Next / Pinned) |
+| **Board** | What to do, in what order. The owner steers here. Local Markdown card files are the one store; the board page is generated from them by code, never written by hand; GitHub is the off-site mirror. | Ranking, bundling cards by goal, showing what lingers, the owner's run / pause / stop | live: Markdown cards (the separate board app is retired); generated board page in progress |
 | **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | live: rotation workflows for every thread; QuestionWatch (question deadlines) and the stuck sweep (caps-watch) run now |
 | **The drive (goal record + stop hook, + the orchestrator)** | What keeps the system moving. The goal is kept in a record with its active flag and state; a stop hook holds the session until the done-condition holds, and a session-start hook carries the goal across rotation. The orchestrator's heartbeat picks the next step. | Pressing toward the goal; picking the next step; refusing to stop early; carrying the goal across fresh contexts | live: goal record, stop hook and session-start carry-over |
 | **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on all five boxes (one workstation GPU and four Spark-class nodes) |
@@ -77,13 +77,15 @@ Each idea comes from a source in [REFERENCES.md](REFERENCES.md) and is a hypothe
 - **The plan is a file, re-read first** (Anthropic's long-running agent harness): every thread keeps a progress file; a
   fresh session reads it before anything else, and it lists the approaches that failed. *Lives in:* rotation (Temporal).
 - **Rotate, don't compact** (Anthropic's context-engineering guidance): a fresh context with a written handover beats a
-  long, summarised one; save the plan before the window runs out. *Lives in:* rotation.
+  long, summarised one; save the plan before the window runs out. Compaction stays on only as a backstop near the full
+  window. The handover is one current work packet plus the owner's latest messages verbatim, never a summary of summaries.
+  *Lives in:* rotation.
 - **The record is a folder, not a chat** (OpenAI's harness writing): the context window is a cache that resets.
   *Lives in:* principle 3 (Record) and memory.
 - **An open question is a record with a deadline** (durable-workflow practice): it falls to a stated default when the
   deadline passes. *Lives in:* Temporal.
 - **The owner watches and redirects; they don't approve every step** (Anthropic's autonomy measurements): a live board
-  and one switch. *Lives in:* GitHub Projects.
+  and one switch. *Lives in:* the generated board page.
 - **A narrow reviewer at the irreversible boundary** (OpenAI's guardrails): a small agent that sees only the proposed
   action and the policy. *Lives in:* the four boundaries.
 - **Caps on every axis** (every system that runs unattended): budget, retries, queue depth, set before the run.
@@ -108,6 +110,12 @@ Every question carries a default and a deadline. A run can be run, paused, stopp
 list is empty or the budget is spent, and it never invents work to stay busy.
 
 ## Where it stands
+
+- **2026-11-13: an outside assessment.** Its diagnosis: the harness "remembers how it failed more reliably than it changes
+  how it works." The direction it set, now under way: finish the missing connections in the systems that exist (every
+  comparison lands in the one review tool; one resolved recipe drives a run and its labels; one scene state carries through
+  the stages), start sessions from one current work packet, keep a small crew with one owner per card, and let events
+  update status by code, waking an agent only for an ask. Each change is kept or reverted on what it does to the live work.
 
 - **Built:** rotation at the end of a turn for every thread; the GPU scheduler's controller and first lane; parked work
   is never handed out; idle agents holding for a named reason aren't pinged; a question router that tries a tool first.

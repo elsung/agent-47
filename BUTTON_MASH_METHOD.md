@@ -1663,6 +1663,7 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     and a background waiter keeps the pane looking busy. Capture the pane twice a minute apart: an empty prompt with the same
     text is idle. At 02:06 the autopilot learned this: an idle lead with no card next gets the game plan's next step, not
     silence.
+    *Superseded 2026-11-13 by lesson 282: an idle agent with no assignment stays asleep; nothing feeds or nudges it.*
 
 242. **A watch that flags the same cards without acting is motion, not progress.** A regression watch re-posted the same 12
     stale cards three times, and nothing closed or moved one. Every flag needs one of two outcomes that day: act (send the
@@ -1693,6 +1694,8 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
     motion in two hours gets an owner and a step; a result with no watchable link is flagged; a rule broken by a test is
     named; a plan or page not regenerated after new results is regenerated. For each approach, ask one question: what would a
     top professional do next that nobody asked for? Answer it with one concrete step.
+    *Narrowed 2026-11-13 by lessons 279 and 282: the gap pass is code over the cards, and it wakes an owner only for an ask;
+    the nudges are retired.*
 
 248. **Three living documents from one source.** The plan, the status page and the retrospective drifted apart when each was
     edited by hand. Good move: keep one results log as the source. The master plan holds everything, with a changelog of how
@@ -1763,6 +1766,127 @@ Loop numbers: since 2026-10-18 23:40: 515 merges (25.6/h), 310 land conflicts, 0
 262. **Guidance reaches a worker only through the brief it is started with.** The model-stack guide was added to every builder brief and every lead brief, so both read it. A subagent started from a session gets only the prompt its spawner writes, so it never saw the guide. Good move: when you spawn a subagent, paste the one-line pointer to the guide into its prompt, and check a sample of subagent prompts once a week with the toolbook pass.
 
 263. **Phases are a focus order, not locks.** Group the open work into clusters (models, control, speed, and so on), each with a milestone and a done-test the owner can watch by eye. Build the big picture first, then optimise, then confirm. Never eliminate options: rank the best bets first and keep the rest as fallbacks, not as dropped. The scarce resource (GPUs) mostly goes to the current focus: in-flight runs finish, and an off-focus run is queued only with its reason written down, not held by a hard lock. Idle hands do non-GPU prep for the next focus. Close a milestone, with the owner calling it by eye, before the next one becomes the main focus. New asks land in their cluster, not as interrupts. Every learning and repo technique is placed in a cluster or parked, so nothing is lost. The orchestrator's heartbeat checks the focus, not a gate. Good move: keep one phase file that every lead reads first, and name the focus in every check-in.
+264. **An A/B is judged only when both arms share seed, card, mode and shot, and the record names the graph in each.** From a lead's rotation (owner #2532, 2026-11-06): an arm that differs in any of those is not a comparison, so its winner means nothing. The record names the graph each arm ran, so the next reader can rerun it.
+265. **A misrouted or failed A/B output is moved to `_trash` in its run, never deleted; the note names the moved paths.** The move can be undone; a delete cannot. Same rule as never deleting the owner's work. 2026-11-06 (owner #2532).
+266. **Check the input exists before the cell starts, and dry-run each cell's inputs first.** Name what is missing in the post. From a lead's rotation (owner #2532, 2026-11-06): the take method folder was absent before a cell ran; the dry-run is what showed it.
+267. **Rip out, don't patch (owner #3368).** A step that keeps failing is removed and its job moved to the place that decides it, not patched again.
+268. **An intent's back-brief goes to the inbox as a one-line plan with dated needs.** From a lead's rotation, 2026-11-06 (owner #2532).
+269. **A nudge is not a reason to post a wait; post the next concrete step and do it.** Writing 'checking now' without acting is the failure. The plate build was the fix in one lead's rotation (2026-11-06, owner #2532). The method keeper's own repeated waits in an evening's nudges were the same failure.
+270. **A jam is a gap in the detector, not a fault in the lead.** 34 unacked-message jams in one afternoon (10 to 23 min each) came from an ack that only a manual step could give; the read itself is the ack. Fix the detector once (a toolsmith's job), and do not nudge the lead to ack by hand. Dead or exited runners with "(no log)" mean the launch recorded no log path: record it at launch, then a jam can be read. (The orchestrator's jam log, one afternoon, 2026-11-06.)
+271. **Check a jam's premise against the data before you propose a fix.** I asked to count read mail as acked; the hook already did that (median 0 min over 340 messages). The real delay was the orchestrator's late reads with no keystroke wake, which the detector now logs as its own kind. Count, median and a sample first; then the change. (Method keeper and toolsmith, 2026-11-06.)
+272. **Intent down in one brief, back-brief up in one line.** A mission brief names the result you deliver, why it serves the owner's outcome, the deadline, the main effort, what done means (artifact and acceptance test), the boundaries (run, version, budget, reserved owner actions) and the freedom left to the lead. The delivery lead answers with one back-brief line: understanding, first checkpoint, dependencies, risks. A transport ack is not a back-brief. (The design agent's review, adopted in the 2026-11-06 retro.)
+273. **A likeness number does not decide a card; the by-eye side-by-side does.** A candidate can score well on the number and fail on the head (0.527 against a pick at 0.596; the profile card failed by eye). Likewise a numeric seam score misled on masks: judge candidate masks on the real crop, with the candidates side by side. (From a lead's rotation, 2026-11-07.)
+274. **Run an offline check before the GPU, then let the live run test only what the offline check cannot see.** Offline means a copy of the world, plan() only, or a gate check with stubs. The live run is then the one check left, and it is named in advance. (From a lead's rotation, 2026-11-07.)
+
+**The week of 2026-11-07 to 11-13: what an outside assessment and the owner's corrections taught.** An outside model
+read a week of the owner's messages, the memory, the briefs and the code. Its diagnosis: "a system that remembers how it
+failed more reliably than it changes how it works." The lessons below are the changes in how it works.
+
+275. **A lesson is landed only when the path that runs makes it the default.** Four facts kept getting treated as one:
+    "we decided", "we wrote it down", "the normal tool does it", and "the running job used it". A board setting was decided
+    at one value while runs kept another, because the constant that recorded it had no reader: the real value sat in the
+    graph files. The same week the owner restated corrections that were already in memory, in the principles and in the
+    retros. More text closes the first two gaps and leaves the last two open, and the owner becomes the integration layer.
+    Good move: when a recurring defect is fixed, change the tool or default that runs, and link the owner's words, the
+    example and the commit to that change. A learning with no changed operation is a finding, still open as work. Do not
+    add another reminder, recap or memory paragraph about it.
+
+276. **Aligned by construction: fix the root, don't add a checking layer (owner #4356-#4359).** Stages contradicted each
+    other: the shot card said one thing, the 3D another, the prompt a third, the take a fourth. The first answer proposed four
+    checks (card self-check, plan vs built, board QA, take vs card). The owner rejected it twice: "rather than just checking,
+    we need a better workflow that ensures alignment from one stage to another", and "it's not about checking ... fix it at
+    the fundamental level so we don't have these problems and have to check it. That's monkey-patching a problem instead of
+    fixing it at the root." Good move: give each fact one writer, and make every later stage derive from what the earlier
+    stage actually built. Intent is written once with nothing a later stage can contradict. A picked setup and its built
+    result are the same object. The scene state lives in one timeline. The prompt is generated from the built scene, not
+    written beside it. A wrong fact is fixed at its source and everything after it regenerates; downstream text is never
+    hand-edited. Showing the owner each result's real sources is for their review and stays: that is not a check.
+
+277. **"Notes, not gates" does not license unlimited advisory machinery, and a slip does not earn a guard (owner #3926).**
+    Advisory checks still cost tokens, attention and upkeep, and renaming a gate as a note does not repair the data path.
+    One rotation built about eight tools in 45 minutes; a one-off slip was answered with a proposal for an always-on hook.
+    The owner: "we can end up spiraling and making a bunch of unnecessary stuff." Good move: a one-off slip gets a fix and
+    one learning line. A repeat that costs real work gets a root fix (lesson 276). Before adding any watcher, hook or check,
+    name the root fix it stands in for, and do that instead. This narrows lessons 259-261: they still turn gates into notes,
+    but the default is to need neither.
+
+278. **One review tool, refined, never a hand-built page (owner #3236, #3649, #4360).** Every comparison was published as a
+    new hand-made page with small thumbnails, made-up captions and missing inputs, though a review matrix already existed.
+    The owner: "we shouldn't have to redo this every time ... I thought we agreed we'd build a tool and reuse it and its
+    format." The cause: the comparison runner wrote sheets and never the matrix's manifest, so the easy path was "make a
+    page." Good move: the runner writes the review tool's own manifest from its execution records (intent, actual inputs,
+    effective settings, prompts, source 3D, outputs, timings), and the review link comes back automatically. Images are
+    large enough to judge. When the tool falls short, improve its one template. Review is always a link, never a file path.
+    An explainer page is fine; a second comparison renderer is not.
+
+279. **Status is code at zero tokens; an agent wakes only for an ask (owner #4362-#4365).** 30% of a week's token budget went
+    in one day. Two causes: big-context coordinators woken by notices (about 19 mail wakes an hour, each one re-reading a
+    context of several hundred thousand tokens to do nothing), and a staging agent that looped tiny coordinate edits through a look tool (653 turns, about
+    180M cache-read tokens for five shots). The owner wants an update every minute and no tokens spent on it. Good move:
+    execution events (a run finishing, a card moving) update the status board by code. An agent is woken once, by the event
+    that needs its judgement, and normal progress is batched into the owner's cadence. Tools get bigger in purpose and smaller
+    in output: one scene operation that places, renders and returns a link replaces dozens of nudges. The staging walk fell to
+    about 73K tokens a shot once it had scene operations (its pictures still needed work). Measure tokens per shipped result, not per call.
+
+280. **Memory by summary of summary is a game of telephone; keep the owner's words and read facts from their home
+    (owner #4366-#4369).** "You keep remembering bits and pieces of things in a lossy way, and then telephoning with yourself
+    you get lost and have conflicting thoughts, and the memory gets dumber and bloated." The assessment found 14% duplicate
+    learning rows, nine startup injectors that overlapped and got truncated, and at least eight stale or contradictory
+    instructions loaded as current. Good move: keep three things apart. Durable policy is a few principles. Current state is
+    data with links to real outputs, read from its one home. History is an archive, searchable and never loaded by default.
+    Where meaning matters, quote the owner verbatim; never paraphrase a paraphrase. When an instruction is superseded, remove
+    it from the active path in the same change (keep it in version history), so no agent has to rule on precedence.
+
+281. **A rotation must carry the latest exchange whole (owner #4374-#4379).** A fresh session lost the owner's last fifteen
+    messages, the ones that set the harness assessment's scope: "the last 15 messages are super important ... that is mission
+    critical." Several overlapping summaries were each capped, and the cap fell on the newest words. Good move: start a fresh
+    session from one current work packet (purpose, the owner's live constraints in their words, active work, the exact next
+    step, running jobs, open choices, links) plus the owner's latest messages verbatim and uncapped. Fold the other startup
+    summaries into it. Judge the packet by eye: the first reply after a rotation names the current work and takes the next
+    step without re-asking anything settled.
+
+282. **Small crew, one current assignment, one accountable owner per card (owner #3414-#3415, #3462, #3861, #3914).** With
+    many cheaper-model leads deciding in their own lanes, the work regressed: wrong-settings takes, conflicts, stalls. The
+    owner moved to a small crew: the strongest models make the choices and judge the results, a toolsmith builds tools from
+    their spec, and the other leads stay asleep, even for "their" lanes. A cheaper model gets an exact order (inputs, command,
+    output, done evidence), never "judge by eye" or "find the cause". Only one agent gives an execution command. A free
+    machine may stay free when there is no current work: idle capacity is not an order to invent work. This supersedes the
+    "every idle lead gets the next step" part of lesson 241 and the heartbeat nudges in lesson 247.
+
+283. **A live run runs itself; you fix the pipeline, not the run (owner #3650).** A run that was kept alive by hand
+    (queued jobs, priorities, retries, cuts, database writes) hid pipeline bugs and left shots missing. "Your job is to
+    monitor it and fix things that are wrong, but not run it yourself." Good move: anything the run cannot do on its own is a
+    pipeline bug, fixed in committed code and repinned. The next run then completes end to end by itself (one did: 236
+    shots, none missing, in about a day).
+
+284. **Test the owner's idea first, on shared inputs, against the baseline (owner #3898-#3899, #3951, #4154-#4159).** An
+    owner's idea (true batching) was closed as "no gain" after only a side variant was tried. A ten-picture test took over
+    two hours because each arm rebuilt the 3D and copied the whole run, then voided because its setting was never read.
+    And an arm was called the winner against the other arm while both were worse than the "before" picture. Good move: arm 1
+    is the owner's core idea in their words; variants come after. Arms share everything upstream of the one thing they
+    change. Prove the override is read on one cell before queueing the rest; byte-identical outputs from different settings
+    mean the arm did not apply. Judge each arm against the baseline it changes, full size, before ranking arms. Report "your
+    idea: not yet tested" rather than "dropped".
+
+285. **Library first, the crew decides the craft, and every solved case goes back into the library (owner #3755, #3957,
+    #3959, #4325, #4332).** A builder made a new unnatural pose while a matching motion clip already existed; code silently
+    swung cameras until 38 shots faced away from the lens; the staging agent edited JSON while the 3D tool and its library
+    sat unused. Good move: creative agents work in the live tool itself (one scene file holding the timeline) through named
+    operations. They look up existing setups, poses and props first and record each choice as reuse, adapt or new, with a
+    reason. Where the library has nothing they have free rein, recorded; a good result is saved back as a named entry, and
+    free work done twice becomes a tool. Code informs the crew with a note and a suggested default; it never makes a craft
+    call (framing, camera moves) on its own. First ask whether the agent had the tool and used it, before blaming its
+    guidance.
+
+286. **Rank harness work by improvement per effort; small steps, kept or reverted; progression, not regression
+    (owner #4363, #4370-#4373).** The harness had grown by accretion: the method document went from about 40 KB to about
+    190 KB in under four weeks, with dozens of coordination services and timers. The owner: the assessment "should figure out
+    the biggest problems and prioritize what to fix for maximum improvement first, with iterated progression rather than
+    regression." Good move: rank changes by gain per effort; take one, check its effect by eye on the live system, keep it or
+    revert it, then take the next. Finish connections in the systems that exist and retire each redundant layer as its
+    replacement lands; don't start parallel reform programs. Each retro reports per area what closed, what reopened and which
+    owner corrections repeated, so regression is visible. "Do it well once, then reuse and refine in code, rather than
+    starting from scratch every time" is the whole ethos.
 
 **Today's results (2026-10-20).**
 - A replay of real run histories through the scheduler simulator: GPU idle time with runnable work fell from 2.9 h to
@@ -2017,3 +2141,43 @@ check's 34 views on real projects.
 ## A count label counts what the user ticked, not what the view shows (learnings from a lead's rotation, relayed by a lead, 2026-11-02)
 
 - A count label must count what the user ticked, not what the current view shows. A label that says 6 when 8 were ticked hides the two that are off the view (#2735).
+
+## Generic learnings (scrubbed; lead and rig detail stays local)
+
+- method: a clean A/B is the same graphs except the one setting; compare warm vs warm.
+- method: judge takes by eye on frames against the board before any row goes in.
+
+- method: long work runs detached (`setsid nohup <cmd> > <log> 2>&1 &`) so a relaunch never waits on it; watch the log, and put the re-arm line in the note.
+
+- method: a waiter ends on a real event (a log line, a file appearing), not on a clock test. Bound every find or grep to one folder with a 120 s limit.
+
+- method: prove a route with a real copy before a card calls it done; a stream test over ssh is capped and is not the route.
+
+- method: count the live board, not the folder. Stale sidecars outside the collected tiles are not coverage.
+
+## Clocks, queues and retries (keeper learnings from a lead's rotation, 2026-11-06)
+
+- method: compare two runs at matched minutes from the start of the input, not wall-clock. Freeze the "before" once, at the pause, and compare every later run against that frozen copy.
+- method: a span-only clock hides ingest and cut time. Say which stages a clock covers before quoting it, and time the whole path once.
+- method: queue is the cost, not the GPU. One shared window once held 29 queued jobs while the boxes were idle. Check the box lock table before you blame a box for slowness.
+- method: a retry's throughput counts the done items only. Failures are reported on their own line, never folded into the rate.
+
+## Runners, partitions and residency (keeper learnings from a lead's rotation, 2026-11-06)
+
+- method: a runner's jobs are not Slurm jobs. "Waiting for the workstation" inside a runner is invisible to the queue view; ask the runner's owner, not the scheduler.
+- method: a partition is not a node target. Submit to the partition and let the scheduler pick the node.
+- method: capability (what a node can run) and residency (what is loaded on it now) are different facts. Keep them apart in every check and report.
+- method: packing numbers are measured on the box, not guessed.
+- method: never kill in-flight runner jobs to free a box. Ask the runner's owner for a release at a job boundary.
+
+## Shared checkouts and inputs (keeper learnings, 2026-11-06)
+- A shared checkout takes other lanes' commits. Name the commit hash, not the branch head, and commit only your own hunk.
+- "Wait until tomorrow" for a reversible edit is not a wait. Start it now.
+- Before you build on a brief's input, check that it exists on disk. A brief that names an input (a casting list, a source board) is a claim, not the file.
+- A runner script is not on PATH. Check its exit code and its output file before you call a run done.
+- Autosave commits take uncommitted files. Check the file's last commit (`git log -1 -- <file>`) before you commit anything.
+- A commit ask from the coordinator is a go for that exact set. Name the branch and each commit id in the reply.
+- A runner's jobs are not Slurm jobs until the flag is on. Check the squeue comment before you call a run dispatched.
+- A default with a deadline that passes with no reply is taken, and posted as taken.
+- A brief can name shots that do not match the run. Compare the shot list in the brief with the run's own record before you act on it.
+- Launch GPU work only through the runner script, and check its exit code and output file before you call the run done.

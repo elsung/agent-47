@@ -22,7 +22,7 @@ Vocabulary: assessment, check-in, alignment, experiment. Not test, eval or judge
 
 ## The six layers
 
-1. **Work list:** one ranked list, kept on GitHub Projects.
+1. **Work list:** one ranked list of Markdown cards; the board page is generated from them.
 2. **Compute:** GPUs are scheduled through Slurm; a run waits its turn and does not reach around the lock.
 3. **Routing:** a small, fast routing model in front of every model call routes it to a frontier model or a local one, and answers
    the yes/no and typed checks itself, so the model sees only what it is unsure of.
@@ -33,7 +33,7 @@ Vocabulary: assessment, check-in, alignment, experiment. Not test, eval or judge
 
 ## The stack
 
-One job each: GitHub Projects (what, in what order) -> Temporal (who does it, what happens next, and every loop) -> Slurm
+One job each: the board (what, in what order) -> Temporal (who does it, what happens next, and every loop) -> Slurm
 (which GPU, when). The table lives in the [README](README.md#the-stack-one-job-each).
 
 ## Where it came from

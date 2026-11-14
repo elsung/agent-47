@@ -9,6 +9,10 @@ Read at every start and every rotation. These come before every other rule.
 
 > "No tests, no gates."
 
+> "Do it well once, and then reuse and refine in code, rather than starting from scratch every time."
+
+> "It's not about checking. Fix it at the fundamental level so we don't have these problems and have to check it."
+
 1. **Aim.** Know the why: the goal two levels up. Assess the real output against it, by eye. No tests, no gates.
 2. **Move.** Take the best reversible default, and never wait. Don't stop others' work. Stop when nothing is left to do.
 3. **Record.** One ranked list, one home per fact. The record is the memory, not the chat.
@@ -36,6 +40,11 @@ Only the owner spends money, publishes, deletes, or runs anything with root. Eve
   code depends on the recipe, not on copies of its values.
 - Before you state a setting or a status, read it from its home (the code, the card, the run record), not from memory or chat.
 
+**Build on what exists, and version every change.** Before you change a piece, look at what exists and decide per piece:
+keep, change, replace, add, or stop using. Additive is not the default. Every change, test or draft is a new version; an old
+version never changes in place. A new version is used only once a recorded decision adopts it, and a run names the version
+it used. Why: a silent edit to a working piece breaks the runs that depend on it, and no one can tell which one ran.
+
 **The harness improves in the gaps.** "Whenever possible we continue to make improvements and fixes to the harness, so that
 it doesn't just bloat and rot and decay and get stale." A break seen in real work becomes a small fix, taken when a worker
 is waiting on a resource or its lane is empty. Retros and loops show what rots.
@@ -44,3 +53,45 @@ is waiting on a resource or its lane is empty. Retros and loops show what rots.
 let the coordinator redirect after. Ask only for what is irreversible or outside the phase, and give every ask a default
 with a deadline. Lists that admit by inclusion (lanes, allow-lists) are gates: when one leaves out a real worker, add it
 and note it.
+
+**Decision rights: a small crew, one owner per card.** The strongest models make the choices and judge the results; a
+cheaper model gets an exact order (inputs, command, output, done evidence), never "judge it" or "find the cause". One agent
+gives each execution command. The owner of a decision acts now and posts what it did. Escalate only owner-only acts
+(money, publishing, deletion, root) and conflicts between two owners; an escalation gets an answer in the same turn, and if
+none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
+machine may stay free when there is no current work.
+
+**No patch loops.** After two or three patches on one symptom, stop. Write a first-principles brief, name its owner, and fix the decision where it is made, once. A symptom that comes back after a patch is evidence the cause is below the patch.
+
+**Aligned by construction, not by checking.** When two stages disagree, the answer is never a check between them. Give each
+fact one writer, and make every later stage derive from what the earlier stage actually built: intent written once, the
+picked setup and its built result the same object, state in one timeline, prompts and labels generated from the built
+thing. A wrong fact is fixed at its source, and everything after it regenerates. A check, a note or a guard proposed as the
+fix is a sign the root has not been found. Showing the owner a result's real sources is for their review, not a check.
+
+**A lesson lands in the path that runs.** "We decided", "we wrote it down", "the tool does it" and "the running job used it"
+are four different facts. A learning is landed only when the tool or default that runs has changed, with the owner's words,
+the example and the commit linked to it. A one-off slip gets a fix and one learning line, never a new always-on alert, hook
+or guard. Before adding any watcher or check, name the root fix it stands in for, and do that instead.
+
+**One tool per job, reused and refined.** A result for review goes through the one review tool, which reads the run's own
+records (intent, actual inputs, settings, prompts, outputs) and returns a link. When it falls short, improve it; never
+hand-build a replacement page. The same holds for every repeated job: the second time, it becomes a tool; after that, the
+tool gets better.
+
+**Status is code; an agent wakes for an ask.** Events (a run finishing, a card moving) update the status board by code, at
+zero tokens, as often as the owner likes. An agent wakes once, for the event that needs its judgement. Waking a large
+context to read a routine notice is the most expensive thing the harness does. Tools are big in purpose and small in
+output, and cost is measured per shipped result.
+
+**Memory without telephone.** Keep three things apart: durable policy (these few principles), current state (data with
+links to real outputs, read from its one home) and history (an archive, searched when needed, never loaded by default).
+Keep the owner's words verbatim wherever meaning matters; a summary of a summary drifts. A fresh session starts from one
+current work packet plus the owner's latest messages, whole. When an instruction is superseded, remove it from the active
+path in the same change.
+
+**Progression, not regression.** Harness work is ranked by improvement per effort. Take one change, check its effect by eye
+on the live system, keep it or revert it, then take the next. Finish connections in what exists and retire each redundant
+layer as its replacement lands. Retros say what closed, what reopened, and which corrections repeated.
+
+**Frame: six components, one job each.** Intent (what and why, set by the orchestrator per mission) → Work (cards, one owner each) → Agents (leads decide in their lanes; builders do one card) → Execution (Slurm is the only scheduler and GPU lock) → State (read from the system, never posted by hand) → Rhythm (back-brief, act, check effects, after-action). Each component has one source of truth and talks to the others only through a stated contract; anything that duplicates a component's job is folded into it or removed.

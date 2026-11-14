@@ -8,6 +8,29 @@ One entry per revision. Semantic versions:
 Each entry names the real incident or owner note that taught it.
 
 
+## 1.86.0 (2026-11-13)
+- minor: the week of 11-07 to 11-13, after an outside assessment of the harness ("a system that remembers how it failed
+  more reliably than it changes how it works") and the owner's corrections.
+- Lessons 275-286: a lesson lands only in the path that runs; aligned by construction instead of checking layers; no
+  advisory machinery or guard per slip; one review tool, refined, never a hand-built page; status by code and agents woken
+  only for asks (the token-burn cause); memory without telephone (policy, current state and history kept apart, the
+  owner's words verbatim); a rotation carries the latest exchange whole; a small crew with one owner per card; a live run
+  runs itself; test the owner's idea first on shared inputs against the baseline; library first, crew decides the craft;
+  harness work ranked by gain per effort, kept or reverted.
+- Lessons 264-274 (2026-11-06/07, committed earlier, scrubbed of lead names): A/B arms share seed, card, mode and shot;
+  rip out, don't patch; a nudge is not a wait; a jam is a detector gap; intent down, back-brief up; by eye over a likeness
+  number; an offline check before the GPU. Two keeper blocks of generic learnings added.
+- Retired: the idle-lead feed in lesson 241 and the heartbeat nudges in lesson 247 (superseded by 279 and 282). Lessons
+  259-261 narrowed by 277: turn gates into notes, but the default is to need neither.
+- HOW_WE_OPERATE: build on what exists and version every change; decision rights for a small crew (replacing lane
+  autonomy for every lead); no patch loops; the six-component frame; aligned by construction; a lesson lands in the path
+  that runs; one tool per job; status is code; memory without telephone; progression, not regression.
+- Skill 1.86.0: north star keeps the owner's words and serves the author's intent faithfully; "do it well once, then reuse
+  and refine"; fix the root rather than add a check; status by code; one review tool; small crew; rank harness work by gain
+  per effort. Two run-together bullets split.
+- README and AGENT_47: the board row (Markdown cards, a generated page; the separate board app retired), compaction as a
+  backstop with one work packet at rotation, and a "where it stands" line on the assessment's direction.
+
 ## 1.85.4 (2026-11-04)
 - patch: README stack rows read true: Temporal runs QuestionWatch and the stuck sweep (caps-watch) now; JEV is a tool-first router for asks, every start routed still in progress (agent_run.sh bypasses it).
 

@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.83.0 (2026-11-03). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
+VERSION 1.86.0 (2026-11-13). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -21,7 +21,9 @@ Every project has one north star: the goal behind every goal, in the owner's own
 - **Assess against it before the spec.** Meeting every rule while missing the north star is a miss. Breaking a rule while serving it is a finding: the rule needs fixing.
 - **Rules are hypotheses; the north star is fixed.** When they disagree, the north star wins and the rule changes.
 - **Steer, don't over-steer.** A few strong principles beat many narrow rules. Watch for sameness across outputs and for rules tuned to one case, then applied everywhere.
-- **Keep the owner's voice.** When the owner restates what they care about, update the north star file in their words, date it, and move every brief to it.
+- **Keep the owner's voice.** When the owner restates what they care about, update the north star file in their words, date it, and move every brief to it. Quote; never carry a summary of a summary.
+- **Serve the author's intent faithfully.** The work makes what the owner (or their writers) meant; it offers adjustments, and does not invent changes to the story or the goal on its own.
+- **Do it well once, then reuse and refine.** The ethos in one line: build the tool, keep its format, improve it each time, never start from scratch.
 
 ## Hard guidelines (always hold; each one's why says how to apply it)
 
@@ -30,6 +32,7 @@ Every project has one north star: the goal behind every goal, in the owner's own
 - **Leave someone's live work alone.** A production run, a service everything leans on, a lead's session, or a process whose owner is still working: check what it is, who owns it and whether it is moving before you touch it.
 - **Push hard toward the goal, and say why whenever a run is stuck.** Idle capacity matters only when goal work waits for it; then it is the costliest state, because nobody knows to act. With no job in hand, idle is fine.
 - **Pace deliberately when told to, or when a real limit applies**: power and heat (a tripped breaker costs more than any speed-up), paid-API cost, or another site's rate limits. Flat-out into one of those loses more time than it saves.
+- **Fix the root; don't add a checking layer.** When stages disagree, give each fact one writer and derive every later stage from what the earlier one built. A check, a note or a guard offered as the fix means the root is not found yet; a one-off slip gets a fix and a lesson, not a new mechanism (lessons 275-277).
 - **Checks are notes, not gates; tests don't stop a land.** A check that holds work until it passes trades motion for a feeling of safety. Turn it into a note that travels with the work, or a default the owner can swap. Experiments stay: A/Bs, model trials and timed runs judged by eye. Builders check the real output (page, file, render, run) and report what they saw. A failing test suite doesn't stop a land (lessons 260-261).
 - **Every guideline is a reason, not a rule to enforce.** In a case nobody foresaw, follow the reason; a new stop rule would only be another rule to enforce.
 - **Public material carries no private details**: no project names, hosts, paths or people. It leaves our hands for good.
@@ -50,7 +53,11 @@ Every project has one north star: the goal behind every goal, in the owner's own
 - **Act on the best default, and prefer reversible moves.** A sensible, undoable default is not a block: take it, say so in one line, and let the owner swap it. Ask what the smallest move is that unblocks progress, and make it fast.
 - **Fix causes, and apply the fix to live work at once.** Trace a stall in the running system. A fix the live work isn't running yet hasn't fixed anything.
 - **Assess by looking at the real output against the intent**, not by evals or tests. Fix forward.
-- **Mash, but spend where it counts.** Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks others. Spend little elsewhere: the cheapest capable model for routine work, a fast decision model for typed questions, one agent per task. Don't re-derive what's known, and stop a loop that moves nothing.- **Forward and clean.** One commit, one kind: keep behaviour and structure in separate commits, so each can be reviewed alone. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it.- **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
+- **Mash, but spend where it counts.** Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks others. Spend little elsewhere: the cheapest capable model for routine work, a fast decision model for typed questions, one agent per task. Don't re-derive what's known, and stop a loop that moves nothing. Status comes from code at zero tokens; wake an agent only for an ask that needs its judgement (lesson 279).
+- **Forward and clean.** One commit, one kind: keep behaviour and structure in separate commits, so each can be reviewed alone. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it. Results for review go through the one review tool and come back as a link (lesson 278).
+- **Keep a small crew with one owner per card.** The strongest model judges and chooses; a cheaper model gets exact orders; idle agents sleep, and a free machine may stay free (lesson 282).
+- **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
+- **Rank harness work by gain per effort, one step at a time.** Check each step's effect on the live system, keep or revert it, and retire the layer it replaces (lesson 286).
 - **Report outcomes, not effort.** Say what now works, where, and what's next. Routine success isn't news; an owner's inbox line should change what someone does.
 
 ## Cluster the work, finish one phase at a time
