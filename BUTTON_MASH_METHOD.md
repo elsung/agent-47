@@ -1888,6 +1888,40 @@ failed more reliably than it changes how it works." The lessons below are the ch
     owner corrections repeated, so regression is visible. "Do it well once, then reuse and refine in code, rather than
     starting from scratch every time" is the whole ethos.
 
+287. **Removal has to run on events, like addition does (owner #4389, 2026-11-14).** An outside review of our loops found
+    every loop that adds (tools, briefs, cards, notes) ran by code on an event, while every loop that removes needed an agent
+    to remember it and ran on a calendar: "the shape is a trumpet, not a diamond." One compaction pass then moved 520 of 593
+    briefs to a done folder, parked 974 of 1,438 active cards, cut the tool book from 150 KB to 68 KB and retired 14 tools.
+    Good move: tie removal to the events that already fire. When a card closes, code retires what it made unnecessary; when a
+    roll (a production batch) ends, one agent spends a bounded pass cutting what the roll didn't use. Keep a size you watch
+    (tools, briefs, open cards, loaded text), so growth without a matching cut shows.
+
+288. **Tight, guided or loose: choose how closely each element is held (owner #4405, #4410).** Two image recipes were each
+    right about different things: one followed the 3D guide closely and kept the pose but copied the guide's mistakes; the
+    other drew more freely, corrected bad geometry and drew more natural hands, but invented details that later shots then
+    had to match. Good move: hold tight, by construction from one source, what the viewer tracks across a cut (who is there,
+    who says what, faces and costumes, which side of the line, what is open or held); guide the relations that only need to
+    read (heights, eyelines, framing, colour); leave loose what a model draws better than a guide (hands, skin, light,
+    texture, incidental dressing) until a later shot needs it to match. Let the director tighten or loosen per shot.
+
+289. **A test runs the real pipeline on current inputs (owner #4406).** A comparison tool reused the inputs stored with an
+    old run, so fixes that had landed never reached the test, and the old run's flaws (near-black set pictures, the wrong
+    scene's look frame) were judged as if they were the recipe's. Good move: a test regenerates its inputs through the
+    current stages with one named change, and every result shows its inputs at full size, so a bad input is seen before a
+    verdict is made on top of it. When a problem shows up in a test, say whether it lives in the pipeline or only in the test.
+
+290. **One master scene, worked by the crew from inside it, with cheats (owner #4407, #4408, #4409).** Building each shot's 3D
+    separately by code let people merge into walls, doors change state between shots and the room change width mid-scene.
+    Good move: one master set per scene with its state on a timeline; the staging agents block, stage and frame each shot from
+    inside that file, as a crew walks a set; a shot may cheat a mark, a height, a look or the dressing for its frame, keyed
+    only to that shot and logged, as long as the relations still read across the cut. Approximately consistent, not exact.
+
+291. **Start a session from the sources, not from a retelling (owner #4368, #4374).** Each session used to start from a
+    summary of the previous session's summary, and one rotation lost fifteen of the owner's messages because its recap was
+    written 22 minutes before the restart. Good move: a fresh session loads the principles once, a short core, one work packet
+    generated from the cards and running jobs, and the owner's latest words verbatim; memory is one home, read when an action
+    touches it; the recap is written at the moment of the restart.
+
 **Today's results (2026-10-20).**
 - A replay of real run histories through the scheduler simulator: GPU idle time with runnable work fell from 2.9 h to
   0, and deadlocks fell to 0.

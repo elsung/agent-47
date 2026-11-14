@@ -115,7 +115,12 @@ diamond. Every burst of new tools, briefs, cards and notes is followed by a pass
 finished and superseded out of the active path, so code rot and process rot are cleared on a rhythm, not when someone trips
 over them. Evolution, not drift: what works is kept and carried forward, what doesn't falls away, and the selection is made
 against the mission (the harness exists to build the product and make it better), not against whatever was asked last.
-Harness work is ranked by improvement per effort: take one change, look at its effect on the live system, keep it or revert
+Removal runs on events, like addition does: when a card closes, what it made unnecessary is retired; when a batch of work
+ends, a bounded pass cuts what it didn't use. Harness work is ranked by improvement per effort: take one change, look at its effect on the live system, keep it or revert
 it, then take the next. The same holds for what the harness produces: better and better, rather than a spaghetti of one-offs.
+
+**Tight, guided or loose.** Decide per element how closely the work holds to its source. Hold tight, by construction, what the
+audience tracks across a cut; guide the relations that only need to read; leave loose what a model does better than a guide,
+until something later needs it to match. The person directing the work moves the dial per shot.
 
 **Frame: six components, one job each.** Intent (what and why, set by the orchestrator per mission) → Work (cards, one owner each) → Agents (leads decide in their lanes; builders do one card) → Execution (Slurm is the only scheduler and GPU lock) → State (read from the system, never posted by hand) → Rhythm (back-brief, act, check effects, after-action). Each component has one source of truth and talks to the others only through a stated contract; anything that duplicates a component's job is folded into it or removed.

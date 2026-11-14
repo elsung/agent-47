@@ -10,6 +10,14 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+
+## 1.89.0 (2026-11-14)
+- Lessons 287-291: removal runs on events like addition (the trumpet, not the diamond); tight, guided or loose per element;
+  a test runs the real pipeline on current inputs; one master scene worked from inside, with logged cheats; start a session
+  from the sources, not a retelling.
+- HOW_WE_OPERATE: "Tight, guided or loose"; removal on events added to "Evolve; don't drift, bloat or rot".
+- README: where it stands after the first improvement rounds landed.
+
 ## 1.88.1 (2026-11-13)
 Wording, applying 1.88.0 to the method's own text. The principles file, the skill, the worker-brief template and the owner-style
 page are rewritten from always/never into the guidance shape (lean, reason, usual default, when to depart). The skill's hard
