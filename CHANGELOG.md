@@ -9,6 +9,12 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+
+## 1.88.0 (2026-11-13)
+- HOW_WE_OPERATE: "Guidance, not absolutes": principles, memories and briefs are guidance with reasons; always/never wording
+  overfits into literal tripwires and conflicts; lean + reason + default + when to depart; conflicts resolve through reasons
+  and the mission. Today's two new principles reworded in that spirit.
+
 ## 1.87.0 (2026-11-13)
 - HOW_WE_OPERATE: "Right by construction" merges "No patch loops" and "Aligned by construction" into one architectural
   principle: find why at the level of principle and fix it where it's decided, so the mistake can't be made; patches, guards

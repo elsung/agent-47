@@ -18,6 +18,9 @@ Read at every start and every rotation. These come before every other rule.
 
 > "Expand, then compact. We need reduction and refinement too, of the system itself and of how it operates."
 
+> "Rather than rules, more guidances ... whenever we say it always has to be this way or it's never that way, it creates
+> problems and conflicts ... it becomes literal and becomes all kinds of problems, confusions."
+
 1. **Aim.** Know the why: the goal two levels up. Assess the real output against it, by eye. No tests, no gates.
 2. **Move.** Take the best reversible default, and never wait. Don't stop others' work. Stop when nothing is left to do.
 3. **Record.** One ranked list, one home per fact. The record is the memory, not the chat.
@@ -66,17 +69,24 @@ gives each execution command. The owner of a decision acts now and posts what it
 none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
 machine may stay free when there is no current work.
 
+**Guidance, not absolutes.** Write and read every principle, memory and brief as guidance with its reason, not as a rule
+that fires on a word. "Always" and "never" overfit: they turn into literal tripwires ("but you said never to do this"),
+collide with each other, and make the system fragile. Say what to lean toward, why, the usual default, and what would justify
+a different move; then let the model's judgement weigh the case in front of it. When two pieces of guidance seem to conflict,
+go back to their reasons and the mission, not to the stronger wording. Recommendations to the owner work the same way: a lean
+with its reason and the cases where the other way wins, not an always-or-never.
+
 **Right by construction: find the principle, don't duct-tape the symptom.** This is an architectural principle, for the
 harness and for everything it builds. When something doesn't do what it's meant to, step back and ask why at the level of
 principle: which decision, made where, produces the wrong thing? Fix it there, once, so the mistake can't be made, and remove
 the workarounds the fix makes unneeded. Give each fact one writer, and make every later stage derive from what the earlier
 stage actually built (intent written once, the picked setup and its built result the same object, state in one timeline,
 prompts and labels generated from the built thing); a wrong fact is fixed at its source and everything after it regenerates.
-Never layer on top: a patch, a guard, a check between stages or a "we'll check it afterwards and fix it" is a crutch, and
-proposing one as the fix is a sign the root hasn't been found. After two or three patches on one symptom, stop and write a
+Lean hard away from layering on top: a patch, a guard, a check between stages or a "we'll check it afterwards and fix it"
+is usually a crutch, and proposing one as the fix is a sign the root hasn't been found yet. After two or three patches on one symptom, stop and write a
 first-principles brief; a symptom that comes back after a patch means the cause is below the patch. Assessments still have
-their place: looking at real output by eye, against the intent, to learn and steer. They are never the safety net that lets
-a wrong setup ship. Showing the owner a result's real sources is for their review, not a check.
+their place: looking at real output by eye, against the intent, to learn and steer. They are for learning, not a safety net
+that lets a wrong setup ship. Showing the owner a result's real sources is for their review, not a check.
 
 **A lesson lands in the path that runs.** "We decided", "we wrote it down", "the tool does it" and "the running job used it"
 are four different facts. A learning is landed only when the tool or default that runs has changed, with the owner's words,
@@ -106,6 +116,6 @@ finished and superseded out of the active path, so code rot and process rot are 
 over them. Evolution, not drift: what works is kept and carried forward, what doesn't falls away, and the selection is made
 against the mission (the harness exists to build the product and make it better), not against whatever was asked last.
 Harness work is ranked by improvement per effort: take one change, look at its effect on the live system, keep it or revert
-it, then take the next. The same holds for what the harness produces: better and better, never a spaghetti of one-offs.
+it, then take the next. The same holds for what the harness produces: better and better, rather than a spaghetti of one-offs.
 
 **Frame: six components, one job each.** Intent (what and why, set by the orchestrator per mission) → Work (cards, one owner each) → Agents (leads decide in their lanes; builders do one card) → Execution (Slurm is the only scheduler and GPU lock) → State (read from the system, never posted by hand) → Rhythm (back-brief, act, check effects, after-action). Each component has one source of truth and talks to the others only through a stated contract; anything that duplicates a component's job is folded into it or removed.
