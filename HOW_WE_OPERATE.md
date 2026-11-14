@@ -69,6 +69,18 @@ gives each execution command. The owner of a decision acts now and posts what it
 none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
 machine may stay free when there is no current work.
 
+**Quality and progress toward the intent, not counts or pass/fail.** "We must focus on quality and progress over
+quantitative counts ... the whole ethos is to say f*** tests and binary. We need quality and flexibility and options and drive
+towards the intent of the user." Judge the work, and every assessment of it, by how far it moves the real output toward what the
+user meant: better or worse, in which direction, and what options it leaves open. Counts (files retired, rows closed, checks
+passed, lines cut) and binary labels (pass/fail, done/not done, landed/not) are background at most. Used as the measure they get
+gamed and they hide quality: a count rewards cutting a piece that works or adding a hollow one, and a pass/fail hides how close
+the work came and which way it is heading. Describe state as quality and direction (what it does now, how well, against which
+intent, what is open), with the real output as the evidence. An assessment, an independent model's review included, reports what
+got better or worse for the intent and offers options with a lean, not a verdict or a score. Refinement, not reduction: a
+system improves when each piece does its job better and more clearly. Fewer pieces often follows, but it is not the aim, and
+sometimes the clearer system has one piece more.
+
 **Guidance, not absolutes.** Write and read every principle, memory and brief as guidance with its reason, not as a rule
 that fires on a word. "Always" and "never" overfit: they turn into literal tripwires ("but you said never to do this"),
 collide with each other, and make the system fragile. Say what to lean toward, why, the usual default, and what would justify

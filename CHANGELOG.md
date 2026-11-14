@@ -11,6 +11,12 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.90.0 (2026-11-14)
+- Quality and progress toward the intent, not counts or pass/fail (owner note: "focus on quality and progress over
+  quantitative counts ... f*** tests and binary ... quality and flexibility and options and drive towards the intent of the
+  user"). Taught by a reconstruction pass and its brief that measured success by files retired, and a view that labelled every
+  request with a binary state. Refinement, not reduction.
+
 ## 1.89.0 (2026-11-14)
 - Lessons 287-291: removal runs on events like addition (the trumpet, not the diamond); tight, guided or loose per element;
   a test runs the real pipeline on current inputs; one master scene worked from inside, with logged cheats; start a session
