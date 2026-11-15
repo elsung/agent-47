@@ -24,6 +24,15 @@ Each entry names the real incident or owner note that taught it.
   workflow that restarted services, and a second clock for a check a timer already ran, are retired.
 - A retry cap is a decision to die. An activity capped at three attempts turned one missing path entry into every rotation
   workflow ending for five days. Environment faults retry without limit and show on the status board until they heal.
+- A card is read with its records, and a job carries its card from start to end (owner note: "the card system is obviously
+  not up to date ... we have not fixed the telephone lossy problem with jobs"). A card's column and next line were prose
+  only an agent's memory updated, and no start of work carried its card, so built work stayed "next" and was ordered again.
+  Now the door that starts a job writes its start and its end with the card, a card is shown with what its work left on
+  record (briefs, builders, commits, pages, running jobs), and a session start, an order and a message naming a card are
+  shown what already exists. The card's column stays a judgement; what the work did is read, never posted by hand.
+- Two agents were once started on one brief in one working tree (a relaunch that did not stop the first). The second found
+  the first by its edits, told the one who had launched both, and kept one of the two tools they had each built. A launch
+  that replaces a run stops that run in the same command.
 - README: the stack table reads true for the workflow engine and names the init system's job.
 
 ## 1.90.0 (2026-11-14)
