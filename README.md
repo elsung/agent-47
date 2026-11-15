@@ -4,6 +4,16 @@ Always on target. Loose tolerances, cheap, lasts decades.
 
 ## What it is
 
+> "Agent 47 is supposed to be our system for building [our product], and other things afterwards. It's a system for guiding
+> and managing agents to aggressively, fervently push towards our goals and expand and refine the system, continuously
+> learning and iterating and progressing, not regressing (hence retrospectives), and clear memory for cohesive flows."
+> (the owner, 2026-11-14)
+
+So the harness is judged by four things: does the work move hard toward the goal; does the system expand and then refine
+(not only grow); does it learn, so each week is better than the last and nothing that worked regresses (retrospectives feed
+the tools and principles); and does its memory stay clear, so work flows on from one session and one agent to the next
+without telephone.
+
 Agent 47 is a harness for running many AI agents on real work. An orchestrator leads a crew of agents, each in a long-running
 thread, and they share tools instead of each writing their own one-offs. It runs on the
 [Button Mash Method](BUTTON_MASH_METHOD.md): push hard toward the goal behind the goal, with assessment loops (look at the
