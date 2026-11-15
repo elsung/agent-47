@@ -53,7 +53,8 @@ Board  ->  Temporal  ->  Slurm
 | System | Its one job | The loops it runs | State |
 |---|---|---|---|
 | **Board** | What to do, in what order. The owner steers here. Local Markdown card files are the one store; the board page is generated from them by code, never written by hand; GitHub is the off-site mirror. | Ranking, bundling cards by goal, showing what lingers, the owner's run / pause / stop | live: Markdown cards (the separate board app is retired); generated board page in progress |
-| **Temporal** | Who does it, and what happens next. Work survives crashes and restarts. | Rotation (continue-as-new), questions with deadlines, the tool flywheel, the daily review, the stuck check | live: rotation workflows for every thread; QuestionWatch (question deadlines) and the stuck sweep (caps-watch) run now |
+| **Temporal** | What waits, and what happens next. Anything with a deadline, a timer or a signal that has to survive a restart. | Rotation (one workflow per thread: it wakes at each turn end and on its own timer, and calls one plain decision function), questions with deadlines. The workflow holds only the wait; every rule and effect is plain code it calls, so the rules can change at any moment without breaking a running workflow | live after its second build: the first held the rules in workflow code and capped retries, and died silently twice in a week; its failures are now lines on the status board |
+| **The init system (systemd)** | Keeping a process alive, and running a stateless script on a clock. | Services that restart themselves; timers for sweeps and exports | live; a failed unit is a status line |
 | **The drive (goal record + stop hook, + the orchestrator)** | What keeps the system moving. The goal is kept in a record with its active flag and state; a stop hook holds the session until the done-condition holds, and a session-start hook carries the goal across rotation. The orchestrator's heartbeat picks the next step. | Pressing toward the goal; picking the next step; refusing to stop early; carrying the goal across fresh contexts | live: goal record, stop hook and session-start carry-over |
 | **Slurm** | Which GPU, and when. | GPU jobs in rank order, the owner first; job timing | live on all five boxes (one workstation GPU and four Spark-class nodes) |
 | **JEV → Claude Code / omp** | Which tool or model answers. JEV is our small local routing model. | Tool first; omp models (MiniMax, GLM, local open models) for research and reading; Claude for orchestrating and building. The orchestrator sets each lane's budget; every call lands in the ask log | tool-first router live for asks; every start routed: in progress (agent_run.sh still bypasses it), lane budgets route a new job one tier down past 100% |
@@ -134,6 +135,13 @@ list is empty or the budget is spent, and it never invents work to stay busy.
   (always/never/must 575 to 282).
 - **Built:** rotation at the end of a turn for every thread; the GPU scheduler's controller and first lane; parked work
   is never handed out; idle agents holding for a named reason aren't pinged; a question router that tries a tool first.
+- **2026-11-14: the stack itself was assessed, engine by engine.** The durable workflow engine had been judged twice by
+  how it happened to be used (once as "idle, stop it", once as "run everything on it") and never on its merits. Read from
+  its own logs, it had rotated threads within a minute of their line for five days, then failed for three reasons that
+  were ours, not the engine's: rules written into workflow code and edited under running workflows; a retry cap that
+  turned a missing path entry into dead workflows; and nothing that started a missing workflow or said one was missing.
+  The rebuild keeps the engine for what it is for (waits that survive restarts), moves every rule into one plain function
+  it calls, and gives the process-keeping and clock jobs back to the init system.
 - **In progress:** the rest of the GPU lanes; the ranked work list on GitHub Projects; ~1,600 old rules collapsed into the
   five principles.
 - **Next:** the durable conductor (one lead first), the tool flywheel and daily reviews on it, memory in tiers.

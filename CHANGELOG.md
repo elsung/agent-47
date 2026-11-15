@@ -11,6 +11,21 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.91.0 (2026-11-14)
+- Judge an engine on its merits and on how it fails, not on how it happens to be used (owner note: "why temporal? or why
+  not? ... evaluate our whole stack and system and improve it to achieve what we want as stated in the repo"). Taught by two
+  reviews in a row that skipped the question: one proposed stopping the workflow engine because it sat idle, the next assumed
+  it should run everything.
+- A durable workflow holds the wait, not the rules. Rules written into workflow code were edited under running workflows,
+  which then failed every step for six days with nothing on any page. The workflow now only waits and calls one plain
+  decision function; a change to its own sequence is a new workflow type.
+- One engine per kind of job: the workflow engine for waits that have to survive a restart (rotation, questions with
+  deadlines); the init system for keeping a process alive and for stateless clock jobs; the GPU queue for GPU order. A
+  workflow that restarted services, and a second clock for a check a timer already ran, are retired.
+- A retry cap is a decision to die. An activity capped at three attempts turned one missing path entry into every rotation
+  workflow ending for five days. Environment faults retry without limit and show on the status board until they heal.
+- README: the stack table reads true for the workflow engine and names the init system's job.
+
 ## 1.90.0 (2026-11-14)
 - Quality and progress toward the intent, not counts or pass/fail (owner note: "focus on quality and progress over
   quantitative counts ... f*** tests and binary ... quality and flexibility and options and drive towards the intent of the
