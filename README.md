@@ -142,6 +142,14 @@ list is empty or the budget is spent, and it never invents work to stay busy.
   turned a missing path entry into dead workflows; and nothing that started a missing workflow or said one was missing.
   The rebuild keeps the engine for what it is for (waits that survive restarts), moves every rule into one plain function
   it calls, and gives the process-keeping and clock jobs back to the init system.
+- **2026-11-14: eleven reviews in four days, and one list of what became of them.** Each review ended in a ranked plan,
+  and each next review started from the last report's text. Collected into one list and checked against the code and the
+  running system, the plans held about 240 recommendations: about three in ten landed, about half not started, the rest partly
+  done, on a branch, or ruled out; one was merged but not yet true of the running system. The list is now generated: each row carries the
+  command that shows its state, so the next review starts from what is open. The same day's reviews set the shape the
+  harness is moving to: one orchestrator, executors that take one order and end, status worked out from records by code,
+  and a learning loop that ends in a tool that is called, checked by code a week later
+  ([PRACTICES](PRACTICES.md) 13 to 15).
 - **In progress:** the rest of the GPU lanes; the ranked work list on GitHub Projects; ~1,600 old rules collapsed into the
   five principles.
 - **Next:** the durable conductor (one lead first), the tool flywheel and daily reviews on it, memory in tiers.

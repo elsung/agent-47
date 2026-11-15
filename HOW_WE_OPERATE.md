@@ -69,6 +69,19 @@ gives each execution command. The owner of a decision acts now and posts what it
 none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
 machine may stay free when there is no current work.
 
+**One orchestrator; executors that end.** The shape that stays simple is one strong model that decides, orders and judges,
+and executors that each take one order, do it in their own branch, write a short done note and stop. A second standing lead
+that the first one talks to by message is not a helper, it is a second context re-reading itself on every message, and the
+layers added to keep the two in step (mail, nudges, watchers) become the work. Start a second orchestrator only when a
+second stream is truly live, and end it with the stream. What prevents a cheap executor's silly decision is the order, not
+the model: say who the result is for and what goes wrong for them if it is wrong, name the exact inputs, say what to leave
+alone, and ask for evidence from real data in the done note.
+
+**Pace the tokens.** Every call re-reads the whole window, so a session's cost grows with the square of its length and
+the expensive thing is a large window doing small things: lookups, relays, routine notices. Keep the orchestrator's turns
+short (a look, an order, an answer), send anything that needs more than a handful of lookups to an executor that returns
+thirty lines, and rotate at a natural break rather than at a number. Measure tokens per finished card, not per call.
+
 **Quality and progress toward the intent, not counts or pass/fail.** "We must focus on quality and progress over
 quantitative counts ... the whole ethos is to say f*** tests and binary. We need quality and flexibility and options and drive
 towards the intent of the user." Judge the work, and every assessment of it, by how far it moves the real output toward what the
@@ -105,6 +118,21 @@ are four different facts. A learning is landed only when the tool or default tha
 the example and the commit linked to it. A one-off slip gets a fix and one learning line. A new alert, hook or guard for it
 costs every later session and seldom fires again. Before adding any watcher or check, name the root fix it stands in for, and do that instead.
 
+**The learning loop ends in code, and code checks that it did.** A learning travels one road: it is seen in real work (the
+owner corrects the same thing twice, a strong model does the same job by hand in many sessions, a run ends with something to
+judge), it becomes one card that names the change and a check a machine can run, an executor builds the change into the
+path that runs, and the next reading of the work shows whether the hand-work stopped. Code spots the repetition and code
+reads the result; a model is used once, to decide which few learnings are worth a card. A retrospective that ends in a
+document has not finished: we wrote 750 of them, one per session rotation, and of fifteen learnings traced one had changed
+anything. A tool nobody calls has not landed either. Put the tool where the work already passes (the start packet, the
+order, the output of the command people run anyway) before relying on a menu to be read.
+
+**A plan is a list of checks, read again each time.** Every review ends in a ranked plan, and a plan kept as prose is
+forgotten by the next review. Keep each recommendation as one row with the command that shows whether it is in the code
+and the command that shows whether the running system behaves that way. Run the commands whenever the list is shown. Then
+"what happened to that work" is a reading, the next review starts from what is still open, and a change that was merged
+but never took effect (a service not restarted, a setting not installed) shows up as exactly that.
+
 **One tool per job, reused and refined.** A result for review goes through the one review tool, which reads the run's own
 records (intent, actual inputs, settings, prompts, outputs) and returns a link. When it falls short, improve it; a hand-built
 replacement page is a second tool to keep and loses the records the first one reads. The same holds for every repeated job: the second time, it becomes a tool; after that, the
@@ -114,6 +142,9 @@ tool gets better.
 zero tokens, as often as the owner likes. An agent wakes once, for the event that needs its judgement. Waking a large
 context to read a routine notice is the most expensive thing the harness does. Tools are big in purpose and small in
 output, and cost is measured per shipped result.
+A status is worked out, not written: a card's column that someone must remember to update holds what they last remembered,
+so one small pass recomputes "in motion", "has an output, waiting for a judgement" and "quiet" from the records the work
+already leaves, and only the judgements (done, blocked, parked, waiting on the owner) are written by whoever made them.
 
 **Memory without telephone.** Keep three things apart: durable policy (these few principles), current state (data with
 links to real outputs, read from its one home) and history (an archive, searched when needed, kept out of what loads at start).

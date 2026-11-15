@@ -11,6 +11,23 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.92.0 (2026-11-14)
+- The learning loop ends in code, and code checks that it did (owner note: "a system that continues to become more and
+  more code supported with tools ... learning from the stuff that the smart models do"). Taught by counting: 750
+  per-rotation retrospectives and one changed thing in fifteen traced learnings; a daily miner whose list led to wrappers
+  nobody called; built tools waiting uncommitted. PRACTICES 13: the road a learning travels, the finder grouped by purpose,
+  retrospectives at a run or phase end only.
+- A plan is a list of checks, read again each time (owner note: "what happened to all the rest of the work?"). Eleven
+  reviews' plans became one generated list of about 240 rows, each with the command that shows whether it is in the code
+  and whether the running system behaves that way. One change turned out merged but not running, because the process
+  that reads it had not been restarted.
+- One orchestrator; executors that end. A second standing lead was the largest cost line and none of its turns in its
+  longest session came from the owner. PRACTICES 14: the six-part order, tried on three models; the order mattered more
+  than the model.
+- Pace the tokens: cost grows with the square of a session's length; a band, not a line, for rotation; tokens per finished
+  card as the one number. PRACTICES 15.
+- A status is worked out, not written: one pass recomputes a card's motion from the records; only judgements are written.
+
 ## 1.91.0 (2026-11-14)
 - Judge an engine on its merits and on how it fails, not on how it happens to be used (owner note: "why temporal? or why
   not? ... evaluate our whole stack and system and improve it to achieve what we want as stated in the repo"). Taught by two

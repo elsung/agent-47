@@ -166,3 +166,81 @@ The cheap model's mechanical PASS was the misleading number: it passed the gates
 - One brief is one sample.
 
 Record the decision with the owner's words and the evidence file, so it can be revisited.
+
+## 13. The learning loop: from a repeated action to a tool that gets used
+
+The pieces of a learning loop are easy to build and we built each of them more than once: a retrospective at every session
+rotation, a daily miner of repeated shell commands, a daily nudge to the toolsmith, a weekly list of unused tools. What we
+got was text. The retrospectives were not read, the miner's list led to wrappers nobody called, and built tools waited
+uncommitted for a go-ahead. The loop only closed where a tool was put in the path the work already took.
+
+**The road a learning travels**
+
+| Step | Who | What it produces |
+|---|---|---|
+| Seen | Code, at no token cost: the owner's repeated corrections counted by subject; a weekly pass over the transcripts that groups hand-run commands by what they are for; a run or phase ending | A short ranked list |
+| Chosen | The orchestrator, once a week, a few at most | One card each: the case, the change to the path that runs, and a check a machine can run |
+| Built | An executor, from an exact order that names the existing tool to extend | A branch and a done note with evidence from real data |
+| Landed | The orchestrator reads the done note and the diff | The change is merged, and wired where the work passes |
+| Checked | Code, the next week | Did the hand-work drop? Is the tool called? If not, the card reopens or the tool is retired |
+
+**What we learned building the finder**
+
+- **Group by purpose, not by syntax.** Grouping commands by their shape says "an inline script was run more than 3,000 times" and
+  leads to a generic wrapper for inline scripts. Grouping by the data a command reads or the system it asks says "the job
+  database was queried by hand 1,300 times in 80 sessions although a tool reads it", which is a thing you can fix.
+- **Let the tools answer "does one exist".** Match hand-work to tools by the data both touch, read from the tools' own
+  source. A hand-kept table of "this shape is covered by that tool" goes stale within a week.
+- **A tool that exists and is not used is a finding about discovery, not about the model.** Models reach for the shell they
+  know. The tools that were used thousands of times were the ones a hook, a start packet or an order put in front of the
+  agent. A menu of 200 tools was consulted a few dozen times in two weeks.
+- **Extend first.** When hand-work continues beside a well-used tool, the tool is missing a question. Add the question to
+  the tool; don't build a neighbour.
+- **Retire on the same rhythm.** A tool with no call, no logged run and no wiring in two weeks moves out of the active
+  folder. In our case that was about three in ten.
+
+**Retrospectives.** Keep the one that has something to judge: at the end of a run or a phase, generated from the records,
+read once by the orchestrator, ending in at most three cards. A correction from the owner is captured in their words at the
+moment it is made and needs no retrospective. A retrospective per session rotation measures the rotation, not the work;
+retire it.
+
+## 14. An order a cheap executor does right
+
+We gave the same two written orders to three models of different strength and price. With an exact order all three made
+nearly the same change. On the card with a judgement call inside it, the card's own suggested fix was wrong, and all three
+saw that, because the order said what the result was for. The model mattered less than the order.
+
+The order has six parts:
+
+1. **Why.** The card in its own words, then who reads the result and what goes wrong for them if it is wrong.
+2. **Inputs.** The exact file and function, what the data looks like, a real thing to read.
+3. **Do.** The exact change. Where a choice is wanted, say the choice is theirs and say again what the result is for.
+4. **Don't.** The edges: other files, live systems, commits, new modules.
+5. **Output.** The edits in a branch and a done note of at most thirty lines: what changed, each choice the order did
+   not dictate, the evidence.
+6. **Done evidence.** One command to run on real data, with its real output pasted into the note.
+
+Open with two lines: "you get this one order, you do it, you write the done note, you stop" and "nobody will answer
+questions; take the sensible default and say which." Deny the executor the ability to start helpers. Results come back
+as the job's end record and the done note, not as a message someone has to read and relay.
+
+Evidence on real data also catches a weak order: when the real data never exercised a branch of the change, two of three
+executors noticed and said so in the note.
+
+## 15. Where the tokens go
+
+Measured over a week of a busy harness: the strongest model was 86% of the cost and the cheap executors 5%, although the
+cheap executors made 30% of the calls. Making executors cheaper saves almost nothing. The cost is large windows doing
+small things.
+
+- A second standing lead cost more than the orchestrator. In its longest session none of its turns was started by the
+  owner; most of its calls were small lookups, each re-reading its whole window; half of a day's messages were the two
+  leads talking to each other.
+- Helpers started from inside a strong model's window inherit that model and have no size limit. Start them through one
+  door that names a cheaper model, sets a limit and writes a record.
+- Lowering the rotation line helps less than it seems (single digits of the total) and costs flow if a rotation does not
+  carry on cleanly. A band works better than a line: past a lower mark, rotate at the next natural break; keep the old
+  line as the outer edge. Tighten only after several rotations in a row needed no help.
+- Anything injected on every message or every command is paid for on every later call in that session. Show a subject
+  once per session.
+- Watch one number: tokens per finished card.
