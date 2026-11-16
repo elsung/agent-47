@@ -11,6 +11,14 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.95.0 (2026-11-16)
+- Fresh-context loop bodies, failure edges and judgement nodes refine the learning loop; taught by the repeated-loop research request and its missing source report, which remains an evidence limitation.
+- Executors outlive their dispatch timers; taught by a oneshot ending and killing its executor.
+- Refined event driving with visible pause, slow and resume; taught by four hours of idle completion asks and the later driver-controls incident.
+- Independent model lanes preserve product holds while routing harness work around them; taught by a local-model hold affecting unrelated work.
+- Explicit typed-choice routing escalates uncertainty; taught by the cheap-decision-path owner decision.
+- Rotation queues one public-learning update and refines existing principles first; taught by the owner asking whether harness learnings reach the public method.
+
 ## 1.94.0 (2026-11-16)
 - Tracking is not driving: events that need a judgement wake an idle orchestrator by themselves, batched, from the one
   timer that already runs. Taught by finished jobs sitting about four hours until the owner asked, and by a driver whose

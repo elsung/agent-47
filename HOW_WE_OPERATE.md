@@ -27,6 +27,10 @@ Read at every start and every rotation. These come before every other rule.
 4. **Tool.** Do a thing with a model once or twice, then make it a tool.
 5. **Learn.** Fix what caused the mistake, not with a new rule. Every review feeds tools, principles and memory.
 
+Use typed-choice decisions for cheap routing when the choices are explicit; uncertainty or no fitting choice
+escalates to a stronger model. Keep local model lanes independent: a product hold stays in effect while harness
+work routes around it through an available lane, rather than silently lifting the hold or stalling unrelated work.
+
 **Before you write or approve any check, script, hook, brief or step, ask: what happens on "no"?**
 If the answer is stop, refuse, exit, or wait with no deadline, it is a gate. Rewrite it as:
 a NOTE (what was seen, and where the owner and the next agent will read it), a DEFAULT (the sensible next move),
@@ -155,7 +159,10 @@ path that runs, and the next reading of the work shows whether the hand-work sto
 reads the result; a model is used once, to decide which few learnings are worth a card. A retrospective that ends in a
 document has not finished: we wrote 750 of them, one per session rotation, and of fifteen learnings traced one had changed
 anything. A tool nobody calls has not landed either. Put the tool where the work already passes (the start packet, the
-order, the output of the command people run anyway) before relying on a menu to be read.
+order, the output of the command people run anyway) before relying on a menu to be read. Each rotation also
+folds new incident lessons into the public principles through one queued executor, refining existing guidance first.
+A repeatable loop gives each body fresh context from durable records, explicit failure edges and a judgement node
+that chooses continue, revise or finish. Repeating the same prompt without assessing progress is not learning.
 
 **A plan is a list of checks, read again each time.** Every review ends in a ranked plan, and a plan kept as prose is
 forgotten by the next review. Keep each recommendation as one row with the command that shows whether it is in the code
@@ -182,7 +189,9 @@ output to judge, a failed dependency, a mission with ready work and nothing runn
 itself, batched to one wake per quiet period and zero tokens in between. A goal loop that once kept work moving was
 replaced by goal tracking; the tracking was built and the driving was not, and finished work sat for hours until the
 owner asked. Put the driver in the one place that already runs every minute, and check that the timer calls it: once
-the code existed but the timer called a narrower function that skipped it.
+the code existed but the timer called a narrower function that skipped it. The driver exposes pause, slow and
+resume with visible effective state; quiet work must be distinguishable from stopped work. A timer owns its short
+dispatch pass, not the lifetime of the executors it launches: ending a oneshot must leave their work alive.
 
 **One writer per act, and one safe path for keys.** Background code types into a window a person uses only through one
 path: the window idle, the input box empty, its own text verified before Enter. Removing a harmful action must keep the
