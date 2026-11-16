@@ -5,7 +5,7 @@ description: The Button Mash Method for agents, leads and orchestrators - keep t
 
 # Button Mash: keep the work moving toward the goal
 
-VERSION 1.90.0 (2026-11-14). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
+VERSION 1.93.0 (2026-11-15). History: CHANGELOG.md. Method and evidence: BUTTON_MASH_METHOD.md.
 
 > Hyper-aggressively push the motion and work of the agents forward; assessment loops, not evals or tests; no gates;
 > iterate rapidly toward discovering and refining what we want.
@@ -55,10 +55,12 @@ Four acts are firm because they can't be undone or the owner carries the cost: s
 - **Turn nouns into verbs** (Tom Kelley, *The Art of Innovation*). Design for the activity: reviewing, comparing, answering, sharing. Ask what the person is doing, then make that easy.
 - **Act on the best default, and prefer reversible moves.** A sensible, undoable default is not a block: take it, say so in one line, and let the owner swap it. Ask what the smallest move is that unblocks progress, and make it fast.
 - **Fix causes, and apply the fix to live work at once.** Trace a stall in the running system. A fix the live work isn't running yet hasn't fixed anything.
-- **Assess by looking at the real output against the intent**, not by evals, tests, counts or pass/fail. Say what got better or worse for the intent and which options are open. Fix forward.
+- **Assess by looking at the real output against the intent**, not by evals, tests, counts or pass/fail. Say what got better or worse for the intent and which options are open. For a visual experiment, judge the draw as well as the consumed inputs: an inputs-only pick once hid leaks visible in the picture. Fix forward.
 - **Mash, but spend where it counts.** Burn hard on what moves the goal: the hard problem, the live blocker, the decision that unlocks others. Spend little elsewhere: the cheapest capable model for routine work, a fast decision model for typed questions, one agent per task. Don't re-derive what's known, and stop a loop that moves nothing. Status comes from code at zero tokens; wake an agent only for an ask that needs its judgement (lesson 279).
 - **Forward and clean.** One commit, one kind: keep behaviour and structure in separate commits, so each can be reviewed alone. Build a tool once, then refine it: extend the existing player, poller or helper before adding one; a third copy gets consolidated. A picker chooses the tool, and code runs it. Results for review go through the one review tool and come back as a link (lesson 278).
-- **Keep a small crew with one owner per card.** The strongest model judges and chooses; a cheaper model gets exact orders; idle agents sleep, and a free machine may stay free (lesson 282).
+- **Keep a small crew with one owner per card.** The orchestrator decides, orders and judges; executors take one order and end. Prefer execution on a different model family when capacity and task fit justify it. The launcher resolves one routing table and records the requested and observed model; task names describe work. A specialty lane and misleading names once concealed routing drift. See [How we operate](../../HOW_WE_OPERATE.md) for the execution and integration guidance.
+- **Let the execution path finish the order.** Ordinarily its branch commits and lands itself; done notes live outside the repository root, and a conflict becomes a resolution order without holding up unrelated work. Respect an explicit branch-only brief. Use one committer per shared checkout, regenerate derived files, and update shared configuration through its parsed structure: a shared report filename caused repeated merge conflicts, and text splicing once corrupted a model table.
+- **Resume from records at the turn boundary.** Rotate from a generated work packet and whole owner messages; a hand-written note is optional. A manual clear uses the same resume path. Waiting for a note once stalled a rotation whose context was already recoverable.
 - **Keep the owner's view live.** When your work supersedes something waiting on the owner, archive it at once with one line on what replaced it. The "needs you" list holds only live decisions.
 - **Rank harness work by gain per effort, one step at a time.** Check each step's effect on the live system, keep or revert it, and retire the layer it replaces (lesson 286).
 - **Report outcomes, not effort.** Say what now works, where, and what's next. Routine success isn't news; an owner's inbox line should change what someone does.

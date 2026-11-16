@@ -14,8 +14,8 @@ So the harness is judged by four things: does the work move hard toward the goal
 the tools and principles); and does its memory stay clear, so work flows on from one session and one agent to the next
 without telephone.
 
-Agent 47 is a harness for running many AI agents on real work. An orchestrator leads a crew of agents, each in a long-running
-thread, and they share tools instead of each writing their own one-offs. It runs on the
+Agent 47 is a harness for running many AI agents on real work. One orchestrator decides, orders and judges;
+executors take one order and end, sharing tools instead of each writing their own one-offs. It runs on the
 [Button Mash Method](BUTTON_MASH_METHOD.md): push hard toward the goal behind the goal, with assessment loops (look at the
 real output, against the intent), not tests or gates.
 
@@ -87,8 +87,9 @@ Each idea comes from a source in [REFERENCES.md](REFERENCES.md) and is a hypothe
 
 - **The plan is a file, re-read first** (Anthropic's long-running agent harness): every thread keeps a progress file; a
   fresh session reads it before anything else, and it lists the approaches that failed. *Lives in:* rotation (Temporal).
-- **Rotate, don't compact** (Anthropic's context-engineering guidance): a fresh context with a written handover beats a
-  long, summarised one; save the plan before the window runs out. Compaction stays on only as a backstop near the full
+- **Rotate, don't compact** (Anthropic's context-engineering guidance): a fresh context with a generated current-work packet beats a
+  long, summarised one; rotate at a suitable turn end without waiting for a hand-written note. A manual clear resumes
+  through the same packet. Compaction stays on only as a backstop near the full
   window. The handover is one current work packet plus the owner's latest messages verbatim, never a summary of summaries.
   *Lives in:* rotation.
 - **The record is a folder, not a chat** (OpenAI's harness writing): the context window is a cache that resets.

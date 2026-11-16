@@ -11,6 +11,21 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.93.0 (2026-11-15)
+- Refined the orchestrator/executor split: ordering and judging stay with the orchestrator; execution uses another
+  model family where appropriate. A specialty launch lane had bypassed the intended executor choice. One launcher
+  reads one routing table; job records carry requested and observed models, while names describe the task.
+- The executor's door carries its branch through integration, with explicit branch-only briefs respected. A common
+  root-level done note caused repeated conflicts and handed merges back to the orchestrator; job notes now belong
+  outside the repository root. Real conflicts become resolution orders while unrelated work continues.
+- One committer per shared checkout, scoped autosaves, and regeneration of derived files from integrated sources.
+  Taught by overlapping writers that obscured commit ownership. Shared configuration is parsed and updated by its
+  writer, rather than text-spliced: an unrelated settings edit had corrupted a model-routing table.
+- Rotation uses the turn-end event and a generated packet; a hand-written note is optional, and a manual clear enters
+  the same resume path. Taught by a stalled note wait despite recoverable current-work records.
+- Visual trials are judged by the drawn output and actual consumed inputs together. An inputs-only choice concealed
+  reference leaks that became apparent in the draw. Refined existing principles, skill, method and README.
+
 ## 1.92.0 (2026-11-14)
 - The learning loop ends in code, and code checks that it did (owner note: "a system that continues to become more and
   more code supported with tools ... learning from the stuff that the smart models do"). Taught by counting: 750
