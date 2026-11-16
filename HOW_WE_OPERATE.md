@@ -106,7 +106,8 @@ commit for review, without merging or pushing.
 **Pace the tokens.** Every call re-reads the whole window, so a session's cost grows with the square of its length and
 the expensive thing is a large window doing small things: lookups, relays, routine notices. Keep the orchestrator's turns
 short (a look, an order, an answer), send anything that needs more than a handful of lookups to an executor that returns
-thirty lines, and rotate at a natural break rather than at a number. Measure tokens per finished card, not per call.
+thirty lines, and rotate at a natural break rather than at a number. Measure tokens per finished card, not per call. Token waste is not only cost: a long window slows every turn and spreads attention, and
+tasks get lost in it. Generated files that are rewritten every minute are regenerated after a merge, never merged.
 
 **Quality and progress toward the intent, not counts or pass/fail.** "We must focus on quality and progress over
 quantitative counts ... the whole ethos is to say f*** tests and binary. We need quality and flexibility and options and drive
@@ -175,10 +176,30 @@ A status is worked out, not written: a card's column that someone must remember 
 so one small pass recomputes "in motion", "has an output, waiting for a judgement" and "quiet" from the records the work
 already leaves, and only the judgements (done, blocked, parked, waiting on the owner) are written by whoever made them.
 
+**Tracking is not driving.** A harness that knows the goals, ranks the work and prints drift lines has still done
+nothing if those lines reach the orchestrator only when the owner speaks. Every event that needs a judgement (a job's
+output to judge, a failed dependency, a mission with ready work and nothing running) must wake an idle orchestrator by
+itself, batched to one wake per quiet period and zero tokens in between. A goal loop that once kept work moving was
+replaced by goal tracking; the tracking was built and the driving was not, and finished work sat for hours until the
+owner asked. Put the driver in the one place that already runs every minute, and check that the timer calls it: once
+the code existed but the timer called a narrower function that skipped it.
+
+**One writer per act, and one safe path for keys.** Background code types into a window a person uses only through one
+path: the window idle, the input box empty, its own text verified before Enter. Removing a harmful action must keep the
+action's good use: a fix that stopped stray Enter presses also switched rotation off. Two things typing the same
+command (an ad-hoc script and the rotator) left one command unsent in the box and fired a second.
+
+**Wait on records, not on text.** A dependency reads the structured record (parsed fields), never a line's layout: a
+waiter that matched the exact text of a job-end line stalled a whole queue when one field was added. A status reader
+treats "landed, with a note" as landed; a reader that took any note as failure held every later step.
+
 **Rotate at a turn boundary from the records.** Let the turn-end event start rotation when the context is ready,
 using a generated current-work packet plus the owner's latest messages whole. A hand-written note can add judgement,
 but is optional: waiting for it once stalled rotation while the records already held the work. A manual context clear
-should enter the same resume path and restore the packet, rather than leave a fresh session waiting for instructions.
+should enter the same resume path and restore the packet, rather than leave a fresh session waiting for instructions:
+after the clear, the rotator types one resume line, so the new session starts working without the owner. Each rotation
+also writes a short retrospective by code (asks placed or repeated, what landed or stranded, outputs not yet judged,
+tokens), and the next session reads it, so the system can tell progress from regression.
 Respect a live tool call or a named hold with a deadline; rotate at the next suitable boundary.
 
 **Memory without telephone.** Keep three things apart: durable policy (these few principles), current state (data with

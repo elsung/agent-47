@@ -11,6 +11,17 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.94.0 (2026-11-16)
+- Tracking is not driving: events that need a judgement wake an idle orchestrator by themselves, batched, from the one
+  timer that already runs. Taught by finished jobs sitting about four hours until the owner asked, and by a driver whose
+  code existed while the timer called a function that skipped it.
+- One writer per act and one safe path for keys; a fix that removes a harmful action keeps its good use. Taught by a
+  rotation switched off by an Enter-key fix, then by two writers typing the same clear command.
+- Wait on records, not on text; "landed with a note" is landed. Taught by a queue waiter broken by one added field and
+  a status reader that held every later step on a harmless note.
+- Rotation types one resume line after the clear and writes a retrospective by code each time. Token waste costs speed
+  and attention as well as money; generated files are regenerated after a merge, never merged.
+
 ## 1.93.0 (2026-11-15)
 - Refined the orchestrator/executor split: ordering and judging stay with the orchestrator; execution uses another
   model family where appropriate. A specialty launch lane had bypassed the intended executor choice. One launcher
