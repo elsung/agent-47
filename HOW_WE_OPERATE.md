@@ -48,6 +48,17 @@ Only the owner spends money, publishes, deletes, or runs anything with root. Eve
   code depends on the recipe, not on copies of its values.
 - Before you state a setting or a status, read it from its home (the code, the card, the run record), not from memory or chat.
 
+**One committer per shared checkout.** Serialize commits through one writer, with explicit file ownership; keep
+independent executors in separate worktrees. Scope automatic saves to the records they own rather than sweeping up
+another worker's edits. Regenerate derived files from their source after integrating source changes, rather than merging
+the generated text. Competing autosaves and shared generated files once obscured whose work a commit contained.
+Separate worktrees can commit independently; the shared integration step still has one writer.
+
+**Write structured configuration as structure.** Parse a shared settings file, change only the owned keys, and write it
+through the configuration's single writer, using an atomic replacement and a recoverable previous version. Avoid text
+splicing: one installer corrupted a model-routing table while changing a different section of the same settings file.
+A parsed update preserves unrelated values and keeps the routing table authoritative; formatting belongs to the writer.
+
 **Build on what exists, and version every change.** Before you change a piece, look at what exists and decide per piece:
 keep, change, replace, add, or stop using. Additive is not the default. Every change, test or draft is a new version; an old
 version stays as it was. A new version is used only once a recorded decision adopts it, and a run names the version
@@ -69,13 +80,28 @@ gives each execution command. The owner of a decision acts now and posts what it
 none comes the owner's choice stands. Agents with no assignment stay asleep: nothing feeds, nudges or nags them, and a free
 machine may stay free when there is no current work.
 
-**One orchestrator; executors that end.** The shape that stays simple is one strong model that decides, orders and judges,
-and executors that each take one order, do it in their own branch, write a short done note and stop. A second standing lead
-that the first one talks to by message is not a helper, it is a second context re-reading itself on every message, and the
-layers added to keep the two in step (mail, nudges, watchers) become the work. Start a second orchestrator only when a
-second stream is truly live, and end it with the stream. What prevents a cheap executor's silly decision is the order, not
-the model: say who the result is for and what goes wrong for them if it is wrong, name the exact inputs, say what to leave
-alone, and ask for evidence from real data in the done note.
+**One orchestrator; executors that end.** Lean toward one strong model that decides, orders and judges, with
+executors that each take one order and end. The orchestrator orders work rather than editing or merging it itself;
+otherwise each awkward tool becomes a reason to pull execution back into the largest context. Prefer a different model
+family for execution when it fits the work and available capacity; this separates the scarce orchestration budget from
+routine implementation. It is a working arrangement, not a claim that one family is best at every task. Bring in a
+separate adviser for architecture or hard judgements when useful. Start another standing orchestrator only for a truly
+separate live stream, and end it with that stream. The order says who the result serves, what goes wrong if it is wrong,
+the exact inputs, what to leave alone, and what evidence from real output to return.
+
+**Make the sanctioned path the only execution path.** Resolve model routing from one table through one launcher, including
+advisory work. Prefer removing alternate launch routes over telling agents to remember which route to use. Record the
+requested model and the observed model on each job; if the latter is unknown, say so. Task names identify the work, not
+the model. In one trial, a specialty lane bypassed the executor choice, while an old model name on a job hid that it had
+run on the new model. A deliberate model experiment belongs in the same launcher and record, with its override named.
+
+**The executor's door carries work through.** A branch is a workspace for one order, not a second backlog. Ordinarily
+the execution path commits and lands its own branch at the end; the orchestrator reads the result rather than doing the
+merge. Keep done notes in a job record outside the repository root, so unrelated branches do not collide on one report
+filename. On a real conflict, give resolution its own executor order and record, preserving both sides' intent; let
+unrelated work keep landing. A shared root note once made every later branch conflict and sent merging back to the
+orchestrator. An explicit branch-only or publication restriction overrides automatic landing: record the branch and
+commit for review, without merging or pushing.
 
 **Pace the tokens.** Every call re-reads the whole window, so a session's cost grows with the square of its length and
 the expensive thing is a large window doing small things: lookups, relays, routine notices. Keep the orchestrator's turns
@@ -92,7 +118,10 @@ the work came and which way it is heading. Describe state as quality and directi
 intent, what is open), with the real output as the evidence. An assessment, an independent model's review included, reports what
 got better or worse for the intent and offers options with a lean, not a verdict or a score. Refinement, not reduction: a
 system improves when each piece does its job better and more clearly. Fewer pieces often follows, but it is not the aim, and
-sometimes the clearer system has one piece more.
+sometimes the clearer system has one piece more. Judge a visual experiment by the drawn result as well as its actual
+consumed inputs. An inputs-only choice once looked sound until the draw showed reference content leaking into the
+picture. Inputs explain the result; they cannot establish its quality. Until a draw exists, call the choice provisional;
+then compare the rendered alternatives against the intended feeling and action.
 
 **Guidance, not absolutes.** Write and read every principle, memory and brief as guidance with its reason, not as a rule
 that fires on a word. "Always" and "never" overfit: they turn into literal tripwires ("but you said never to do this"),
@@ -145,6 +174,12 @@ output, and cost is measured per shipped result.
 A status is worked out, not written: a card's column that someone must remember to update holds what they last remembered,
 so one small pass recomputes "in motion", "has an output, waiting for a judgement" and "quiet" from the records the work
 already leaves, and only the judgements (done, blocked, parked, waiting on the owner) are written by whoever made them.
+
+**Rotate at a turn boundary from the records.** Let the turn-end event start rotation when the context is ready,
+using a generated current-work packet plus the owner's latest messages whole. A hand-written note can add judgement,
+but is optional: waiting for it once stalled rotation while the records already held the work. A manual context clear
+should enter the same resume path and restore the packet, rather than leave a fresh session waiting for instructions.
+Respect a live tool call or a named hold with a deadline; rotate at the next suitable boundary.
 
 **Memory without telephone.** Keep three things apart: durable policy (these few principles), current state (data with
 links to real outputs, read from its one home) and history (an archive, searched when needed, kept out of what loads at start).

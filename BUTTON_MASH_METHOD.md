@@ -16,9 +16,19 @@ Five principles, in the owner's words, each with its why. Each one is a hypothes
 
 1. **One road.** "Every take, test or production, = shot plan + model recipe through one builder." A recipe is a methodology, not a parameter set. Locked principles stay fixed; open options each get an experiment that decides them. (owner #2937-#2943; the render intent doc.) Why: a second path for tests means a second set of mistakes.
 2. **Tools compound.** A dedicated toolsmith thread improves tools and how they are used, continuously. A router (JEV) picks the tool and code runs it, so an LLM does not redo a routine job. LLMs are spent on judging, finding gaps and refining the system. A job seen twice becomes a tool. Pages, docs and retros are generated from records, not hand-built. Learnings are a typed, routed pipeline, closed with a link when applied. (owner #2950, #2961.) Why: a hand job repeated is a tool not yet built.
-3. **Rotation is continuity.** A context window has a start line, a rotation at the next clean break, and a nudge near its end. Holds expire on their own. Nothing is cleared before the handoff. The last and pending owner messages travel whole. (owner #2953, #2956, #2957.) A check's threshold must come from the real thing: a fresh session measured about 55K, not under 20K, and the GPU floor is 8 GB, not 4 GB. A made-up threshold stalls work silently. Why: a wrong floor looks like a hang.
+3. **Rotation is continuity.** A context window has a start line, a rotation at the next clean break, and a nudge near its end. Holds expire on their own. The current-work packet is generated from records; a hand-written handoff is optional. Rotation starts at a suitable turn end, and a manual clear uses the same resume path. The last and pending owner messages travel whole. (owner #2953, #2956, #2957.) A check's threshold must come from the real thing: a fresh session measured about 55K, not under 20K, and the GPU floor is 8 GB, not 4 GB. A made-up threshold stalls work silently. Why: a wrong floor looks like a hang.
 4. **Phases are focus, not locks.** Finish the current phase's milestone first; other work continues where it does not conflict. (owner #2606, #2960.)
 5. **Check a take's real inputs, planned against rendered length, and its sound, before showing it.** (owner #2810, #2937.) Why: a take with the wrong length or a silent copy looks fine in a thumbnail.
+
+## Execution and continuity, refined (2026-11-15)
+
+The [operating principles](HOW_WE_OPERATE.md) hold the current guidance for one orchestrator and executors that end,
+one routing table and launcher, branches that land through their own execution path, one committer per shared checkout,
+structured configuration writes, rotation from records, and judging visual trials by the draw. The cases behind these
+refinements: a specialty route bypassed the chosen executor; model-like job names misled readers; a shared root report
+made branches conflict and handed merging back to the orchestrator; overlapping saves obscured ownership; a hand-note
+wait stalled rotation; an inputs-only pick concealed leaks visible in the picture; and a text edit corrupted a shared
+model table. These are reasons for the defaults, not claims that every experiment or repository needs the same setup.
 
 ## How it steers: hard guidelines, strong steering, judgment (owner #521, #522)
 
@@ -2209,7 +2219,7 @@ check's 34 views on real projects.
 - "Wait until tomorrow" for a reversible edit is not a wait. Start it now.
 - Before you build on a brief's input, check that it exists on disk. A brief that names an input (a casting list, a source board) is a claim, not the file.
 - A runner script is not on PATH. Check its exit code and its output file before you call a run done.
-- Autosave commits take uncommitted files. Check the file's last commit (`git log -1 -- <file>`) before you commit anything.
+- Prefer one committer per shared checkout, with autosave scoped to its own records. Independent work belongs in separate worktrees; regenerate derived files from the integrated sources rather than merging generated text.
 - A commit ask from the coordinator is a go for that exact set. Name the branch and each commit id in the reply.
 - A runner's jobs are not Slurm jobs until the flag is on. Check the squeue comment before you call a run dispatched.
 - A default with a deadline that passes with no reply is taken, and posted as taken.
