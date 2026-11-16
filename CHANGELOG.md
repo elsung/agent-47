@@ -11,6 +11,11 @@ Each entry names the real incident or owner note that taught it.
 
 
 
+## 1.96.0 (2026-11-16)
+- Refined one-committer guidance after the generated-view landing incident: autosave and integration share the declaration of derived files; regenerate disposable views, preserve source edits, and distinguish overwrite refusals from source conflicts.
+- Refined independent model lanes after the endpoint reservation and active-call handover incident: apply routing through managed call lifetime, preserve independent hold owners across workspaces, and yield without restarting shared servers.
+- The same lane incident distinguished configured admission capacity from measured useful throughput; simulated handovers and unobserved server behavior remain explicit evidence limits.
+
 ## 1.95.0 (2026-11-16)
 - Fresh-context loop bodies, failure edges and judgement nodes refine the learning loop; taught by the repeated-loop research request and its missing source report, which remains an evidence limitation.
 - Executors outlive their dispatch timers; taught by a oneshot ending and killing its executor.

@@ -30,6 +30,11 @@ Read at every start and every rotation. These come before every other rule.
 Use typed-choice decisions for cheap routing when the choices are explicit; uncertainty or no fitting choice
 escalates to a stronger model. Keep local model lanes independent: a product hold stays in effect while harness
 work routes around it through an available lane, rather than silently lifting the hold or stalling unrelated work.
+Apply that choice at call launch and through the managed call's lifetime: a routing lookup alone cannot account for
+live use. A new hold redirects managed harness work without restarting the shared server. Keep independent hold
+owners and deadlines in one shared record across workspaces; releasing one leaves the others intact. Distinguish
+configured admission capacity from measured useful throughput when planning work, and label simulated handovers
+and unobserved server behavior as such.
 
 **Before you write or approve any check, script, hook, brief or step, ask: what happens on "no"?**
 If the answer is stop, refuse, exit, or wait with no deadline, it is a gate. Rewrite it as:
@@ -55,7 +60,11 @@ Only the owner spends money, publishes, deletes, or runs anything with root. Eve
 **One committer per shared checkout.** Serialize commits through one writer, with explicit file ownership; keep
 independent executors in separate worktrees. Scope automatic saves to the records they own rather than sweeping up
 another worker's edits. Regenerate derived files from their source after integrating source changes, rather than merging
-the generated text. Competing autosaves and shared generated files once obscured whose work a commit contained.
+the generated text. Let the same source-controlled declaration of generated files govern both autosave exclusion
+and integration recovery. When a derived view is rewritten during landing, discard only that disposable view and
+regenerate it from the integrated sources; preserve source edits. An overwrite refusal without conflicting source
+files is an integration repair, not a conflict-resolution assignment. Competing autosaves and shared generated files
+once obscured whose work a commit contained.
 Separate worktrees can commit independently; the shared integration step still has one writer.
 
 **Write structured configuration as structure.** Parse a shared settings file, change only the owned keys, and write it
